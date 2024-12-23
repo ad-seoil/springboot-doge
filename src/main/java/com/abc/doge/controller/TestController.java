@@ -11,7 +11,7 @@ public class TestController {
     @GetMapping("/")
     @ResponseBody
     public String test(){
-        return "1234!";
+        return "abcdefg!";
     }
 
 }
