@@ -11,7 +11,7 @@ public class TestController {
     @GetMapping("/")
     @ResponseBody
     public String test(){
-        return "Hello World!";
+        return "안녕하세요!";
     }
 
 }
