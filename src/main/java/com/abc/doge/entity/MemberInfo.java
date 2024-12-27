@@ -11,6 +11,9 @@ public class MemberInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer uid;    // UID
 
+    @Column(name = "ID", nullable = false, unique = true)
+    private String ID;  // 사용자 ID
+
     @Column(name = "PW", nullable = false)
     private String pw;  // password
 
