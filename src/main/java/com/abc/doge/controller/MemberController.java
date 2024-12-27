@@ -20,6 +20,7 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
+    // 회원가입
     @PostMapping("/register")
     public ResponseEntity<String> register(
             @RequestBody MemberRegistrationDto memberRegistrationDTO
@@ -28,6 +29,7 @@ public class MemberController {
         return ResponseEntity.ok("회원가입을 완료했습니다.");
     }
 
+    // 로그인
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody MemberLoginDto loginDto) {
         Optional<MemberInfo> member = memberService.loginMember(loginDto);
