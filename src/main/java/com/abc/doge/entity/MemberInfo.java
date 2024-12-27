@@ -12,13 +12,16 @@ public class MemberInfo {
     private Integer uid;    // UID
 
     @Column(name = "ID", nullable = false, unique = true)
-    private String ID;  // 사용자 ID
+    private String id;  // 사용자 ID
 
     @Column(name = "PW", nullable = false)
     private String pw;  // password
 
     @Column(name = "user_name", nullable = false)
     private String userName;  // 사용자 이름
+
+    @Column(name = "nickname", nullable = false)
+    private String nickname;
 
     @Column(name = "birth_date", nullable = false)
     private java.sql.Date birthDate;    // 생년월일
