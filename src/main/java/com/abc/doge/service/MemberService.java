@@ -16,4 +16,8 @@ public class MemberService {
     public void registerMember(MemberInfo member) {
         memberRepository.save(member); // 회원 정보 저장
     }
+
+    public MemberInfo findByEmail(String email) {
+        return memberRepository.findByEmail(email);
+    }
 }

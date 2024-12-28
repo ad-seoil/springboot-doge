@@ -14,10 +14,9 @@
 
         body {
           display: flex;
-          flex-direction: column;
-          justify-content: space-between;
+          justify-content: center;
+          align-items: center;
           min-height: 100vh;
-          background-color: #f2f4f8;
         }
 
         a {
@@ -27,13 +26,24 @@
 
         .container {
           display: flex;
-          flex: 1;
-          width: 80%;
+          width: 100%;
+          height: 100%
           background-color: #fff;
-          max-width: 800px;
-          border-radius: 10px;
           overflow: hidden;
-          margin: 20px auto;
+        }
+
+        /* 이미지 섹션 */
+        .left_side {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        /* 이미지 */
+        .join_image {
+          width: 80%;
+          height: auto;
         }
 
         /* 로그인/회원가입 섹션 */
@@ -44,7 +54,7 @@
 
         h1 {
           margin-bottom: 20px;
-          font-size: 20px;
+          font-size: 30px;
           text-align: left;
         }
 
@@ -89,12 +99,6 @@
         }
 
         /* 가입하기 버튼 */
-        .btn_section {
-          display: flex;
-          flex-direction: row;
-          justify-content: flex-end;
-        }
-
         .btn_join {
           background-color: #0078ff;
           color: #fff;
@@ -103,8 +107,7 @@
           border-radius: 5px;
           font-size: 16px;
           cursor: pointer;
-          max-width: 100px;
-          margin: 25px 0px 25px 0px;
+          margin-bottom: 25px;
           transition: background-color 0.3s ease;
         }
 
@@ -112,11 +115,44 @@
           background-color: #0056b3;
         }
 
+        /* 구글 로그인 버튼 */
+        .btn_google {
+          padding: 5px;
+          background-color: #fff;
+          border: 1px solid #0078ff;
+          color: #0078ff;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+
+        .btn_google:hover {
+          background-color: #f2f4f8;
+        }
+
+        .btn_google .google_logo {
+          width: 20px;
+          height: 20px;
+          margin-right: 10px;
+        }
+
+        .login_link {
+          margin: 10px;
+          color: #0056b3;
+        }
+
+        .bottomhr {
+            margin: 40px 0 40px 0;
+        }
     </style>
 </head>
 <body>
 <!-- 회원가입 폼 섹션 -->
 <div class="container">
+    <!-- 이미지 섹션 -->
+    <div class="left_side">
+        <img src="../image/join_left.png" alt="로그인_이미지" class="join_image">
+    </div>
+
     <div class="right_side">
         <h1>회원가입</h1>
         <hr>
@@ -153,11 +189,23 @@
                        name="password_confirm" required>
             </div>
 
-            <!-- 가입하기 버튼 -->
-            <div class="btn_section">
-                <button type="submit" class="btn_join">가입하기</button>
+            <!-- 체크박스 -->
+            <div class="checkbox">
+                <input type="checkbox" id="agree">
+                <label for="agree">위의 정보로 계정을 만드는 데에 동의합니다.</label>
             </div>
+
+            <!-- 가입하기 및 구글 아이디 로그인 버튼 -->
+            <button type="submit" class="btn_join">가입하기</button>
+            <button type="button" class="btn_google">
+                <img src="../image/google_logo.png" alt="google_logo" class="google_logo">
+                Google 아이디로 로그인
+            </button>
         </form>
+        <hr class="bottomhr">
+
+        <!-- 이미 계정이 있을 경우 로그인 페이지로 리다이렉트 -->
+        <p class="login_link"><a href="#">이미 계정이 있습니까?</a></p>
 
     </div>  <!-- 로그인 폼 섹션 끝 -->
 

@@ -45,4 +45,26 @@ public class MemberController {
         System.out.println(111111);
         return "html/success"; // 성공 페이지로 리다이렉트
     }
+
+    @GetMapping("/login")
+    public String showLoginForm(){
+        return "html/login";    // login.html
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestParam String email,
+                        @RequestParam String pw,
+                        Model model) {
+       MemberInfo memberInfo = memberService.findByEmail(email);
+
+       if (memberInfo != null && memberInfo.getPw().equals(pw)) {
+           // 로그인 성공
+           model.addAttribute("message", "로그인 성공");
+           return "redirect:/";
+       } else {
+           // 로그인 실패
+           model.addAttribute("error", "이메일 또는 비밀번호가 잘못되었습니다.");
+           return "html/login";
+       }
+    }
 }
