@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  background-color: #f2f4f8;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  width: 80%;
+  background-color: #fff;
+  max-width: 800px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px auto;
+}
+
+/* 로그인 섹션 */
+.right_side {
+  flex: 1;
+  padding: 40px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  text-align: left;
+}
+
+hr {
+  margin-bottom: 10px;
+  border: none;
+  height: 1px;
+  background-color: #aaa;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin: 10px 0 5px;
+  font-weight: normal;
+  font-size: 13px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f2f4f8;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* 이름 입력란 부모 컨테이너 */
+.name_container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* 입력란의 라벨과 입력란을 세로로 정렬*/
+.input_group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.checkbox {
+  margin-bottom: 10px;
+}
+
+/* 가입하기 버튼 */
+.btn_section {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.btn_join {
+  background-color: #0078ff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  max-width: 100px;
+  margin: 25px 0px 25px 0px;
+  transition: background-color 0.3s ease;
+}
+
+.btn_join:hover {
+  background-color: #0056b3;
+}
+
+/* 푸터 */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 15px;
+}
+
+footer a {
+  margin-right: 20px;
+}
+
+footer p {
+  margin-top: 30px;
+}
