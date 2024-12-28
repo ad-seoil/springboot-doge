@@ -38,12 +38,9 @@ public class MemberController {
         memberInfo.setNickname(nickname);
         memberInfo.setEmail(email);
 
-        System.out.println(1);
         memberService.registerMember(memberInfo); // 회원 정보 저장
-        System.out.println(111);
-        model.addAttribute("message", "회원가입이 완료되었습니다.");
-        System.out.println(111111);
-        return "html/success"; // 성공 페이지로 리다이렉트
+        model.addAttribute("email", email);
+        return "html/success"; // 성공 페이지(success.html)로 리다이렉트
     }
 
     @GetMapping("/login")
