@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 풀이</title>
+</head>
+<link rel="stylesheet" href="/static/css/question.css">
+<body>
+<div class="container">
+    <!-- 문제 상단 영역 -->
+    <div class="top-bar">
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="question-tracker" id="questionTracker">1 / x</div>
+        <!-- x = 총 문제 수 -->
+    </div>
+
+    <!-- 문제와 보기 -->
+    <div class="question-area">
+        <div class="image-container">
+            <img src="/static/image/vacant.jpg" alt="Beach Vacation" class="question-image">
+        </div>
+        <div class="choices-container">
+            <p class="question-text" id="questionText">문제 텍스트</p>
+            <input type="text" class="answer-input" id="answerInput">
+        </div>
+    </div>  <!-- question-area 끝 -->
+
+    <!-- 하단 영역 -->
+    <div class="footer">
+        <div id="timer_app"></div>
+        <button class="next-button" id="nextButton">다음 문제</button>
+    </div>
+</div>
+<script src="../js/timer.js"></script>
+<script src="../js/question.js"></script>
+</body>
+</html>
