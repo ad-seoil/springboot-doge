@@ -66,15 +66,15 @@
       border-radius: 10px;
     }
 
-    .choices-container {
-      width: 60%;
-      padding-left: 20px;
-    }
-
     .question-text {
       font-size: 1.5em;
       font-weight: bold;
       margin-bottom: 20px;
+    }
+
+    .choices-container {
+      width: 60%;
+      padding-left: 20px;
     }
 
     .choices {
@@ -97,6 +97,16 @@
     .choice-button:hover {
       background-color: #f0f0f0;
       border-color: #bbb;
+    }
+
+    .correct {
+        background-color: rgba(0, 255, 0, 0.5); /* 녹색 */
+        transition: opacity 0.3s;
+    }
+
+    .incorrect {
+        background-color: rgba(255, 0, 0, 0.5); /* 빨간색 */
+        transition: opacity 0.3s;
     }
 
     /* 하단 영역 */

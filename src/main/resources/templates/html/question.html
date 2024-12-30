@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>문제 풀이</title>
+    <link rel="stylesheet" href="/static/css/question.css">
 </head>
-<link rel="stylesheet" href="/static/css/question.css">
 <body>
 <div class="container">
     <!-- 문제 상단 영역 -->
@@ -13,8 +13,7 @@
         <div class="progress-bar-container">
             <div class="progress-bar" id="progressBar"></div>
         </div>
-        <div class="question-tracker" id="questionTracker">1 / x</div>
-        <!-- x = 총 문제 수 -->
+        <div class="question-tracker" id="questionTracker">1 / 5</div>
     </div>
 
     <!-- 문제와 보기 -->
@@ -23,18 +22,22 @@
             <img src="/static/image/vacant.jpg" alt="Beach Vacation" class="question-image">
         </div>
         <div class="choices-container">
-            <p class="question-text" id="questionText">문제 텍스트</p>
-            <input type="text" class="answer-input" id="answerInput">
-        </div>
+            <p class="question-text" id="questionText">${question.question}</p>
+            <div class="choices">
+                <button class="choice-button" onclick="selectAnswer(1)" id="choice1">${question.ex1}</button>
+                <button class="choice-button" onclick="selectAnswer(2)" id="choice2">${question.ex2}</button>
+                <button class="choice-button" onclick="selectAnswer(3)" id="choice3">${question.ex3}</button>
+            </div>
+        </div>  <!-- choices-container 끝 -->
     </div>  <!-- question-area 끝 -->
 
     <!-- 하단 영역 -->
     <div class="footer">
         <div id="timer_app"></div>
-        <button class="next-button" id="nextButton">다음 문제</button>
+        <button class="next-button" id="nextButton" onclick="nextQuestion()">다음 문제</button>
     </div>
 </div>
-<script src="../js/timer.js"></script>
-<script src="../js/question.js"></script>
+<script src="/static/js/timer.js"></script>
+<script src="/static/js/question.js"></script>
 </body>
 </html>
