@@ -21,7 +21,7 @@ public class QuestionController {
     // 문제 개수 선택 페이지 리다이렉트 메서드
     @GetMapping("/selectQuestions")
     public String selectQuestions() {
-        return "html/selectQuestions";
+        return "selectQuestions";
     }
 
 
@@ -33,7 +33,7 @@ public class QuestionController {
         session.setAttribute("questions", questions); // 세션에 문제 리스트 저장
         model.addAttribute("question", questions.get(0)); // 첫 번째 문제 모델에 추가
         model.addAttribute("totalQuestions", questionCount); // 총 문제 수 모델에 추가
-        return "html/question"; // 문제 풀이 페이지로 이동 (question.html)
+        return "question"; // 문제 풀이 페이지로 이동 (question.html)
     }
 
     @GetMapping("/question") // 특정 문제 요청 처리

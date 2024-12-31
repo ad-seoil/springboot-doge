@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 풀이</title>
+    <link rel="stylesheet" th:href="@{/static/css/question.css}">
+</head>
+<body>
+<div class="container">
+    <!-- 문제 상단 영역 -->
+    <div class="top-bar">
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="question-tracker" id="questionTracker" th:text="${currentQuestionIndex + 1} + ' / ' + ${totalQuestions}"></div>
+    </div>
+
+    <!-- 문제와 보기 -->
+    <div class="question-area">
+        <div class="image-container">
+            <img th:src="@{/static/image/vacant.jpg}" alt="Beach Vacation" class="question-image">
+        </div>
+        <div class="choices-container">
+            <p class="question-text" id="questionText" th:text="${question.question}"></p>
+            <div class="choices">
+                <button class="choice-button" th:onclick="'selectAnswer(1)'" id="choice1" th:text="${question.ex1}"></button>
+                <button class="choice-button" th:onclick="'selectAnswer(2)'" id="choice2" th:text="${question.ex2}"></button>
+                <button class="choice-button" th:onclick="'selectAnswer(3)'" id="choice3" th:text="${question.ex3}"></button>
+            </div>
+        </div>  <!-- choices-container 끝 -->
+    </div>  <!-- question-area 끝 -->
+
+    <!-- 하단 영역 -->
+    <div class="footer">
+        <div id="timer_app"></div>
+        <button class="next-button" id="nextButton" onclick="nextQuestion()">다음 문제</button>
+    </div>
+</div>
+<script th:src="@{/static/js/timer.js}"></script>
+<script th:src="@{/static/js/question.js}"></script>
+</body>
+</html>
