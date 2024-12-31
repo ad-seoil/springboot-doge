@@ -1,19 +1,56 @@
+.body {
+    height: 100vh;
+    display: flex; 
+    justify-content: center; 
+    background-color: var(--dark-grey);
+}
+
+.left {
+    display: flex; 
+    justify-content: flex-start; /
+}
+
+.write-form { 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    width: 40vw;
+    padding: 2vw;
+    background-color: #ccc;
+}
+
+.title {
+    text-align: left; 
+    width: 100%; 
+}
+
+p {
+    font-size: 1rem;
+    margin-bottom: 2vh;
+}
+
 form {
     display: flex;
     flex-direction: column;
-    max-width: 400px;
+    max-width: 38vw;
 }
+
 label {
+    font-size: 1.5rem;
     margin-bottom: 5px;
     font-weight: bold;
 }
+
 input, textarea {
+    width: 30vw;
     margin-bottom: 15px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
 button {
+    width: 6vw;
     padding: 10px;
     background-color: #007BFF;
     color: white;
@@ -21,6 +58,7 @@ button {
     border-radius: 4px;
     cursor: pointer;
 }
+
 button:hover {
     background-color: #0056b3;
 }
