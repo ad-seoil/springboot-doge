@@ -17,7 +17,7 @@ public class MemberController {
 
     @GetMapping("/register")
     public String showRegistrationForm() {
-        return "html/register"; // register.html
+        return "register"; // register.html
     }
 
     @PostMapping("/register")
@@ -30,7 +30,7 @@ public class MemberController {
         // 비밀번호 확인 로직
         if (!pw.equals(password_confirm)) {
             model.addAttribute("error", "비밀번호가 일치하지 않습니다.");
-            return "html/register"; // 다시 등록 페이지로 리턴
+            return "register"; // 다시 등록 페이지로 리턴
         }
 
         MemberInfo memberInfo = new MemberInfo();
@@ -40,12 +40,12 @@ public class MemberController {
 
         memberService.registerMember(memberInfo); // 회원 정보 저장
         model.addAttribute("email", email);
-        return "html/success"; // 성공 페이지(success.html)로 리다이렉트
+        return "success"; // 성공 페이지(success.html)로 리다이렉트
     }
 
     @GetMapping("/login")
     public String showLoginForm(){
-        return "html/login";    // login.html
+        return "login";    // login.html
     }
 
     @PostMapping("/login")
@@ -61,7 +61,7 @@ public class MemberController {
        } else {
            // 로그인 실패
            model.addAttribute("error", "이메일 또는 비밀번호가 잘못되었습니다.");
-           return "html/login";
+           return "login";
        }
     }
 }
