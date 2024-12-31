@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>설문조사</title>
+  <!-- 외부 스타일 파일 -->
+  <link rel="stylesheet" href="/static/css/header.css">
+  <link rel="stylesheet" href="/static/css/survey.css">
+  <!-- jQuery 연결 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" ></script>
+</head>
+<body>
+<!-- 상단바 전체 박스 -->
+<div id="naviBox">
+  <!-- 안쪽 navi박스 + 로고 -->
+  <div id="naviBox2">
+    <!-- 로고, 프로젝트명 박스 -->
+    <div id="logoBox">
+      <img src="/static/image/DOGE_Logo.png" alt="DOGE_Logo">
+      <p>DoGE</p>
+    </div>
+    <!-- 내비게이션 -->
+    <nav id="nav">
+      <ul id="menu">
+        <li class="main">
+          <a href="#">메인페이지</a>
+        </li>
+        <li class="main"> <!-- 메인메뉴 -->
+          <a href="#">언어</a><i class="fa-solid fa-chevron-down icon"></i>
+          <ul class="sub">  <!-- 서브메뉴(토글) -->
+            <li class="subList"><a href="#">English</a></li>
+            <li class="subList"><a href="#">한국어</a></li>
+            <li class="subList"><a href="#">日本語</a></li>
+          </ul>
+        </li>
+        <li class="main">
+          <a href="#">로그인</a>
+        </li>
+        <li class="main">
+          <a href="#">문의</a>
+        </li>
+      </ul> <!-- menu 끝 -->
+    </nav>  <!-- 내비게이션 끝 -->
+  </div>  <!-- NaviBox2 끝 -->
+</div>  <!-- NaviBox 끝 -->
+
+<!-- 컨텐츠 영역 -->
+<div id="content">
+  <h2 class="title">레벨테스트</h2>
+  <h1 class="subtitle">일일 학습목표는 어느 정도로 하실 건가요?</h1>
+  <ul class="survey-list">
+    <li>하루 10분 이상 <span>+</span></li>
+    <li>하루 30분 이상 <span>+</span></li>
+    <li>하루 1시간 이상 <span>+</span></li>
+    <li>하루 2시간 이상 <span>+</span></li>
+  </ul>
+</div>
+</body>
+</html>
