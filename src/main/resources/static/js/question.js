@@ -33,6 +33,7 @@ function nextQuestion() {
     buttons.forEach(button => {
         button.classList.remove('correct', 'incorrect');
     });
+
     if (currentQuestionIndex >= totalQuestions) {
         window.location.href = '/completion'; // 완료 페이지로 리다이렉트
     } else {

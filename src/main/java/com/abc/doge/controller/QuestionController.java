@@ -70,6 +70,10 @@ public class QuestionController {
         List<Question> questions = (List<Question>) session.getAttribute("questions");
         Integer currentIndex = (Integer) session.getAttribute("currentQuestionIndex");
 
+        // 디버그 로그 추가
+        System.out.println("Current Index: " + currentIndex);
+        System.out.println("Questions: " + questions);
+
         if (questions != null && currentIndex != null && currentIndex < questions.size()) {
             Question question = questions.get(currentIndex);
             boolean isCorrect = question.getAnswer() == Integer.parseInt(selectedAnswer);    // 정답 여부 확인
@@ -77,7 +81,7 @@ public class QuestionController {
             model.addAttribute("feedback", isCorrect ? "정답" : "오답");
 
             // 다음 문제로 이동
-            currentIndex++;
+            currentIndex = currentIndex + 1;
             session.setAttribute("currentQuestionIndex", currentIndex);
 
             if (currentIndex < questions.size()) {  // 현재 문제가 마지막 문제가 아닐 경우
