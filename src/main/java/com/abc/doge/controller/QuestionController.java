@@ -21,7 +21,7 @@ public class QuestionController {
     // 문제 개수 선택 페이지 리다이렉트 메서드
     @GetMapping("/selectQuestions")
     public String selectQuestions() {
-        return "selectQuestions";
+        return "html/selectQuestions";
     }
 
 
@@ -29,11 +29,11 @@ public class QuestionController {
     public String startQuiz(@RequestParam("questionCount") int questionCount, HttpSession session, Model model) {
         session.setAttribute("questionCount", questionCount); // 세션에 문제 개수 저장
         session.setAttribute("currentQuestionIndex", 0); // 현재 문제 인덱스 초기화
-        List<Question> questions = questionService.getQuestions(1, questionCount); // 난이도 1의 문제 가져오기
+        List<Question> questions = questionService.getQuestions(2, questionCount); // 난이도 2의 문제 가져오기
         session.setAttribute("questions", questions); // 세션에 문제 리스트 저장
         model.addAttribute("question", questions.get(0)); // 첫 번째 문제 모델에 추가
         model.addAttribute("totalQuestions", questionCount); // 총 문제 수 모델에 추가
-        return "question"; // 문제 풀이 페이지로 이동 (question.html)
+        return "html/question"; // 문제 풀이 페이지로 이동 (question.html)
     }
 
     @GetMapping("/question") // 특정 문제 요청 처리
