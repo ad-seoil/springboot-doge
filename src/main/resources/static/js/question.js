@@ -10,15 +10,15 @@ function updateProgressBar() {
 }
 
 function selectAnswer(answerIndex) {
-    const correctAnswerIndex = ${question.answer}; // 정답 인덱스
-    const chosenButton = document.getElementById(`choice${answerIndex}`);
-    const correctButton = document.getElementById(`choice${correctAnswerIndex}`);
+    const correctAnswerIndex = parseInt(document.getElementById('correctAnswerIndex').value); // 정답 인덱스
+        const chosenButton = document.getElementById(`choice${answerIndex}`);
+        const correctButton = document.getElementById(`choice${correctAnswerIndex}`);
 
     if (answerIndex === correctAnswerIndex) {
-        chosenButton.classList.add('correct');
+        chosenButton.classList.add('correct');  // 정답 버튼 색상 변경
     } else {
-        chosenButton.classList.add('incorrect');
-        correctButton.classList.add('correct'); // 정답 버튼 색상 변경
+        chosenButton.classList.add('incorrect');// 오답 버튼 색상 변경
+        correctButton.classList.add('correct');
     }
 
     setTimeout(() => {
