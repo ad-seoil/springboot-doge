@@ -14,6 +14,12 @@ public class QuestionService {
 
     public List<Question> getQuestionByDifficultyId(int dId, int questionCount) {
         List<Question> questions = questionRepository.findByDifficultyId(dId);
-        return questions.subList(0, Math.min(questionCount, questions.size())); // 요청한 갯수만큼 반환
+
+        // 요청 갯수보다 적은 경우 전체 반환
+        if (questions.size() < questionCount) {
+            return questions;
+        }
+
+        return questions.subList(0, questionCount); // 요청한 갯수만큼 반환
     }
 }

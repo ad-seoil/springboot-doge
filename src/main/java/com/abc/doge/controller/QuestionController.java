@@ -50,6 +50,7 @@ public class QuestionController {
     }
 
     // 특정 문제 요청 처리
+    @GetMapping("/question")
     public ResponseEntity<Question> getQuestionByIndex(HttpSession session) {
         List<Question> questions = (List<Question>) session.getAttribute("questions");
         Integer currentIndex = (Integer) session.getAttribute("currentQuestionIndex");
@@ -71,13 +72,9 @@ public class QuestionController {
 
         if (questions != null && currentIndex != null && currentIndex < questions.size()) {
             Question question = questions.get(currentIndex);
-            boolean isCorrect = question.getAnswer().equals(selectedAnswer);    // 정답 여부 확인
+            boolean isCorrect = question.getAnswer() == Integer.parseInt(selectedAnswer);    // 정답 여부 확인
 
-            if (isCorrect) {
-                model.addAttribute("feedback", "정답");
-            } else {
-                model.addAttribute("feedback", "오답");
-            }
+            model.addAttribute("feedback", isCorrect ? "정답" : "오답");
 
             // 다음 문제로 이동
             currentIndex++;
