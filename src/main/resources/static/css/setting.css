@@ -1,0 +1,30 @@
+/* 폰트 불러오기 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* color */
+:root{
+    --white : #ffffff;
+    --black : #171717;
+    --dark-grey : #C1C7CD;
+    --green : #34A770;
+    --board-background : #fafcf9;
+    --orange-yellow : #FFD707;
+}
+
+/* 각 브라우저마다 기본적으로 설정된 스타일의 차이를 없앰 */
+/* 폰트는 추후 바뀔 수 도 있음 */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+html{
+    /* 기본 글꼴 크기는 10px기준으로 설정 */
+    font-size:62.5%;
+    scroll-behavior: smooth;
+}
