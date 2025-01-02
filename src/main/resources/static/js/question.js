@@ -24,7 +24,7 @@ function selectAnswer(answerIndex) {
     setTimeout(() => {
         currentQuestionIndex++;
         nextQuestion(); // 다음 문제로 이동
-    }, 1000); // 1초 후 다음 문제로 이동
+    }, 1300); // 1.3초 후 다음 문제로 이동
 }
 
 function nextQuestion() {

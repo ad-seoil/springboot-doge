@@ -5,6 +5,7 @@ import com.abc.doge.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -12,14 +13,15 @@ public class QuestionService {
     @Autowired
     private QuestionRepository questionRepository;
 
-    public List<Question> getQuestionByDifficultyId(int dId, int questionCount) {
-        List<Question> questions = questionRepository.findByDifficultyId(dId);
+    // 설정 난이도의 문제를 무작위로 가져오는 메서드
+    public List<Question> getRandomQuestionsByDId(int difficultyId, int questionCount) {
+        List<Question> questions = questionRepository.findByDifficultyId(difficultyId);
 
-        // 요청 갯수보다 적은 경우 전체 반환
-        if (questions.size() < questionCount) {
-            return questions;
-        }
+        return questions.subList(0, Math.min(questionCount, questions.size()));
+    }
 
-        return questions.subList(0, questionCount); // 요청한 갯수만큼 반환
+    // ID로 문제를 찾는 메서드
+    public Question getQuestionById(int id) {
+        return questionRepository.findById((long) id).orElse(null);
     }
 }

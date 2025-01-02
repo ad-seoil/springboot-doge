@@ -9,7 +9,7 @@ import lombok.Data;
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;    // 문제 ID
 
     private String question;
     private String ex1;     // 보기 1

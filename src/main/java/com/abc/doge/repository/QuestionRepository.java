@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Long> {
-    @Query("SELECT q FROM Question q WHERE q.d_id = ?1")
+    @Query("SELECT q FROM Question q WHERE q.d_id = ?1 ORDER BY RAND()" )
     List<Question> findByDifficultyId(int dId);
 }
