@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>문제 개수 선택</title>
+</head>
+<body>
+<h1>문제의 난이도 및 개수를 선택</h1>
+<form action="/startQuestion" method="post">
+  <label for="difficultyId">문제 난이도:</label>
+  <select name="difficultyId" id="difficultyId" required>
+    <option value="1">Easy</option>
+    <option value="2">Medium</option>
+    <option value="3">Hard</option>
+  </select>
+
+  <label for="questionCount">문제 개수:</label>
+  <select name="questionCount" id="questionCount" required>
+    <option value="5">5문제</option>
+    <option value="10">10문제</option>
+    <option value="15">15문제</option>
+  </select>
+
+  <button type="submit">시작</button>
+</form>
+
+<div th:if="${error}" th:text="${error}"></div>
+</body>
+</html>
