@@ -95,18 +95,17 @@
     }
 
     .choice-button:hover {
-      background-color: #f0f0f0;
       border-color: #bbb;
     }
 
     .correct {
         background-color: rgba(0, 255, 0, 0.5); /* 녹색 */
-        transition: opacity 0.3s;
+        transition: opacity 0.5s;
     }
 
     .incorrect {
         background-color: rgba(255, 0, 0, 0.5); /* 빨간색 */
-        transition: opacity 0.3s;
+        transition: opacity 0.5s;
     }
 
     /* 하단 영역 */
