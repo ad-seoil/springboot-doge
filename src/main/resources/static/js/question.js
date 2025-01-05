@@ -19,6 +19,9 @@ function updateProgressBar() {
 }
 
 function selectAnswer(answerIndex) {
+    event.preventDefault(); // 기본 폼 제출 방지
+    console.log("selectAnswer 함수 호출, 선택된 인덱스: " + answerIndex); // 함수 호출 확인
+
     const correctAnswerIndex = parseInt(document.getElementById('correctAnswerIndex').value); // 정답 인덱스
     const chosenButton = document.getElementById(`choice${answerIndex}`);
     const correctButton = document.getElementById(`choice${correctAnswerIndex}`);
@@ -31,14 +34,19 @@ function selectAnswer(answerIndex) {
     }
 
     setTimeout(() => {
-        currentQuestionIndex++;
-        // 버튼 색상 초기화
-        const buttons = document.querySelectorAll('.choice-button');
-        buttons.forEach(button => {
-            button.classList.remove('correct', 'incorrect');
-        });
-        document.forms[0].submit();
-    }, 1300); // 1.3초 후 다음 문제로 이동
+    console.log("색상 변경 후 0.5초 대기 완료"); // 0.5초 후 로그 출력
+
+        setTimeout(() => {
+            console.log("1초 대기 완료. 버튼 색상 초기화 및 다음 문제로 이동"); // 1초 후 로그 출력
+
+            chosenButton.classList.remove('correct', 'incorrect');
+            correctButton.classList.remove('correct', 'incorrect');
+
+            currentQuestionIndex++;
+            updateProgressBar();
+            document.forms[0].submit();
+        }, 1000);
+    }, 500);
 }
 
 //function nextQuestion() {

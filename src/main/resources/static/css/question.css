@@ -86,6 +86,7 @@
     .choice-button {
       padding: 15px;
       font-size: 1em;
+      width: 35vw;
       border: 1px solid #ddd;
       border-radius: 8px;
       background-color: #fff;
@@ -100,12 +101,12 @@
 
     .correct {
         background-color: rgba(0, 255, 0, 0.5); /* 녹색 */
-        transition: opacity 0.5s;
+        transition: background-color 0.5s ease;
     }
 
     .incorrect {
         background-color: rgba(255, 0, 0, 0.5); /* 빨간색 */
-        transition: opacity 0.5s;
+        transition: background-color 0.5s ease;
     }
 
     /* 하단 영역 */
