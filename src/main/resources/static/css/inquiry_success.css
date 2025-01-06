@@ -1,0 +1,29 @@
+.inquiry-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+
+.fa-check {
+    font-size: 10rem;
+    color: #c1c7cd;
+    margin-bottom: 4rem;
+}
+
+h1 {
+    font-size: 10rem;
+}
+
+h2 {
+    font-size: 5rem;
+}
+
+.btn {
+    margin: 6rem;
+    font-size: 2rem;
+    color:var(--blue);
+    border: 0.2rem solid var(--blue);
+    padding: 1rem 3rem;
+}
