@@ -4,7 +4,6 @@ import com.abc.doge.entity.Question;
 import com.abc.doge.service.QuestionService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,38 +14,112 @@ import java.util.List;
 
 @Controller
 public class QuestionController {
+    private static final String SESSION_QUESTIONS = "questions";
+    private static final String SESSION_CURRENT_INDEX = "currentQuestionIndex";
+    private static final String SESSION_CORRECT_ANSWERS = "correctAnswers";
     @Autowired
     private QuestionService questionService;
 
-    // 문제 개수 선택 페이지 리다이렉트 메서드
     @GetMapping("/selectQuestions")
     public String selectQuestions() {
         return "selectQuestions";
     }
 
+    @PostMapping("/startQuestion")
+    public String startQuestion(@RequestParam("difficultyId") int difficultyId,
+                                @RequestParam("questionCount") int questionCount,
+                                HttpSession session) {
 
-    @PostMapping("/question") // 문제 요청 처리
-    public String startQuiz(@RequestParam("questionCount") int questionCount, HttpSession session, Model model) {
-        session.setAttribute("questionCount", questionCount); // 세션에 문제 개수 저장
-        session.setAttribute("currentQuestionIndex", 0); // 현재 문제 인덱스 초기화
-        List<Question> questions = questionService.getQuestions(2, questionCount); // 난이도 2의 문제 가져오기
-        session.setAttribute("questions", questions); // 세션에 문제 리스트 저장
-        model.addAttribute("question", questions.get(0)); // 첫 번째 문제 모델에 추가
-        model.addAttribute("totalQuestions", questionCount); // 총 문제 수 모델에 추가
-        return "question"; // 문제 풀이 페이지로 이동 (question.html)
-    }
+        session.setAttribute("difficultyId", difficultyId);
+        session.setAttribute("questionCount", questionCount);
 
-    @GetMapping("/question") // 특정 문제 요청 처리
-    public ResponseEntity<Question> getQuestionByIndex(@RequestParam("index") int index, HttpSession session) {
-        // 세션에서 문제 리스트를 안전하게 가져오기
-        List<Question> questions = (List<Question>) session.getAttribute("questions");
+        List<Question> questions = questionService.getRandomQuestionsByDId(difficultyId, questionCount);
 
-        // null 체크 및 인덱스 범위 확인
-        if (questions != null && index >= 0 && index < questions.size()) {
-            Question question = questions.get(index);
-            return ResponseEntity.ok(question); // 문제 반환
+        if (questions == null || questions.isEmpty()) {
+            return "redirect:/selectQuestions";
         }
 
-        return ResponseEntity.notFound().build(); // 문제 없음
+        session.setAttribute(SESSION_QUESTIONS, questions);
+        session.setAttribute(SESSION_CURRENT_INDEX, 0);
+        System.out.println("currentQuestionIndex: " + session.getAttribute("currentQuestionIndex"));
+        session.setAttribute(SESSION_CORRECT_ANSWERS, 0);
+        session.setAttribute("totalQuestions", questions.size());
+        return "redirect:/question";
     }
+
+    @GetMapping("/question")
+    public String getQuestion(HttpSession session,
+                                @RequestParam(value = "index", required = false) Integer index,
+                                Model model) {
+        List<Question> questions = (List<Question>) session.getAttribute(SESSION_QUESTIONS);
+        Integer currentIndex = (index != null) ? index : (Integer) session.getAttribute(SESSION_CURRENT_INDEX);
+
+        // currentIndex가 null일 경우, 세션에 있는 currentQuestionIndex의 기본값으로 설정
+        if (currentIndex == null) {
+            currentIndex = (Integer) session.getAttribute("currentQuestionIndex");
+
+            // 여전히 null일 경우, 안전하게 0으로 설정
+            if (currentIndex == null) {
+                currentIndex = 0; // 기본값 설정
+            }
+        }
+
+        // 상태 확인을 위한 로그 출력
+        System.out.println("Current Index: " + currentIndex);
+        System.out.println("Questions list size: " + (questions != null ? questions.size() : 0));
+
+        if (questions == null || currentIndex == null) {
+            return "redirect:/selectQuestions";
+        } else if (currentIndex >= questions.size()) {
+            return "redirect:/completion";
+        }
+
+        model.addAttribute("question", questions.get(currentIndex));
+        model.addAttribute("currentQuestionIndex", currentIndex);
+        model.addAttribute("totalQuestions", questions.size());
+
+        session.setAttribute("currentQuestionIndex", currentIndex);
+
+        return "question";
+    }
+
+    @PostMapping("/submitAnswer")
+    public String submitAnswer(@RequestParam("selectedAnswer") int selectedAnswer, HttpSession session) {
+        List<Question> questions = (List<Question>) session.getAttribute(SESSION_QUESTIONS);
+        Integer currentIndex = (Integer) session.getAttribute(SESSION_CURRENT_INDEX);
+        Integer correctAnswers = (Integer) session.getAttribute(SESSION_CORRECT_ANSWERS);
+
+        if (correctAnswers == null) correctAnswers = 0;
+        if (currentIndex == null) currentIndex = 0;
+
+        if (questions != null && currentIndex < questions.size()) {
+            Question question = questions.get(currentIndex);
+            // 정답 여부 확인
+            if (selectedAnswer == question.getAnswer()) {
+                correctAnswers++; // 정답일 경우 맞춘 문제 수 증가
+            }
+            session.setAttribute(SESSION_CORRECT_ANSWERS, correctAnswers); // 세션에 맞춘 문제 수 저장
+            session.setAttribute(SESSION_CURRENT_INDEX, ++currentIndex);
+
+            if (currentIndex < questions.size()) {
+                return "redirect:/question"; // 다음 문제로 이동
+            } else {
+                return "redirect:/completion"; // 모든 문제를 푼 경우 완료 페이지로 이동
+            }
+        }
+
+        return "redirect:/completion";
+    }
+
+    @GetMapping("/completion")
+    public String completion(Model model, HttpSession session) {
+        Integer totalQuestions = (Integer) session.getAttribute("totalQuestions");
+        Integer correctAnswers = (Integer) session.getAttribute(SESSION_CORRECT_ANSWERS);
+
+        model.addAttribute("totalQuestions", totalQuestions);
+        model.addAttribute(SESSION_CORRECT_ANSWERS, correctAnswers);
+
+        return "completion"; // completion.html을 반환
+    }
+
 }

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 풀이 완료</title>
+</head>
+<body>
+<h2>문제 풀이 완료!</h2>
+<p>맞춘 문제 수: <span th:text="${correctAnswers}"></span></p>
+<p>틀린 문제 수: <span th:text="${totalQuestions - correctAnswers}"></span></p>
+<p>총 문제 수: <span th:text="${totalQuestions}"></span></p>
+<a href="/selectQuestions">다시 시작하기</a>
+</body>
+</html>

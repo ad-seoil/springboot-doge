@@ -88,5 +88,4 @@ function setCircleDasharray() {
   .getElementById("base-timer-path-remaining")
   .setAttribute("stroke-dasharray", circleDasharray);
 
-  console.log("Updated dasharray: ",circleDasharray);
 }
