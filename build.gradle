@@ -34,8 +34,9 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	runtimeOnly 'com.mysql:mysql-connector-j'
-//	문의 메일발송을 위한 메일 의존성 주입 2024.12.31 HSJ
-	implementation 'com.sun.mail:javax.mail:1.6.2'
+
+// springboot 에서 자주 쓰이는 starter mail 의존성 주입 2025.01.03 HSJ
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 
 //	implementation 'org.springframework.boot:spring-boot-starter-security'
 //	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
