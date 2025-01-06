@@ -22,6 +22,7 @@ a {text-decoration: none;}
   z-index: 9;
   border-bottom: 1px solid #dde1e6;
   /* overflow: hidden; */
+  background-color: var(--white);
 }
 
 #naviBox2 {

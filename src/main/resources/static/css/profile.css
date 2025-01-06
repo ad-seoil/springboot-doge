@@ -1,0 +1,26 @@
+body {
+    display: flex;
+}
+
+iframe {
+    width:10vw; 
+    height:100vh;
+}
+
+section {
+    background-color: aquamarine;
+    width: 90vw;
+    font-size: 2rem;
+    padding: 4rem;
+}
+
+.view-data {
+    margin-top: 5rem;
+    background-color: azure;
+}
+
+.show-profile-img {
+    width: 10rem;
+    height: 10rem;
+    background-color: bisque;
+}
