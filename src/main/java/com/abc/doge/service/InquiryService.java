@@ -18,7 +18,7 @@ public class InquiryService {
     @Autowired
     private JavaMailSender mailSender;
 
-// 문의 메일 관련 리파지토리
+    // 문의 메일 관련 리파지토리
     private final InquiryRepository inquiryRepository;
 
     public void sendEmail(InquiryDto dto) {

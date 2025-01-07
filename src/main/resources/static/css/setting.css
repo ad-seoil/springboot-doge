@@ -18,9 +18,13 @@
 
     --green : #34A770;
 
+    --light-green : rgb(88, 204, 2);
+
     --board-background : #fafcf9;
 
     --orange-yellow : #FFD707;
+
+    --orange : rgb(255, 200, 0);
 
     /* 기본 쨍한 파란색 */
     --blue : #0f62fe;

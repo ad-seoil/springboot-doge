@@ -5,18 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- 외부 스타일 파일 -->
+    <link rel="stylesheet" href="/css/setting.css">
+    <link rel="stylesheet" href="/css/header.css">
+
     <link rel="stylesheet" href="/static/css/setting.css">
     <link rel="stylesheet" href="/static/css/header.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" ></script>
 </head>
 <body>
 <!-- 상단바 전체 박스 -->
-<div id="naviBox">
+<div id="naviBox" th:fragment="headerFragment">
     <!-- 안쪽 navi박스 + 로고 -->
     <div id="naviBox2">
         <!-- 로고, 프로젝트명 박스 -->
         <div id="logoBox">
-            <img src="/static/image/DOGE_Logo.png" alt="DOGE_Logo">
+            <img src="/image/DOGE_Logo.png" alt="DOGE_Logo">
             <p>DoGE</p>
         </div>
         <!-- 내비게이션 -->

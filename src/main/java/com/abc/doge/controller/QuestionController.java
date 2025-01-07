@@ -122,4 +122,25 @@ public class QuestionController {
         return "completion"; // completion.html을 반환
     }
 
+    // 결과 페이지 테스트용 2025.01.07 HSJ
+    @GetMapping("/completion2")
+    public String completion2(Model model, HttpSession session) {
+        Integer totalQuestions = (Integer) session.getAttribute("totalQuestions");
+        Integer correctAnswers = (Integer) session.getAttribute(SESSION_CORRECT_ANSWERS);
+
+        model.addAttribute("totalQuestions", totalQuestions);
+        model.addAttribute("totalXP",totalQuestions+(correctAnswers*10));
+        // 정확도 계산 (0으로 나누는 경우 방지)
+        if (totalQuestions != null && totalQuestions > 0) {
+            // 정확도를 자연수로 계산
+            int accuracy = (int) ((correctAnswers / (double) totalQuestions) * 100);
+            model.addAttribute("accuracy", accuracy);
+        } else {
+            model.addAttribute("accuracy", 0); // 총 문제 수가 0이면 정확도 0
+        }
+
+        return "questionResult";
+    }
+
+
 }

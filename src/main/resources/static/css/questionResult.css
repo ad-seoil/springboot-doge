@@ -1,0 +1,85 @@
+.result {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    /* background-color: lightblue; */
+    justify-content: center;
+    align-items: center;
+}
+
+.complete-img {
+    width: 36vw;
+    height: 44vh;
+    background-image: url(/static/image/missionComplete.webp);
+    background-size: cover;
+    background-position: center center;
+}
+
+.text1 {
+    font-size: 8vh;
+    font-weight: bolder;
+    text-align: center;
+    color: var(--orange-yellow);
+}
+
+.text2 {
+    font-size: 1vw;
+    text-align: center;
+    margin: 2vh;
+    color: var(--text-grey);
+}
+
+.reward {
+    display: flex;
+    justify-content: center;
+}
+
+.reward > div {
+    margin: 2vh 2vw;
+    padding: 0 1rem 1rem 1rem;
+    border-radius: 0.8rem;
+    font-size: 2vh;
+    text-align: center;
+    width: 14vw;
+}
+
+.xp {
+    background-color: var(--orange);
+}
+
+.title {
+    color: var(--white);
+    font-size: 2.2vh;
+    font-weight: 500;
+    margin: 1vh 0;
+}
+
+.content {
+    font-size: 2.4vh;
+    font-weight: bold;
+    background-color: var(--white);
+    padding: 1vh 4vw;
+    border-radius: 0.8rem;
+    border: 1rem solid var(--white);
+}
+
+.xp .content {
+    color: var(--orange);
+}
+
+.accuracy {
+    background-color: var(--light-green);
+}
+
+.accuracy .content {
+    color: var(--light-green);
+}
+
+button {
+    margin-top: 3vh;
+    padding: 1vw 4vw;
+    background-color: var(--green);
+    border-radius: 1rem;
+    color: var(--white);
+}

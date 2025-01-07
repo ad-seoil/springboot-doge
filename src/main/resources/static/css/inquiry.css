@@ -1,13 +1,9 @@
-#header {
-    z-index: 999;
-}
-
 .background-1 {
     position: absolute;
     background-color: #DDE1E6;
-    height: 50vh; 
+    height: 55vh; 
     width: 100%; 
-    top: 0;
+    top: 0vh;
     z-index: 1; 
     display: flex;
     justify-content: center;
@@ -32,25 +28,25 @@
     justify-items: center;
     background-color: var(--white); 
     width: 40vw; 
-    height: 65vh;
-    top: 15vh; 
+    height: 100%;
+    top: 10vh; 
     color: var(--black); 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     /* display: flexbox; */
 }
 
 .inquiry-from-second {
-    padding: 5vh 0vw;
+    padding: 5vh 5vw;
     /* justify-items: center; */
 }
 
 .inquiry-form h1 {
-    font-size: 4.5rem;
+    font-size: 5vh;
     font-weight: bolder;
 }
 
 .inquiry-form p {
-    font-size: 2rem;
+    font-size: 2.2vh;
 }
 
 form {
@@ -87,7 +83,7 @@ button {
     border-radius: 4px;
     cursor: pointer;
     width: 6vw;
-    font-size: 1.5rem;
+    font-size: 1.8vh;
 }
 button:hover {
     background-color: #0056b3;

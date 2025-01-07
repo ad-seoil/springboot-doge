@@ -27,3 +27,8 @@ h2 {
     border: 0.2rem solid var(--blue);
     padding: 1rem 3rem;
 }
+
+.btn:hover {
+    background-color: var(--blue);
+    color: var(--white);
+}

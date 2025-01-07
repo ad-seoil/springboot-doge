@@ -6,24 +6,26 @@
     <title>프로필</title>
 
     <link rel="stylesheet" href="/css/setting.css">
+    <link rel="stylesheet" href="/css/y_header.css">
     <link rel="stylesheet" href="/css/profile.css">
 
     <link rel="stylesheet" href="/static/css/setting.css">
     <link rel="stylesheet" href="/static/css/profile.css">
 
+    <script src="https://kit.fontawesome.com/1b78245624.js" crossorigin="anonymous"></script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>
-<!-- y_header 호출 -->
-<!-- 위는 스프링부트용 경로 -->
-<!-- <iframe src="/y_header.html" id="y_header" style="width: 100%; height: 100px; border: none;"></iframe> -->
-<iframe src="y_header.html" id="y_header"></iframe>
+
+<!--헤더 불러오기-->
+<div th:replace="fragments/y_header :: yHeaderFragment"></div>
 
 <section class="main">
     <h1>프로필</h1>
 
-    <!-- db에 있는 유저 정보 가져오기 -->
+    <!--db에 있는 유저 정보 가져오기 -->
     <div class="view-data">
         <div class="profile-img">
             <p>프로필 이미지</p>
@@ -49,10 +51,10 @@
         </div>
     </div>
     
-    <!-- 프로필 수정 페이지 버튼 -->
+    <!-- 프로필 수정 페이지 버튼-->
     <a href="/editProfile">프로필 수정</a> 
     
-</section>
+</section> 
 
 
 

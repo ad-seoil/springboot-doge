@@ -1,5 +1,6 @@
 package com.abc.doge.controller;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.abc.doge.dto.InquiryDto;
 import com.abc.doge.service.InquiryService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ public class InquiryController {
     // 문의페이지 연결
     @GetMapping("/inquiry")
     public String showInquiryForm() {
+
         return "inquiry";
     }
 
@@ -26,17 +28,21 @@ public class InquiryController {
     public String handleInquiry(InquiryDto inquiryDto, Model model) {
         // 입력 검증
         if (inquiryDto.getInqContent() == null || inquiryDto.getInqContent().isEmpty()) {
-            model.addAttribute("error", "문의 내용 필수");
+//            model.addAttribute("error", "문의 내용 필수");
             return "inquiry"; // 오류 발생 시 다시 폼으로 돌아감
         }
 
         // 문의 메일을 입력받아 DB에 저장 및 전송
         inquiryService.sendEmail(inquiryDto);
 
-        model.addAttribute("message", "문의가 성공적으로 전송되었습니다.");
-
         // 결과 페이지로 리다이렉트
-        return "inquiry_success";
+        return "inquirySuccess";
+    }
+
+    // 성공페이지
+    @GetMapping("/inquirySuccess")
+    public String inquirySuccess() {
+        return "inquirySuccess";
     }
 
 }

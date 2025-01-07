@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결과페이지</title>
+
+    <link rel="stylesheet" href="/css/setting.css">
+    <link rel="stylesheet" href="/css/questionResult.css">
+
+    <link rel="stylesheet" href="/static/css/setting.css">
+    <link rel="stylesheet" href="/static/css/questionResult.css">
+
+</head>
+<body>
+    <section class="result">
+        <div class="complete-img">
+            <!-- 이쪽에 해당하는 이미지 가져와서 넣도록 -->
+        </div>
+    
+        <div class="result-text">
+            <p class="text1">
+                Mission Complete!
+            </p>
+            <p class="text2">
+                이번 스테이지에서
+                <!-- 초기에 설정한 문제 갯수 값 가져오도록 바꿀 것  -->
+                <span th:text="${totalQuestions}"></span>
+                개의 문제를 풀었어요
+            </p>
+        </div>
+        
+        <div class="reward">
+            <div class="xp">
+                <p class="title">TOTAL XP</p>
+                <!-- 경험치 계산식에 따른 경험치 부여 계산한 값을 가져오도록 바꿀 것-->
+                <p class="content"> + <span th:text ="${totalXP}"></span></p>
+            </div>
+            <div class="accuracy">
+                <p class="title">ACCURACY</p>
+                <!-- 맞은 퍼센트를 백분율로 계산한 값을 가져오도록 바꿀 것 -->
+                <p class="content" th:text ="${accuracy}"></p>
+            </div>
+        </div>
+    
+        <!-- 클릭하면 다음 화면으로 -->
+        <button>CONTINUE</button>
+
+    </section>
+    
+</body>
+</html>
