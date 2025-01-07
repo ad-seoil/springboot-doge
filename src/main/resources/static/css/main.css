@@ -1,0 +1,448 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+}
+.header {
+    background-color: #ffffff;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.header h1 {
+    font-size: 1.8rem;
+    color: #1a73e8;
+}
+.header .menu {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    margin-left: -100px; /* 왼쪽으로 이동 */
+}
+.header .menu a {
+    text-decoration: none;
+    color: #444;
+    font-size: 1rem;
+}
+.header .menu a:hover {
+    text-decoration: underline;
+}
+.header .auth-buttons .login {
+    background-color: #ffffff;
+    color: #1a73e8;
+    border: 1px solid #1a73e8;
+}
+.header .auth-buttons .login:hover {
+    background-color: #e8f0fe;
+}
+.header .auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+.header .auth-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.header .auth-buttons .login {
+    background-color: #ffffff;
+    color: #1a73e8;
+    border: 1px solid #1a73e8;
+}
+.header .auth-buttons .login:hover {
+    background-color: #e8f0fe;
+}
+.header .auth-buttons .signup {
+    background-color: #1a73e8;
+    color: #ffffff;
+}
+.header .auth-buttons .signup:hover {
+    background-color: #155bb5;
+}
+.banner {
+    background-color: #f8fbff;
+    text-align: center;
+    padding: 60px 20px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+.banner img {
+    width: 40%;
+    height: auto;
+    object-fit: cover;
+}
+.banner .text-content {
+    max-width: 50%;
+    text-align: left;
+}
+.banner h2 {
+    font-size: 2.5rem;
+    color: #1a73e8;
+    margin-bottom: 20px;
+}
+.banner p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 40px;
+}
+.banner button {
+    padding: 15px 30px;
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+/*.banner-bar {*/
+/*    background: url('/static/image/Rectangle 2037.png') no-repeat center center;*/
+/*    background-size: cover;*/
+/*    height: 50px;*/
+/*    margin-top: -10px;*/
+/*}*/
+.icon-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 40px 20px;
+    background-color: #ffffff;
+}
+.icon-card {
+    text-align: center;
+    max-width: 250px;
+    margin: 0 auto;
+}
+.icon-card button {
+    background: none;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.icon-card button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.icon-card img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+.icon-card h3 {
+    font-size: 1.1rem;
+    color: #444;
+}
+.lesson-section {
+    padding: 60px 20px;
+    text-align: center;
+}
+.lesson-section h2 {
+    font-size: 2rem;
+    color: #1a73e8;
+    margin-bottom: 20px;
+}
+.lesson-section p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 40px;
+}
+.comparison-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 20px;
+    background-color:#FFCF59;
+}
+
+.comparison-section img {
+    width: 100%; /* 컨테이너의 너비에 맞게 설정 */
+    height: auto; /* 비율 유지 */
+    max-width: 400px; /* 이미지의 최대 너비 설정 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    object-fit: contain; /* 이미지가 컨테이너 안에 자연스럽게 맞도록 */
+}
+
+.comparison-content {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.comparison-content h2 {
+    font-size: 2rem;
+    color: #1a73e8;
+    margin-bottom: 20px;
+}
+
+.comparison-content p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.comparison-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.list-item span {
+    font-size: 1.5rem;
+    color: #1a73e8;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.list-item p {
+    font-size: 1.2rem;
+    color: #444;
+    margin: 0;
+}
+
+.testimonials {
+    background-color: #f8fbff;
+    padding: 60px 20px;
+    text-align: center;
+}
+.testimonials h2 {
+    font-size: 2rem;
+    color: #1a73e8;
+    margin-bottom: 20px;
+}
+.testimonial {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px auto;
+    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+.comparison-section img {
+    width: 40%;
+    height: auto;
+    border-radius: 8px;
+}
+.comparison-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+    text-align: left;
+    margin-left: 20px;
+}
+.comparison-section ul li {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #444;
+}
+.three-box-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 40px 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+.three-box {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.three-box img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.three-box h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #444;
+}
+.three-box p {
+    font-size: 1rem;
+    color: #666;
+}
+/*.review-section {*/
+/*    text-align: center;*/
+/*    padding: 60px 20px;*/
+/*    background-image: url('your-background-image.png'); !* 배경 이미지 경로 *!*/
+/*    background-size: cover; !* 배경을 컨테이너 크기에 맞게 조정 *!*/
+/*    background-position: center; !* 배경 이미지 위치를 중앙으로 설정 *!*/
+/*    color: #444;*/
+/*    border-radius: 10px; !* 배경 모서리를 둥글게 처리 (필요 시) *!*/
+/*}*/
+
+.review-section h2 {
+    font-size: 2.2rem;
+    color: #1a73e8;
+    margin-bottom: 20px;
+}
+
+.review-section p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 40px;
+}
+
+.review-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+}
+
+.quote-box {
+    flex: 3;
+    padding: 20px;
+    background-color: #f8fbff;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+    position: relative;
+}
+
+.quote-box::before {
+    content: "“";
+    font-size: 3rem;
+    color: #1a73e8;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.quote-box::after {
+    content: "”";
+    font-size: 3rem;
+    color: #1a73e8;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.reviewer-info {
+    flex: 1;
+    text-align: center;
+}
+
+.reviewer-info img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reviewer-info h3 {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+.reviewer-info p {
+    font-size: 1rem;
+    color: #666;
+}
+
+.footer {
+
+    background-color: grey;
+    color: white;
+    padding: 40px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 14px;
+    border-top: 1px solid #ccc; /* 텍스트 위에 선 추가 */
+    padding-top: 10px; /* 선과 텍스트 간격 */
+}
+
+.footer .logo {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.footer-section {
+    margin: 10px;
+    min-width: 200px;
+}
+
+.footer-section h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer-section ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-button {
+    background-color: #f8f8f8;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.footer-button:hover {
+    background-color: #e0e0e0;
+}
+
+.footer-bottom {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #cccccc;
+}
+
+.footer-bottom a {
+    color: #cccccc;
+    text-decoration: none;
+}
+
+.footer-bottom a:hover {
+    text-decoration: underline;
+}
