@@ -54,6 +54,7 @@ form {
     flex-direction: column;
     max-width: 100%;
 }
+
 label {
     font-size: 1.5rem;
     /* margin-bottom: 0vh; */

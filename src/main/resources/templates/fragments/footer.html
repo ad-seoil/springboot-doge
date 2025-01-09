@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <footer class="footer">
+    <div class="footer-section logo">Doge</div>
+    <div class="footer-section">
+      <h3>도지 소개</h3>
+      <ul>
+        <li><a href="#">학습 안내</a></li>
+        <li><a href="#">교육방식</a></li>
+        <li><a href="#">학습 효과</a></li>
+        <li><a th:href="@{/inquiry}"도지에 문의하기</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>학습안내</h3>
+      <ul>
+        <li><a href="#">레벨 테스트</a></li>
+        <li><a th:href="@{/profile}">개인정보 수정</a></li>
+        <li><a th:href="@{/inquiry}">관리자에게 문의</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>도움말 및 지원</h3>
+      <ul>
+        <li><a href="#">도지 FAQ</a></li>
+        <li><a th:href="@{/profile}">개인정보 수정</a></li>
+        <li><a th:href="@{/inquiry}">관리자에게 문의</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <button class="footer-button">학습 관련 문의</button>
+    </div>
+    <div class="footer-bottom">
+      <p>Doge © 2024. All rights reserved.</p>
+      <p><a href="#">언어</a> | <a th:href="@{/inquiry}">문의</a></p>
+    </div>
+  </footer>
+</body>
+</html>

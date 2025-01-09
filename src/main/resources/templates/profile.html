@@ -16,43 +16,70 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <script>
+        $(document).ready(function(){
+            $("#header").load("fragments/y_header.html");
+        })
+    </script>
+
 </head>
 <body>
 
 <!--헤더 불러오기-->
 <div th:replace="fragments/y_header :: yHeaderFragment"></div>
 
+<div id="header"></div>
+
 <section class="main">
     <h1>프로필</h1>
 
-    <!--db에 있는 유저 정보 가져오기 -->
-    <div class="view-data">
-        <div class="profile-img">
-            <p>프로필 이미지</p>
-            <div class="show-profile-img"></div>
+    <form action="#" th:action="@{/updateProfile}" method="post">
+        <div>
+            <label for="set_profile">프로필 이미지</label>
+            <br>
+            <img src="" alt="">
+            <button class="img-btn">사진업로드</button>
         </div>
-        <div class="nickname">
-            <p>username</p>
+        <div>
+            <label for="nickname">닉네임</label>
+            <input type="text" id="nickname" name="nickname" th:value="${memberInfo.nickname}" required />
         </div>
-        <div class="join-date">
-            <p>가입날짜</p>
+        <div>
+            <label for="joinDate">가입 날짜</label>
+            <input type="text" id="joinDate" name="joinDate" th:value="${#dates.format(memberInfo.join_date, 'yyyy-MM-dd')}" readonly />
         </div>
-        <div class="learn-lang">
-            <p>배우고 있는 언어</p>
+        <div>
+            <label for="birthDate">생일</label>
+            <input type="date" id="birthDate" name="birthDate" th:value="${#dates.format(memberInfo.birth_date, 'yyyy-MM-dd')}" required />
         </div>
-        <div class="exp">
-            <p>습득한 경험치</p>
+        <div>
+            <label for="email">이메일</label>
+            <input type="email" id="email" name="email" th:value="${memberInfo.email}" required />
         </div>
-        <div class="info">
-            <p>닉네임</p>
-            <p>생일</p>
-            <p>이메일</p>
-            <p>비밀번호</p>
+        <div>
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" name="password" th:value="${memberInfo.PW}" required />
         </div>
+
+        <h3>배우고 있는 언어</h3>
+        <div>
+            <label for="studyLanguage">언어 종류</label>
+            <input type="number" id="studyLanguage" name="studyLanguage" th:value="${studyStatus.study_language}" required />
+        </div>
+        <div>
+            <label for="experience">습득한 경험치</label>
+            <input type="number" id="experience" name="experience" th:value="${studyStatus.dailyProgress}" required />
+        </div>
+
+        <div class="btn-container">
+            <button type="submit">정보 업데이트</button>
+        </div>
+        
+    </form>
     </div>
     
     <!-- 프로필 수정 페이지 버튼-->
-    <a href="/editProfile">프로필 수정</a> 
+    <!-- <a href="/editProfile">프로필 수정</a>  -->
     
 </section> 
 

@@ -24,7 +24,7 @@
     <nav id="nav">
       <ul id="menu">
         <li class="main">
-          <a href="#">메인페이지</a>
+          <a th:href="@{/doge}">메인페이지</a>
         </li>
         <li class="main"> <!-- 메인메뉴 -->
           <a href="#">언어</a><i class="fa-solid fa-chevron-down icon"></i>
@@ -35,10 +35,10 @@
           </ul>
         </li>
         <li class="main">
-          <a href="#">로그인</a>
+          <a th:href="@{/login}">로그인</a>
         </li>
         <li class="main">
-          <a href="#">문의</a>
+          <a th:href="@{/inquiry}">문의</a>
         </li>
       </ul> <!-- menu 끝 -->
     </nav>  <!-- 내비게이션 끝 -->

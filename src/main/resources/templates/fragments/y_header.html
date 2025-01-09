@@ -16,7 +16,7 @@
     <nav th:fragment="yHeaderFragment">
         <section>
             <div class="logo">
-                <a href="#">
+                <a th:href="@{/doge}">
                     <img src="/image/DOGE_Logo.png" alt="DOGE_Logo">
                     <!-- <p>DoGE</p> -->
                 </a>
@@ -47,7 +47,7 @@
                 </a>
             </div>
             <div class="profile">
-                <a href="#">
+                <a th:href="@{/profile}">
                     <i class="fa-solid fa-user"></i>
                     <p>프로필</p>
                 </a>
@@ -59,9 +59,11 @@
                 </a>
             </div>
             <div class="log-out">
-                <a href="#">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    <p>로그아웃</p>
+                <a th:if="${session.loggedInUser == null}" th:href="@{/login}">
+                    <i class="fa-solid fa-right-from-bracket"></i>로그인
+                </a>
+                <a th:if="${session.loggedInUser != null}" th:href="@{/logout}">
+                    <i class="fa-solid fa-right-from-bracket"></i>로그아웃
                 </a>
             </div>
         </section>

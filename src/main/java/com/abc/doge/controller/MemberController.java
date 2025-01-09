@@ -2,6 +2,7 @@ package com.abc.doge.controller;
 
 import com.abc.doge.entity.MemberInfo;
 import com.abc.doge.service.MemberService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,17 +52,29 @@ public class MemberController {
     @PostMapping("/login")
     public String login(@RequestParam String email,
                         @RequestParam String pw,
+                        HttpSession session, // 세션추가 2025.01.09 HSJ
                         Model model) {
        MemberInfo memberInfo = memberService.findByEmail(email);
 
        if (memberInfo != null && memberInfo.getPw().equals(pw)) {
            // 로그인 성공
+           // 세션에 사용자 정보 저장 2025.01.09 HSJ
+           session.setAttribute("loggedInUser", memberInfo);
            model.addAttribute("message", "로그인 성공");
-           return "redirect:/";
+
+           // 성공하면 퀘스트 리스트로 보내야하는데 아직 없어서 메인페이지로 보냄 2025.01.09 HSJ
+           return "redirect:/doge";
        } else {
            // 로그인 실패
            model.addAttribute("error", "이메일 또는 비밀번호가 잘못되었습니다.");
            return "login";
        }
+    }
+
+    // 로그아웃 기능
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); // 세션 무효화
+        return "main";
     }
 }

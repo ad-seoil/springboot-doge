@@ -3,7 +3,7 @@ body {
 }
 
 .main {
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     width: 88vw;
     font-size: 2rem;
     padding: 4rem;
@@ -18,4 +18,59 @@ body {
     width: 10rem;
     height: 10rem;
     background-color: bisque;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    margin: 0 8vw;
+}
+
+form > div {
+    margin-bottom: 1vh;
+}
+
+label {
+    font-size: 1.5rem;
+    /* margin-bottom: 0vh; */
+    font-weight: bold;
+}
+input, textarea {
+    background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin-top: 1vh;
+    width: 100%;
+    resize: none;
+    box-shadow: 0 2px 0px rgba(0, 0, 0, 0.15);
+}
+
+.btn-container {
+    text-align: right; 
+    width: 100%; 
+}
+
+button {
+    margin-top: 2vh;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 8vw;
+    font-size: 1.8vh;
+}
+button:hover {
+    background-color: #0056b3;
+}
+
+.img-btn {
+    background-color: var(--white);
+    color: #007BFF;
+    border: 0.2rem solid #007BFF;
+    border-radius: 0;
+    margin-left: 10vw;
+    
 }
