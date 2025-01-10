@@ -3,12 +3,15 @@ let totalQuestions = 0; // 총 문제 수
 
 // 페이지 로드 시 초기화
 document.addEventListener('DOMContentLoaded', () => {
+    // 총 문제 수 설정
     totalQuestions = parseInt(document.getElementById('totalQuestions').value); // 총 문제 수 설정
+    // 현재 문제 인덱스 설정
     currentQuestionIndex = parseInt(document.getElementById('currentQuestionIndex').value);
-    updateProgressBar(); // 초기 진행도 바 업데이트
+    // 초기 진행도 바 업데이트
+    updateProgressBar();
 });
 
-
+// 진행도 바 업데이트 함수
 function updateProgressBar() {
     const progressBar = document.getElementById('progressBar');
     const questionTracker = document.getElementById('questionTracker');
@@ -18,6 +21,7 @@ function updateProgressBar() {
     questionTracker.innerText = `${currentQuestionIndex + 1} / ${totalQuestions}`; // 진행 상태 표시
 }
 
+// 답변 선택시 실행되는 함수
 function selectAnswer(answerIndex) {
     event.preventDefault(); // 기본 폼 제출 방지
     console.log("selectAnswer 함수 호출, 선택된 인덱스: " + answerIndex); // 함수 호출 확인
@@ -34,19 +38,19 @@ function selectAnswer(answerIndex) {
     }
 
     setTimeout(() => {
-    console.log("색상 변경 후 0.5초 대기 완료"); // 0.5초 후 로그 출력
+        console.log("1.5초 대기 완료. 버튼 색상 초기화 및 다음 문제로 이동"); // 1초 후 로그 출력
 
-        setTimeout(() => {
-            console.log("1초 대기 완료. 버튼 색상 초기화 및 다음 문제로 이동"); // 1초 후 로그 출력
+        chosenButton.classList.remove('correct', 'incorrect');
+        correctButton.classList.remove('correct', 'incorrect');
 
-            chosenButton.classList.remove('correct', 'incorrect');
-            correctButton.classList.remove('correct', 'incorrect');
-
-            currentQuestionIndex++;
+        currentQuestionIndex++;
+        if(currentQuestionIndex < totalQuestions) {
             updateProgressBar();
             document.forms[0].submit();
-        }, 1000);
-    }, 500);
+        } else {
+            window.location.href = "/completion2"
+        }
+    }, 1500);
 }
 
 //function nextQuestion() {

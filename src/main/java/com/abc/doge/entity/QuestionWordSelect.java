@@ -6,15 +6,17 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "questions_word_select")
-public class Question {
+public class QuestionWordSelect {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;    // 문제 ID
 
+
+    private int q_id;   // 문제 유형 ID (easy = 1, medium = 5, hard = 9)
+    private int d_id;   // 난이도 ID
     private String question;
     private String ex1;     // 보기 1
     private String ex2;     // 보기 2
     private String ex3;     // 보기 3
     private int answer;     // 정답 인덱스(1 or 2 or 3)
-    private int d_id;   // 난이도 ID
 }

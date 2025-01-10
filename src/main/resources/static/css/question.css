@@ -57,6 +57,28 @@
       width: 100%;
     }
 
+    /* questionType이 2인 경우 .choices 스타일 */
+    .question-area .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* questionType이 2인 경우 .choice-button 스타일 */
+    .question-area .choices .choice-button {
+      display: flex;
+      align-items: center; /* 텍스트와 오디오 플레이어 수직 정렬 */
+    }
+
+    .question-area .choices .choice-button audio {
+      margin-left: auto; /* 오디오 플레이어를 오른쪽으로 정렬 */
+    }
+
+    /* questionType이 4인 경우 .question-audio-container 스타일 */
+    .question-area .question-audio-container {
+      margin-bottom: 20px; /* 아래쪽 여백 추가 */
+    }
+
     .image-container {
       width: 40%;
     }
