@@ -4,11 +4,15 @@ import com.abc.doge.entity.MemberInfo;
 import com.abc.doge.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.time.LocalDate;
+import java.util.Map;
 
 @Controller
 public class MemberController {
@@ -26,6 +30,7 @@ public class MemberController {
                            @RequestParam String password_confirm,
                            @RequestParam String nickname,
                            @RequestParam String email,
+                           @RequestParam(required = false) String birth, // 생년월일 추가 01.11 HSj
                            Model model) {
 
         // 비밀번호 확인 로직
@@ -35,9 +40,14 @@ public class MemberController {
         }
 
         MemberInfo memberInfo = new MemberInfo();
-        memberInfo.setPw(pw);
+        memberInfo.setPassword(pw);
         memberInfo.setNickname(nickname);
         memberInfo.setEmail(email);
+
+        // 생년월일이 입력된 경우 LocalDate로 변환하여 설정 01.11 HSJ
+        if (birth != null && !birth.isEmpty()) {
+            memberInfo.setBirth(LocalDate.parse(birth)); // yyyy-MM-dd 형식으로 변환
+        }
 
         memberService.registerMember(memberInfo); // 회원 정보 저장
         model.addAttribute("email", email);
@@ -56,11 +66,12 @@ public class MemberController {
                         Model model) {
        MemberInfo memberInfo = memberService.findByEmail(email);
 
-       if (memberInfo != null && memberInfo.getPw().equals(pw)) {
+       if (memberInfo != null && memberInfo.getPassword().equals(pw)) {
            // 로그인 성공
            // 세션에 사용자 정보 저장 2025.01.09 HSJ
            session.setAttribute("loggedInUser", memberInfo);
            model.addAttribute("message", "로그인 성공");
+           ResponseEntity.ok(Map.of("message", "로그인 성공", "memberId", memberInfo.getMemberId()));
 
            // 성공하면 퀘스트 리스트로 보내야하는데 아직 없어서 메인페이지로 보냄 2025.01.09 HSJ
            return "redirect:/doge";

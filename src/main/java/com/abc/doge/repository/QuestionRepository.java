@@ -1,6 +1,7 @@
 package com.abc.doge.repository;
 
-import com.abc.doge.entity.Question;
+import com.abc.doge.entity.Questions;
+import com.abc.doge.enums.QuestionLevel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface QuestionRepository extends JpaRepository<Question, Long> {
-    @Query("SELECT q FROM Question q WHERE q.d_id = ?1 ORDER BY RAND()" )
-    List<Question> findByDifficultyId(int dId);
+public interface QuestionRepository extends JpaRepository<Questions, Long> {
+    List<Questions> findByQuestionLevel(QuestionLevel questionLevel); // ENUM 타입으로 변경
 }
