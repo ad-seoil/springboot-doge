@@ -34,6 +34,6 @@ public class Questions {
 
     private LocalDateTime lastUpdatedDate;
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<QuestionOptions> options; // QuestionOptions 리스트 추가
 }
