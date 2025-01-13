@@ -4,6 +4,14 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('editButton').addEventListener('click', function() {
         document.getElementById('nickname').removeAttribute('readonly');
         document.getElementById('email').removeAttribute('readonly');
+
+        // 생일 입력 필드
+        const birthDateInput = document.getElementById('birthDate');
+
+        // 생일 값이 null일 경우에만 readonly 속성 제거
+        if (birthDateInput.value === '') {
+            birthDateInput.removeAttribute('readonly');
+        }
         
         document.querySelector('button[type="submit"]').style.display = 'inline';
         // 비밀번호 필드 표시
@@ -21,11 +29,11 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("password2:", password2); // 로그 추가
     
         // 비밀번호가 입력되었는지 확인
-        if (password1 === '' || password2 === '') {
-            alert('비밀번호를 입력해 주세요.');
-            event.preventDefault(); // 기본 제출 동작 방지
-            return;
-        }
+//        if (password1 === '' || password2 === '') {
+//            alert('비밀번호를 입력해 주세요.');
+//            event.preventDefault(); // 기본 제출 동작 방지
+//            return;
+//        }
     
         // 비밀번호가 일치하는지 확인
         if (password1 !== password2) {

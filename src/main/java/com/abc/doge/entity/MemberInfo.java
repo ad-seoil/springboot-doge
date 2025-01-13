@@ -38,6 +38,10 @@ public class MemberInfo {
     private int userExp = 0;  // 사용자 경험 (기본값 0)
 
     @Builder.Default
+    @Column(name = "user_money", nullable = false)
+    private int userMoney = 0;  // 사용자 재화 (기본값 0)
+
+    @Builder.Default
     @Column(name = "join_date", nullable = false, updatable = false)
     private Timestamp joinDate = Timestamp.valueOf(LocalDateTime.now());  // 가입 날짜
 

@@ -89,10 +89,10 @@ public class ProfileController {
     public String updateProfile(@RequestParam String nickname,
                                 @RequestParam String email,
                                 @RequestParam(required = false) String birthDate,
-                                @RequestParam(required = false) String password1,
+                                @RequestParam(required = false) String password,
                                 HttpSession session,
                                 Model model) {
-        System.out.println("비밀번호 입력값: " + password1); // 로그 추가
+        System.out.println("비밀번호 입력값: " + password); // 로그 추가
 
         // 세션에서 로그인한 사용자 정보 가져오기
         MemberInfo loggedInUser = (MemberInfo) session.getAttribute("loggedInUser");
@@ -108,8 +108,8 @@ public class ProfileController {
         }
 
         // 비밀번호가 입력된 경우 업데이트
-        if (password1 != null && !password1.isEmpty()) {
-            loggedInUser.setPassword(password1); // 비밀번호 설정
+        if (password != null && !password.isEmpty()) {
+            loggedInUser.setPassword(password); // 비밀번호 설정
             System.out.println("업데이트할 비밀번호: " + loggedInUser.getPassword()); // 로그 추가
         }
 

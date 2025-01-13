@@ -59,7 +59,7 @@
 
         <hr>
 
-    <form id="profileForm" action="/updateProfile" method="post">
+    <form id="profileForm" th:action="@{/updateProfile}" method="post">
         <div>
             <label for="nickname">닉네임</label>
             <input type="text" id="nickname" name="nickname" th:value="${memberInfo.nickname}" readonly />
