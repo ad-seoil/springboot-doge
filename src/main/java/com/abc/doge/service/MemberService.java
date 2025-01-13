@@ -32,4 +32,20 @@ public class MemberService {
 
         memberRepository.save(memberInfo); // DB에 업데이트
     }
+
+    // 계정 삭제
+    // 계정 삭제 메서드
+    public void deleteMember(Long memberId) {
+        if (memberId == null) {
+            throw new IllegalArgumentException("회원 ID는 null일 수 없습니다."); // 예외 처리
+        }
+
+        // 사용자가 존재하는지 확인
+        if (!memberRepository.existsById(memberId)) {
+            throw new RuntimeException("해당 사용자가 존재하지 않습니다."); // 예외 처리
+        }
+
+        // 사용자 삭제
+        memberRepository.deleteById(memberId);
+    }
 }

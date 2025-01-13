@@ -11,11 +11,17 @@ public class SettingService {
     @Autowired
     private SettingInfoRepository settingInfoRepository; // 리포지토리 주입
 
+    // memberId로 settingId조회
     public SettingInfo findByMemberId(Long memberId) {
         return settingInfoRepository.findById(memberId).orElse(null); // ID로 설정 정보 조회
     }
 
     public SettingInfo saveSettingInfo(SettingInfo settingInfo) {
         return settingInfoRepository.save(settingInfo); // 설정 정보 저장
+    }
+
+    // SettingInfo 업데이트
+    public void updateSettingInfo(SettingInfo settingInfo) {
+        settingInfoRepository.save(settingInfo);
     }
 }

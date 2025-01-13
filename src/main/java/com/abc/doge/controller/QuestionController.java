@@ -92,7 +92,9 @@ public class QuestionController {
 
             // 선택한 답안이 정답인지 확인
             if (selectedAnswer >= 1 && selectedAnswer <= 3) { // 예를 들어, 1, 2, 3 중 하나
-                QuestionOptions option = question.getOptions().get(selectedAnswer - 1); // 0-indexed
+                QuestionOptions option = question.getOption(); // 0-indexed -> 단일 선택지 가져오기
+                // 이전에는 QuestionOptions가 리스트 형태였기 때문에 특정 인덱스에 접근하기 위해서는 selectedAnswer-1을 사용
+                // 그러나 QuestionOptions가 단일 객채로 변경되면서 선택한 답안(selectAnswer)을 그대로 가져오면 됨
                 if (option.getAnswer() == selectedAnswer) {
                     isCorrect = true; // 정답일 경우
                 }
