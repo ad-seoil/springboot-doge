@@ -12,78 +12,92 @@
     <link rel="stylesheet" href="/static/css/setting.css">
     <link rel="stylesheet" href="/static/css/profile.css">
 
-    <script src="https://kit.fontawesome.com/1b78245624.js" crossorigin="anonymous"></script>
 
+    <script src="https://kit.fontawesome.com/1b78245624.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script>
-        $(document).ready(function(){
-            $("#header").load("fragments/y_header.html");
-        })
-    </script>
+    
 
 </head>
 <body>
 
-<!--헤더 불러오기-->
-<div th:replace="fragments/y_header :: yHeaderFragment"></div>
-
-<div id="header"></div>
+<!-- 헤더 불러오기 -->
+<div th:replace="~{fragments/y_header :: yHeaderFragment}"></div>
 
 <section class="main">
     <h1>프로필</h1>
-
-    <form action="#" th:action="@{/updateProfile}" method="post">
-        <div>
-            <label for="set_profile">프로필 이미지</label>
-            <br>
-            <img src="" alt="">
-            <button class="img-btn">사진업로드</button>
+        <div class="profile-section">
+            <!-- 프로필 이미지 -->
+            <div>
+                <label for="set_profile" style="cursor: pointer;">프로필 이미지</label> <br>
+                <p>
+                    업로드할 이미지를 선택하세요
+                </p>
+                <div class="upload-img">
+                    <input type="file" id="set_profile" name="profileImg" style="display: none;" />
+                    <!-- <img src="/static/default/profile.webp" alt=""> -->
+                    <img th:src="${settingInfo != null && settingInfo.profileImg != null ? '/profileImg/' + settingInfo.profileImg : '/default/profile.webp'}" alt="프로필 이미지" />
+                    <button type="button" class="img-btn" id="uploadButton">사진업로드</button>
+                </div>
+                
+            </div>
+        
+            <div>
+                <p>학습 언어
+                <br>
+                <span th:text="${studyStatus != null && studyStatus.language != null ? studyStatus.language.languageName : '정보 없음'}">
+                
+                </span>
+                </p>
+            </div>
+            <div>
+                <p>습득한 경험치 &nbsp;&nbsp;&nbsp; +
+                    <span th:text="${memberInfo.userExp}">EXP</span>
+                </p>
+            </div>
         </div>
+
+        <hr>
+
+    <form id="profileForm" th:action="@{/updateProfile}" method="post">
         <div>
             <label for="nickname">닉네임</label>
-            <input type="text" id="nickname" name="nickname" th:value="${memberInfo.nickname}" required />
-        </div>
-        <div>
-            <label for="joinDate">가입 날짜</label>
-            <input type="text" id="joinDate" name="joinDate" th:value="${#dates.format(memberInfo.join_date, 'yyyy-MM-dd')}" readonly />
-        </div>
-        <div>
-            <label for="birthDate">생일</label>
-            <input type="date" id="birthDate" name="birthDate" th:value="${#dates.format(memberInfo.birth_date, 'yyyy-MM-dd')}" required />
+            <input type="text" id="nickname" name="nickname" th:value="${memberInfo.nickname}" readonly />
         </div>
         <div>
             <label for="email">이메일</label>
-            <input type="email" id="email" name="email" th:value="${memberInfo.email}" required />
+            <input type="email" id="email" name="email" th:value="${memberInfo.email}" readonly />
         </div>
         <div>
-            <label for="password">비밀번호</label>
-            <input type="password" id="password" name="password" th:value="${memberInfo.PW}" required />
+            <label for="birthDate">생일</label>
+            <input type="text" id="birthDate" name="birthDate" 
+                   th:value="${memberInfo.birth}" 
+                   readonly />
         </div>
 
-        <h3>배우고 있는 언어</h3>
-        <div>
-            <label for="studyLanguage">언어 종류</label>
-            <input type="number" id="studyLanguage" name="studyLanguage" th:value="${studyStatus.study_language}" required />
+        <div id="password" style="display: none;">
+            <div>
+                <label for="password1">비밀번호 재설정</label>
+                <input type="password" id="password1" name="password" />
+            </div>
+            
+            <div>
+                <label for="password2">비밀번호 2차 확인</label>
+                <input type="password" id="password2" name="passwordConfirm" />
+            </div>
         </div>
-        <div>
-            <label for="experience">습득한 경험치</label>
-            <input type="number" id="experience" name="experience" th:value="${studyStatus.dailyProgress}" required />
-        </div>
-
+        
+        <!-- 버튼들 -->
         <div class="btn-container">
-            <button type="submit">정보 업데이트</button>
+            <button type="button" id="deleteAccount">계정 삭제하기</button>
+            <button type="button" id="editButton">수정하기</button>
+            <button type="submit" id="submitButton" style="display: none;">제출</button>
         </div>
         
     </form>
-    </div>
-    
-    <!-- 프로필 수정 페이지 버튼-->
-    <!-- <a href="/editProfile">프로필 수정</a>  -->
-    
-</section> 
 
+</section>
 
-
+<script th:src="@{/js/profile.js}"></script>
 </body>
 </html>

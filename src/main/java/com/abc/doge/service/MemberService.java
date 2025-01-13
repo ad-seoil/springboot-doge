@@ -20,4 +20,16 @@ public class MemberService {
     public MemberInfo findByEmail(String email) {
         return memberRepository.findByEmail(email);
     }
+
+    // 비밀번호 업데이트 2025.01.12 HSJ
+    public void updateMember(MemberInfo memberInfo) {
+        // 비밀번호가 변경되었는지 확인
+        if (memberInfo.getPassword() != null && !memberInfo.getPassword().isEmpty()) {
+            // 비밀번호를 해시 처리하지 않고 그대로 저장
+            // 이 부분에서 비밀번호를 직접 설정하는 코드가 필요할 수 있습니다.
+            System.out.println("저장할 비밀번호: " + memberInfo.getPassword()); // 로그 추가
+        }
+
+        memberRepository.save(memberInfo); // DB에 업데이트
+    }
 }

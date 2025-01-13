@@ -6,6 +6,7 @@
     <title>회원정보 입력</title>
     <link rel="stylesheet" th:href="@{/css/setting.css}">
     <link rel="stylesheet" th:href="@{/css/register.css}">
+
 </head>
 <body>
 <!-- 회원가입 폼 섹션 -->
@@ -35,6 +36,12 @@
             <div class="input_group">
                 <label for="nickname">닉네임</label>
                 <input type="text" id="nickname" name="nickname" required>
+            </div>
+
+            <!-- 생일 입력란 -->
+            <div class="input_group">
+                <label for="birth">생일</label>
+                <input type="date" id="birth" name="birth">
             </div>
 
             <!-- 비밀번호 입력란 -->
@@ -67,7 +74,7 @@
         <hr class="bottomhr">
 
         <!-- 이미 계정이 있을 경우 로그인 페이지로 리다이렉트 -->
-        <p class="login_link"><a href="#">이미 계정이 있습니까?</a></p>
+        <p class="login_link"><a th:href="@{/login}">이미 계정이 있습니까?</a></p>
 
     </div>  <!-- 로그인 폼 섹션 끝 -->
 

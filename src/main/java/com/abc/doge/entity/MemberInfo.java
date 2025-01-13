@@ -1,48 +1,56 @@
 package com.abc.doge.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "member_info")
-@Data
 public class MemberInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer uid;    // UID
+    private Long memberId;  // member_id
 
-    @Column(name = "PW", nullable = false)
-    private String pw;  // password
-
-    @Column(name = "nickname", nullable = false)
-    private String nickname;
-
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "email", nullable = false, unique = true, length = 80)
     private String email;  // 이메일
 
-    @Column(name = "join_date", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private java.sql.Timestamp joinDate; // 가입 날짜
+    @Column(name = "pw", nullable = false, length = 30)
+    private String password;  // 비밀번호
 
-    @Column(name = "last_updated_date", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private java.sql.Timestamp lastUpdatedDate; // 마지막 업데이트 날짜
+    @Column(name = "nickname", nullable = false, length = 30)
+    private String nickname;  // 닉네임
 
-    @Column(name = "currency", nullable = false, columnDefinition = "int default 0")
-    private Integer currency; // 보유 재화
+    @Column(name = "birth")
+    private LocalDate birth;  // 생년월일
 
-    @Column(name = "user_level", nullable = false, columnDefinition = "int default 1")
-    private Integer userLevel; // 사용자 레벨
+    @Builder.Default
+    @Column(name = "user_exp", nullable = false)
+    private int userExp = 0;  // 사용자 경험 (기본값 0)
 
-    @Column(name = "user_exp", nullable = false, columnDefinition = "int default 0")
-    private Integer userExp; // 사용자 경험치
+    @Builder.Default
+    @Column(name = "user_money", nullable = false)
+    private int userMoney = 0;  // 사용자 재화 (기본값 0)
 
-    public MemberInfo() {
-        // 기본값 생성
-        this.currency = 0;
-        this.userLevel = 1;
-        this.userExp = 0;
-        this.joinDate = Timestamp.valueOf(LocalDateTime.now()); // 현재시간 설정
-        this.lastUpdatedDate = Timestamp.valueOf(LocalDateTime.now()); // 현재시간 설정
+    @Builder.Default
+    @Column(name = "join_date", nullable = false, updatable = false)
+    private Timestamp joinDate = Timestamp.valueOf(LocalDateTime.now());  // 가입 날짜
+
+    @Builder.Default
+    @Column(name = "last_update_date", nullable = false)
+    private Timestamp lastUpdateDate = Timestamp.valueOf(LocalDateTime.now());  // 마지막 업데이트 날짜
+
+    @PreUpdate
+    public void preUpdate() {
+        this.lastUpdateDate = Timestamp.valueOf(LocalDateTime.now());  // 업데이트 전 현재 시간으로 설정
     }
 }
