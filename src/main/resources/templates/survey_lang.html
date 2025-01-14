@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>설문조사</title>
+    <!-- 외부 스타일 파일 -->
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/survey.css">
+    <!-- 스프링부트 스타일 파일 -->
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/survey.css">
+    <!-- jQuery 연결 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" ></script>
+</head>
+<body>
+  <!-- 컨텐츠 영역 -->
+  <div id="content">
+    <h2 class="title">레벨테스트</h2>
+    <h1 class="subtitle">배우고 싶은 언어는 무엇인가요?</h1>
+    <ul class="survey-list">
+      <!-- 언어 목록을 동적으로 추가 -->
+      <th:block th:each="language : ${languages}">
+        <li th:text="${language.languageName}">언어명</li>
+      </th:block>
+    </ul>
+  </div>
+</body>
+</html>
