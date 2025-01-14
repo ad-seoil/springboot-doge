@@ -9,10 +9,11 @@
 <h1>문제의 난이도 및 개수를 선택</h1>
 <form action="/startQuestion" method="post">
   <label for="difficultyId">문제 난이도:</label>
-  <select name="difficultyId" id="difficultyId" required>
-    <option value="1">Easy</option>
-    <option value="2">Medium</option>
-    <option value="3">Hard</option>
+<!--  name이 difficultyId 이던걸 컨트롤러에 쓰이는 값과 똑같이 questionLevel로 바꿈 2025.01.14 HSJ-->
+  <select name="questionLevel" id="difficultyId" required>
+    <option value="EASY">Easy</option>
+    <option value="MEDIUM">Medium</option>
+    <option value="HARD">Hard</option>
   </select>
 
   <label for="questionCount">문제 개수:</label>

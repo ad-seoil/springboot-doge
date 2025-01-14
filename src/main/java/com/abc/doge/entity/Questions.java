@@ -54,6 +54,9 @@ public class Questions {
     @PrePersist
     public void prePersist() {
         this.createdDate = LocalDateTime.now(); // 생성 시 현재 시간으로 설정
+        // 생성시 현재 시간으로 설정
+        // 이 부분이 누락이라 에러가 났었음 2025.01.14 HSJ
+        this.lastUpdatedDate = LocalDateTime.now();
     }
 
     @PreUpdate
