@@ -35,6 +35,22 @@ public class Questions {
     @Column(length = 255)
     private String questionFile;
 
+    // 예시 1
+    @Column(nullable = false, length = 255)
+    private String ex1;
+
+    // 예시2
+    @Column(nullable = false, length = 255)
+    private String ex2;
+
+    // 예시3
+    @Column(nullable = false, length = 255)
+    private String ex3;
+
+    // 정답
+    @Column(nullable = false)
+    private int answer;
+
     // 문제 생성 날짜
     @Column(name = "created_date", nullable = false, updatable = false )
     private LocalDateTime createdDate;
@@ -42,14 +58,6 @@ public class Questions {
     // 문제 마지막 업데이트 날짜
     @Column(name = "last_update_date", nullable = false)
     private LocalDateTime lastUpdatedDate;
-
-    // 한 질문은 여러 선택지를 가질 수 있음
-//    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
-//    private List<QuestionOptions> options; // QuestionOptions 리스트 추가
-
-    // 한 질문의 하나의 질문 선택지만 가질 수 있음. 하나의 선택지도 하나의 질문만 참조할 수 있음
-    @OneToOne(mappedBy = "question", cascade = CascadeType.ALL)
-    private QuestionOptions option; // 단일 선택지 추가
 
     @PrePersist
     public void prePersist() {
