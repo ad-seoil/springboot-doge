@@ -34,12 +34,6 @@ public class Questions {
 
     private LocalDateTime lastUpdatedDate;
 
-//    @OneToOne(mappedBy = "question_id", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id", referencedColumnName = "question_id")
-    private QuestionOptions questionOptions; // QuestionOptions 리스트 추가
-    // 리스트가 아니어도 되는 논리적인 이유를 파악할 것
-    // 두 테이블간의 관계를 확립할 것
-
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    private List<QuestionOptions> options; // QuestionOptions 리스트 추가
 }

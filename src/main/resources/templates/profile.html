@@ -29,16 +29,20 @@
         <div class="profile-section">
             <!-- 프로필 이미지 -->
             <div>
-                <label for="set_profile" style="cursor: pointer;">프로필 이미지</label> <br>
+                <label for="set_profile" style="cursor: pointer;">프로필 이미지</label><br>
                 <p>
                     업로드할 이미지를 선택하세요
                 </p>
-                <div class="upload-img">
-                    <input type="file" id="set_profile" name="profileImg" style="display: none;" />
-                    <!-- <img src="/static/default/profile.webp" alt=""> -->
-                    <img th:src="${settingInfo != null && settingInfo.profileImg != null ? '/profileImg/' + settingInfo.profileImg : '/default/profile.webp'}" alt="프로필 이미지" />
-                    <button type="button" class="img-btn" id="uploadButton">사진업로드</button>
-                </div>
+                <form id="profileImgForm" enctype="multipart/form-data">
+                    <div class="upload-img">
+                        <input type="file" id="set_profile" name="profileImg" style="display: none;" />
+                        <!-- <img src="/static/default/profile.webp" alt=""> -->
+                        <img th:src="${settingInfo != null && settingInfo.profileImg != null ? '/profileImg/' + settingInfo.profileImg : '/default/profile.webp'}" alt="프로필 이미지" />
+                        <button type="button" class="img-btn" id="uploadButton">사진업로드</button>
+                    </div>
+                    <!-- <button type="submit" id="imgSubmitButton">사진업로드하기</button> -->
+                </form>
+                
                 
             </div>
         
@@ -52,7 +56,7 @@
             </div>
             <div>
                 <p>습득한 경험치 &nbsp;&nbsp;&nbsp; +
-                    <span th:text="${memberInfo.userExp}">EXP</span>
+                    <span th:text="${memberInfo.userExp}"></span>EXP
                 </p>
             </div>
         </div>
@@ -89,7 +93,7 @@
         
         <!-- 버튼들 -->
         <div class="btn-container">
-            <button type="button" id="deleteAccount">계정 삭제하기</button>
+            <button id="deleteAccount">계정 삭제하기</button>
             <button type="button" id="editButton">수정하기</button>
             <button type="submit" id="submitButton" style="display: none;">제출</button>
         </div>
