@@ -27,6 +27,7 @@ function selectAnswer(answerIndex) {
     console.log("selectAnswer 함수 호출, 선택된 인덱스: " + answerIndex); // 함수 호출 확인
 
     const correctAnswerIndex = parseInt(document.getElementById('correctAnswerIndex').value); // 정답 인덱스
+    const choiceButtons = document.querySelectorAll('.choice-button');
     const chosenButton = document.getElementById(`choice${answerIndex}`);
     const correctButton = document.getElementById(`choice${correctAnswerIndex}`);
 
@@ -46,7 +47,7 @@ function selectAnswer(answerIndex) {
         currentQuestionIndex++;
         if(currentQuestionIndex < totalQuestions) {
             updateProgressBar();
-            document.forms[0].submit();
+//            document.forms[0].submit();
         } else {
             window.location.href = "/completion2"
         }

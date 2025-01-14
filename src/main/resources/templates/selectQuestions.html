@@ -8,11 +8,13 @@
 <body>
 <h1>문제의 난이도 및 개수를 선택</h1>
 <form action="/startQuestion" method="post">
-  <label for="difficultyId">문제 난이도:</label>
-  <select name="difficultyId" id="difficultyId" required>
-    <option value="1">Easy</option>
-    <option value="2">Medium</option>
-    <option value="3">Hard</option>
+  <input type="hidden" name="questionType" id="questionType" th:value="${param.questionType}">
+
+  <label for="questionLevel">문제 난이도:</label>
+  <select name="questionLevel" id="questionLevel" required>
+    <option value="EASY">Easy</option>
+    <option value="MEDIUM">Medium</option>
+    <option value="HARD">Hard</option>
   </select>
 
   <label for="questionCount">문제 개수:</label>

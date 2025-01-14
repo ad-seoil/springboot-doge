@@ -19,25 +19,25 @@
     </div>
 
     <!-- 문제와 보기 -->
-    <div class="question-area" th:with="questionType=${questionType}, questionObj=${question}">
-        <div th:if="${questionType == 2}" class="image-container">
-            <img th:src="@{${questionObj.imageFile}}" alt="Image" class="question-image">
+    <div class="question-area" th:with="questionType=${questionType}, question=${question}">
+        <div th:if="${questionType == IMAGE_SELECT}" class="image-container">
+            <img th:src="@{${question.imageFile}}" alt="Image" class="question-image">
         </div>
-        <div th:if="${questionType == 3}" class="video-container">
-            <video th:src="@{${questionObj.videoFile}}" controls class="question-video"></video>
+        <div th:if="${questionType == VIDEO_SELECT}" class="video-container">
+            <video th:src="@{${question.videoFile}}" controls class="question-video"></video>
         </div>
 
-        <div th:if="${questionType == 4}" class="question-audio-container">
+        <div th:if="${questionType == TTS_SELECT}" class="question-audio-container">
             <audio th:src="@{${questionAudio}}" controls></audio>
         </div>
 
-        <p th:unless="${questionType == 4}" class="question-text" id="questionText"
-           th:text="${questionObj.question}" th:if="${questionObj.question != null}">
+        <p th:unless="${questionType == TTS_SELECT}" class="question-text" id="questionText"
+           th:text="${question.questionText}" th:if="${question.questionText != null}">
             다음 이미지를 보고, 올바른 답을 선택하세요.
         </p>
 
         <div class="choices-container">
-            <div th:if="${questionType == 2}" class="choices">
+            <div th:if="${questionType == IMAGE_SELECT}" class="choices">
                 <form action="/submitAnswer" method="post">
                     <input type="hidden" name="selectedAnswer" value="1">
                     <button class="choice-button" th:onclick="'selectAnswer(1)'" id="choice1_type2">
@@ -58,7 +58,7 @@
                 </form>
             </div>
 
-            <div th:unless="${questionType == 2}" class="choices">
+            <div th:unless="${questionType == IMAGE_SELECT}" class="choices">
                 <form action="/submitAnswer" method="post">
                     <input type="hidden" name="selectedAnswer" value="1">
                     <button class="choice-button" th:onclick="'selectAnswer(1)'" id="choice1_type_other" th:text="${question.ex1}"></button>
@@ -78,6 +78,7 @@
     <!-- 하단 영역 -->
     <div class="footer">
         <div id="timer_app"></div>
+        <button type="submit" class="next-button" onclick="nextQuestion(event)">다음 문제</button>
     </div>
 
     <!-- totalQuestions 값 설정 -->
