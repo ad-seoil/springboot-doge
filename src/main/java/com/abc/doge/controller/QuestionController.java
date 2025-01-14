@@ -186,6 +186,7 @@ public class QuestionController {
         return "question"; // 질문 화면 반환
     }
 
+    // 답안 제출 메서드
     @PostMapping("/submitAnswer")
     public String submitAnswer(@RequestParam("selectedAnswer") int selectedAnswer, HttpSession session) {
         List<Questions> questions = (List<Questions>) session.getAttribute(SESSION_QUESTIONS);
@@ -225,19 +226,28 @@ public class QuestionController {
             }
 
             session.setAttribute(SESSION_CORRECT_ANSWERS, correctAnswers); // 세션에 맞춘 문제 수 저장
-            session.setAttribute(SESSION_CURRENT_INDEX, ++currentIndex);
+            session.setAttribute(SESSION_CURRENT_INDEX, ++currentIndex);   // 현재 문제 인덱스값 증가
 
-            if (currentIndex < questions.size()) {
-                return "redirect:/question"; // 다음 문제로 이동
-            } else {
-                // 모든 문제를 풀었을 때 정답률 계산 및 completion 메서드로 리다이렉트
-                double accuracy = (double) correctAnswers / questions.size() * 100;
-                session.setAttribute("accuracy", accuracy); // 정답률 세션에 저장
-                return "redirect:/completion"; // 모든 문제를 푼 경우 완료 페이지로 이동
-            }
+            return "redirect:/nextQuestion";    // nextQuestion 메서드로 리다이렉트
         }
 
-        return "redirect:/completion"; // 모든 문제 푼 경우 완료 페이지로 이동
+        return "redirect:/completion"; // 예외상황(추후 다른 페이지로 바꿔야함)
+    }
+
+    @GetMapping("/nextQuestion")
+    public String nextQuestion(HttpSession session) {
+        List<Questions> questions = (List<Questions>) session.getAttribute(SESSION_QUESTIONS);
+        Integer currentIndex = (Integer) session.getAttribute(SESSION_CURRENT_INDEX);
+        Integer correctAnswers = (Integer) session.getAttribute(SESSION_CORRECT_ANSWERS);
+
+        if (questions != null && currentIndex < questions.size()) {
+            return "redirect:/question"; // 다음 문제로 이동
+        } else {
+            // 모든 문제를 풀었을 때 정답률 계산 및 completion 메서드로 리다이렉트
+            double accuracy = (double) correctAnswers / questions.size() * 100;
+            session.setAttribute("accuracy", accuracy); // 정답률 세션에 저장
+            return "redirect:/completion"; // 모든 문제를 푼 경우 완료 페이지로 이동
+        }
     }
 
     @GetMapping("/completion")

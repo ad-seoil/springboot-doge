@@ -54,17 +54,17 @@ function selectAnswer(answerIndex) {
     }, 1500);
 }
 
-//function nextQuestion() {
-//    // 버튼 색상 초기화
-//    const buttons = document.querySelectorAll('.choice-button');
-//    buttons.forEach(button => {
-//        button.classList.remove('correct', 'incorrect');
-//    });
-//
+function nextQuestion() {
+    // 버튼 색상 초기화
+    const buttons = document.querySelectorAll('.choice-button');
+    buttons.forEach(button => {
+        button.classList.remove('correct', 'incorrect');
+    });
+
 //    if (currentQuestionIndex >= totalQuestions) {
 //        window.location.href = '/completion'; // 완료 페이지로 리다이렉트
 //    } else {
 //        document.forms[0].submit(); // 현재 폼 제출하여 다음 문제 로드
 //    }
-//}
+}
 

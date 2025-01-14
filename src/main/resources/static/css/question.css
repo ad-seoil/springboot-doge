@@ -121,6 +121,10 @@
       border-color: #bbb;
     }
 
+    .choice-button:focus {
+        background-color: #f2f4f8;
+    }
+
     .correct {
         background-color: rgba(0, 255, 0, 0.5); /* 녹색 */
         transition: background-color 0.5s ease;
