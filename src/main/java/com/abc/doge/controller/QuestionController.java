@@ -38,7 +38,7 @@ public class QuestionController {
 
     @GetMapping("/questionTest1")
     public String selectStage() {
-        return "selectStage";
+        return "select_stage";
     }
 
     // 테스트페이지 1에서 단어 선택 버튼 클릭시
@@ -120,7 +120,7 @@ public class QuestionController {
     ) {
         List<?> questions = (List<?>) session.getAttribute(SESSION_QUESTIONS);
         Integer currentIndex = (index != null) ? index : (Integer) session.getAttribute(SESSION_CURRENT_INDEX);
-        String questionType = (String) session.getAttribute("questionType");
+        String questionType = session.getAttribute("questionType").toString();
 
 
         System.out.println("questions: " + questions);
@@ -141,7 +141,7 @@ public class QuestionController {
         Questions question = (Questions) questions.get(currentIndex);
 
         // options 리스트 확인
-        if (question.getOptions() == null || question.getOptions().isEmpty()) {
+        if (question.getQuestionOptions() == null) {
             System.out.println("question.options is null or empty");
             // 오류 처리 로직 (예: 오류 메시지 출력, 문제 목록 페이지로 리다이렉트)
             return "redirect:/error";
@@ -179,9 +179,9 @@ public class QuestionController {
 
         // 보기를 리스트에 담아서 모델에 추가
         List<String> options = List.of(
-                question.getOptions().get(0).getEx1(),
-                question.getOptions().get(0).getEx2(),
-                question.getOptions().get(0).getEx3());
+                question.getQuestionOptions().getEx1(),
+                question.getQuestionOptions().getEx2(),
+                question.getQuestionOptions().getEx3());
         model.addAttribute("options", options);
 
         model.addAttribute("question", question);
@@ -212,7 +212,7 @@ public class QuestionController {
             // 정답 확인
             boolean isCorrect = false;
             if (selectedAnswer >= 1 && selectedAnswer <= 3) { // 1, 2, 3 중 하나
-                QuestionOptions option = question.getOptions().get(selectedAnswer - 1); // 0-indexed
+                QuestionOptions option = question.getQuestionOptions();
                 if (option.getAnswer() == selectedAnswer) {
                     isCorrect = true; // 정답일 경우
                 }

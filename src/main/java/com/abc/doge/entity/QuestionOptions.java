@@ -10,10 +10,11 @@ public class QuestionOptions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    // 각 테이블이 어떤 데이터를 저장하고 있는지 확실히 할 것
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "question_id", nullable = false)
-    private Questions question;
+    private Questions questions;
 
     @Column(nullable = false, length = 255)
     private String ex1;
