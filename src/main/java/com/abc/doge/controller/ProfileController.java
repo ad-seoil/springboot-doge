@@ -13,9 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -72,18 +70,6 @@ public class ProfileController {
     @Autowired
     private ProfileService profileService;
 
-    // 프로필 이미지 업로드
-    // 이거 작동안함;;
-    @PostMapping("/uploadProfileImage")
-    public ResponseEntity<?> uploadProfileImage(@RequestParam("profileImg") MultipartFile file, @RequestParam("memberId") Long memberId) {
-        try {
-            String fileName = profileService.uploadProfileImage(file, memberId); // 서비스 호출
-            return ResponseEntity.ok("파일 업로드 성공: " + fileName);
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("파일 업로드 실패: " + e.getMessage());
-        }
-    }
-
     // 프로필 정보 업데이트
     @PostMapping("/updateProfile")
     public String updateProfile(@RequestParam String nickname,
@@ -120,7 +106,69 @@ public class ProfileController {
         return "redirect:/profile"; // 프로필 페이지로 리다이렉트
     }
 
+    // 계정 삭제
+    @DeleteMapping("/api/members/delete")
+    @ResponseBody
+    public ResponseEntity<?> deleteAccount(HttpSession session) {
+        // 세션에서 로그인한 사용자 정보 가져오기
+        MemberInfo loggedInUser = (MemberInfo) session.getAttribute("loggedInUser");
+        if (loggedInUser == null) {
+            return ResponseEntity.status(401).body("로그인이 필요합니다."); // 로그인 필요 메시지
+        }
 
+        try {
+            // 사용자의 ID로 계정 삭제
+            memberService.deleteMember(loggedInUser.getMemberId());
+            session.invalidate(); // 세션 무효화
+            return ResponseEntity.ok("계정이 성공적으로 삭제되었습니다.");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("계정 삭제 중 오류가 발생했습니다.");
+        }
+    }
+
+    // 프로필 이미지 업로드
+    @PostMapping("/uploadProfileImage")
+    public ResponseEntity<?> uploadProfileImage(@RequestParam("file") MultipartFile file, HttpSession session) {
+        // 세션에서 로그인한 사용자 정보 가져오기
+        MemberInfo loggedInUser = (MemberInfo) session.getAttribute("loggedInUser");
+        if (loggedInUser == null) {
+            return ResponseEntity.status(401).body("로그인이 필요합니다."); // 로그인 필요 메시지
+        }
+
+        // 파일이 비어있지 않은지 확인
+        if (file.isEmpty()) {
+            return ResponseEntity.badRequest().body("파일이 비어 있습니다.");
+        }
+
+        try {
+            // 저장할 경로 설정 (resources/static/uploads/profile)
+            String userHome = System.getProperty("user.home"); // 사용자 홈 경로 얻기
+            String uploadDir = userHome + "/uploads/profile"; // 사용자 홈의 uploads/profile 경로 설정
+
+            // 디렉토리 생성
+            File directory = new File(uploadDir);
+            if (!directory.exists()) {
+                directory.mkdirs(); // 디렉토리가 없으면 생성
+            }
+
+            // 파일 이름 설정
+            String fileName = loggedInUser.getMemberId() + "_" + file.getOriginalFilename(); // 사용자 ID를 이용한 고유 파일 이름
+            File destinationFile = new File(directory, fileName);
+            file.transferTo(destinationFile); // 파일 저장
+
+            // SettingInfo에서 프로필 이미지 이름 업데이트
+            SettingInfo settingInfo = settingService.findByMemberId(loggedInUser.getMemberId());
+            if (settingInfo != null) {
+                settingInfo.setProfileImg(fileName); // 이미지 이름 저장
+                settingService.updateSettingInfo(settingInfo); // DB에 업데이트
+            }
+
+            return ResponseEntity.ok("프로필 이미지가 성공적으로 업로드되었습니다.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("파일 업로드 중 오류가 발생했습니다.");
+        }
+    }
 
 }
 

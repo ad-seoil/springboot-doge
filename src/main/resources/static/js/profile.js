@@ -46,53 +46,37 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("비밀번호가 일치합니다. 폼을 제출합니다."); // 로그 추가
         document.getElementById('profileForm').submit(); // 폼 제출
     });
-    
 
+// 계정 삭제
+document.getElementById('deleteAccount').addEventListener('click', function(event) {
+    event.preventDefault(); // 기본 동작 방지
 
-
-    // 이미지 업로드 버튼 클릭 시 파일 선택 대화 상자 열기
-    document.getElementById('uploadButton').addEventListener('click', function() {
-        document.getElementById('set_profile').click();
-    });
-
-    // 파일 선택 시 이벤트 처리
-    document.getElementById('set_profile').addEventListener('change', function(event) {
-        const file = event.target.files[0]; // 선택된 파일
-        if (!file) {
-            console.error('파일이 선택되지 않았습니다.');
-            return; // 파일이 선택되지 않은 경우 처리 중단
-        }
-
-        // sessionStorage에서 memberId 가져오기
-        const memberId = sessionStorage.getItem('memberId'); // memberId가 저장된 세션 스토리지에서 가져오기
-        if (!memberId) {
-            console.error('memberId를 찾을 수 없습니다.');
-            return; // memberId가 없는 경우 처리 중단
-        }
-
-        const formData = new FormData();
-        formData.append('profileImg', file); // FormData에 파일 추가
-        formData.append('memberId', memberId); // sessionStorage에서 가져온 memberId 추가
-
-        // AJAX 요청
-        fetch('/uploadProfileImage', {
-            method: 'POST',
-            body: formData
+    if (confirm("계정을 정말 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.")) {
+        fetch('/api/members/delete', {
+            method: 'DELETE'
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('네트워크 응답이 정상적이지 않습니다.');
+                throw new Error('계정 삭제 실패');
             }
-            return response.json();
+            return response.text();
         })
         .then(data => {
-            console.log('Success:', data);
-            const imgElement = document.querySelector('.upload-img img:last-of-type');
-            imgElement.src = URL.createObjectURL(file); // 선택한 이미지로 미리보기 업데이트
+            alert(data); // 성공 메시지 표시
+            window.location.href = '/login'; // 로그인 페이지로 리다이렉트
         })
-        .catch((error) => {
+        .catch(error => {
             console.error('Error:', error);
+            alert('계정 삭제 중 오류가 발생했습니다.');
         });
+    }
+});
+
+// 프로필 이미지 업로드
+    // 이미지 업로드 버튼 클릭 시 파일 선택 대화 상자 열기
+    document.getElementById('uploadButton').addEventListener('click', function() {
+        document.getElementById('file').click();
     });
 
 });
+

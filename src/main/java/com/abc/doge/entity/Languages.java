@@ -7,10 +7,13 @@ import lombok.Data;
 @Entity
 @Table(name = "languages")
 public class Languages {
+
+    // 언어 id PK
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    // 언어 명
     @Column(nullable = false, length = 100)
     private String languageName;
 }

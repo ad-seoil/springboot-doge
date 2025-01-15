@@ -19,24 +19,57 @@
     </div>
 
     <!-- 문제와 보기 -->
-    <div class="question-area">
-        <div class="image-container">
-            <img th:src="@{/image/vacant.jpg}" alt="Beach Vacation" class="question-image">
+    <div class="question-area" th:with="questionType=${questionType}, question=${question}">
+        <div th:if="${questionType == IMAGE_SELECT}" class="image-container">
+            <img th:src="@{${question.imageFile}}" alt="Image" class="question-image">
         </div>
+        <div th:if="${questionType == VIDEO_SELECT}" class="video-container">
+            <video th:src="@{${question.videoFile}}" controls class="question-video"></video>
+        </div>
+
+        <div th:if="${questionType == TTS_SELECT}" class="question-audio-container">
+            <audio th:src="@{${questionAudio}}" controls></audio>
+        </div>
+
+        <p th:unless="${questionType == TTS_SELECT}" class="question-text" id="questionText"
+           th:text="${question.questionText}" th:if="${question.questionText != null}">
+            다음 이미지를 보고, 올바른 답을 선택하세요.
+        </p>
+
         <div class="choices-container">
-            <p class="question-text" id="questionText" th:text="${question.question}"></p>
-            <div class="choices">
+            <div th:if="${questionType == IMAGE_SELECT}" class="choices">
                 <form action="/submitAnswer" method="post">
                     <input type="hidden" name="selectedAnswer" value="1">
-                    <button class="choice-button" th:onclick="'selectAnswer(1)'" id="choice1" th:text="${question.ex1}"></button>
+                    <button class="choice-button" th:onclick="'selectAnswer(1)'" id="choice1_type2">
+                        <audio th:src="@{${ex1Audio}}" controls></audio>
+                    </button>
                 </form>
                 <form action="/submitAnswer" method="post">
                     <input type="hidden" name="selectedAnswer" value="2">
-                    <button class="choice-button" th:onclick="'selectAnswer(2)'" id="choice2" th:text="${question.ex2}"></button>
+                    <button class="choice-button" th:onclick="'selectAnswer(2)'" id="choice2_type2">
+                        <audio th:src="@{${ex2Audio}}" controls></audio>
+                    </button>
                 </form>
                 <form action="/submitAnswer" method="post">
                     <input type="hidden" name="selectedAnswer" value="3">
-                    <button class="choice-button" th:onclick="'selectAnswer(3)'" id="choice3" th:text="${question.ex3}"></button>
+                    <button class="choice-button" th:onclick="'selectAnswer(3)'" id="choice3_type2">
+                        <audio th:src="@{${ex3Audio}}" controls></audio>
+                    </button>
+                </form>
+            </div>
+
+            <div th:unless="${questionType == IMAGE_SELECT}" class="choices">
+                <form action="/submitAnswer" method="post">
+                    <input type="hidden" name="selectedAnswer" value="1">
+                    <button class="choice-button" th:onclick="'selectAnswer(1)'" id="choice1_type_other" th:text="${question.ex1}"></button>
+                </form>
+                <form action="/submitAnswer" method="post">
+                    <input type="hidden" name="selectedAnswer" value="2">
+                    <button class="choice-button" th:onclick="'selectAnswer(2)'" id="choice2_type_other" th:text="${question.ex2}"></button>
+                </form>
+                <form action="/submitAnswer" method="post">
+                    <input type="hidden" name="selectedAnswer" value="3">
+                    <button class="choice-button" th:onclick="'selectAnswer(3)'" id="choice3_type_other" th:text="${question.ex3}"></button>
                 </form>
             </div>  <!-- choices 끝 -->
         </div>  <!-- choices-container 끝 -->
@@ -45,6 +78,7 @@
     <!-- 하단 영역 -->
     <div class="footer">
         <div id="timer_app"></div>
+        <button type="submit" class="next-button" onclick="nextQuestion(event)">다음 문제</button>
     </div>
 
     <!-- totalQuestions 값 설정 -->
