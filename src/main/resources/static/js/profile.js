@@ -77,6 +77,6 @@ document.getElementById('deleteAccount').addEventListener('click', function(even
     document.getElementById('uploadButton').addEventListener('click', function() {
         document.getElementById('file').click();
     });
-    
+
 });
 

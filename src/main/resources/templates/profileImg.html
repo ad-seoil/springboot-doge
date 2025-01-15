@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>프로필 이미지 업로드</title>
+  <style>
+    #preview {
+        width: 200px; /* 미리보기 이미지 크기 조정 */
+        height: auto;
+        border: 1px solid #ccc;
+        margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<h1>프로필 이미지 업로드</h1>
+<form action="#" th:action="@{/upload2}" method="post" enctype="multipart/form-data">
+  <input type="file" name="profileImg" accept="image/*" required onchange="previewImage(event)">
+  <button type="submit">업로드</button>
+</form>
+<img id="preview" src="#" alt="미리보기" style="display:none;">
+<p th:text="${message}"></p>
+
+<script>
+  function previewImage(event) {
+      const preview = document.getElementById('preview');
+      const file = event.target.files[0]; // 선택된 파일
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+          preview.src = e.target.result; // 미리보기 이미지 설정
+          preview.style.display = 'block'; // 이미지를 표시
+      };
+
+      if (file) {
+          reader.readAsDataURL(file); // 파일을 Data URL로 읽기
+      } else {
+          preview.src = '#'; // 파일이 없을 경우 기본값
+          preview.style.display = 'none'; // 이미지를 숨김
+      }
+  }
+</script>
+
+</body>
+</html>
