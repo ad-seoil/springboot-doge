@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>학습 페이지</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    
+    <link rel="stylesheet" href="/static/css/classpage.css">
+
 </head>
 <body>
     <!-- 헤더 -->
@@ -27,23 +27,24 @@
         <!-- 사이드바 -->
         <div class="sidebar">
             <div class="logo">Doge</div>
-            <button class="learn-button">학습하기</button>
+            <button class="learn-button" onclick="navigateToLearningPage()">학습하기</button>
             <div class="menu-item">
-                <span class="material-icons">quiz</span> 퀘스트
+                <span class="material-icons">퀘스트</span>
             </div>
             <div class="menu-item">
-                <span class="material-icons">person</span> 프로필
+                <span class="material-icons">프로필</span>
             </div>
             <div class="menu-item">
-                <span class="material-icons">history</span> 학습 기록
+                <span class="material-icons">학습 기록</span>
             </div>
             <div class="menu-item">
-                <span class="material-icons">settings</span> 설정
+                <span class="material-icons">설정</span>
             </div>
             <div class="menu-item">
-                <span class="material-icons">logout</span> 로그아웃
+                <span class="material-icons">로그아웃</span>
             </div>
         </div>
+
 
         <!-- 메인 콘텐츠 -->
         <div class="main-content">
@@ -56,23 +57,28 @@
             <!-- 별과 캐릭터 영역 -->
             <div class="star-container">
                 <div class="star-button" style="top: 10%; left: 15%;" onclick="alert('첫 번째 별 클릭!')">
-                    <img src="https://via.placeholder.com/40" alt="Star">
+                    <img src="..\static\image\Rectangle 2049.png" alt="Star">
                 </div>
                 <div class="star-button" style="top: 30%; left: 35%;" onclick="alert('두 번째 별 클릭!')">
-                    <img src="https://via.placeholder.com/40" alt="Star">
+                    <img src="..\static\image\Rectangle 2049.png" alt="Star">
                 </div>
                 <div class="star-button" style="top: 50%; left: 55%;" onclick="alert('세 번째 별 클릭!')">
-                    <img src="https://via.placeholder.com/40" alt="Star">
+                    <img src="..\static\image\Rectangle 2049.png" alt="Star">
                 </div>
                 <div class="star-button" style="top: 70%; left: 35%;" onclick="alert('네 번째 별 클릭!')">
-                    <img src="https://via.placeholder.com/40" alt="Star">
+                    <img src="..\static\image\Rectangle 2049.png" alt="Star">
+                </div>
+                <div class="star-button" style="top: 70%; left: 35%;" onclick="alert('다섯 번째 별 클릭!')">
+                    <img src="..\static\image\Rectangle 2049.png" alt="Star">
                 </div>
 
-                <div class="character" style="top: 25%; left: 70%;">
-                    <img src="https://via.placeholder.com/80" alt="Character 1">
+                <div class="character character1">
+                    <img src="..\static\image\Rectangle 2056.png" alt="Character 1">
                 </div>
-                <div class="character" style="top: 60%; left: 25%;">
-                    <img src="https://via.placeholder.com/80" alt="Character 2">
+                <div class="character character2">
+                    <img src="..\static\image\Rectangle 2057.png" alt="Character 2">
+                </div>
+                
                 </div>
             </div>
 
@@ -82,7 +88,10 @@
                     
                     <h3>기능 무료 체험</h3>
                     <p>광고 없이 이용 가능</p>
-                    <p>획득 재화 2배</p>
+                    <div style="display: flex; align-items: center;">
+                        <p>획득 재화 2배</p>
+                        
+                    </div>
                     <button>7일 무료 사용하기</button>
                 </div>
 
@@ -93,7 +102,7 @@
                         <p>오늘의 목표 텍스트가<br>아직 완료되지않았어요!</p>
                     </div>
                     <div class="progress-bar">
-                        <span></span>
+                        
                     </div>
                 </div>
 
@@ -109,7 +118,7 @@
                 </div>
 
                 <div class="ad-container">
-                    <img src="https://via.placeholder.com/350x150" alt="광고 이미지">
+                    <img src="..\static\image\Rectangle 2064.png" alt="광고 이미지">
                 </div>
             </div>
         </div>
