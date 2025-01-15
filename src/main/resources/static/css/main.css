@@ -154,12 +154,13 @@ body {
     text-align: center;
     max-width: 250px;
     margin: 0 auto;
+
 }
 .icon-card button {
     background: none;
     border: none;
     text-align: center;
-    cursor: pointer;
+    cursor: unset;
     padding: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }

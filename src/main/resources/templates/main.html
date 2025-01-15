@@ -39,7 +39,7 @@
         <div class="text-content">
             <h2>미래를 위한 최고의 투자,<br>바로 언어 학습입니다.</h2>
             <h3>Doge와 함께 새로운 언어의 세계를 탐험하고 성공적인 학습 여정을 시작하세요.</h3>
-            <button th:onclick="|location.href='@{/register}'|">회원 가입하기</button>
+            <button class="learn-button" onclick="goToLearningPage()">학습하기</button>
         </div>
         <!-- smiling-happy-indian-student-with-backpack-pointing-his-finger-wall 1 -> main_1   2025.01.09 HSJ -->
         <img src="/image/main_1.png" alt="학생 이미지">
@@ -103,8 +103,8 @@
             <iframe 
                 width="700" 
                 height="500" 
-                src="https://youtu.be/tgh4C-q0XMs?si=RtUSndGmKN65UFvd"
-                title="YouTube video player" 
+                src="https://www.w3schools.com/html/mov_bbb.mp4"
+                title="video player"
                 frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen>
@@ -117,7 +117,7 @@
         <!-- friendly-confident-woman-writing-her-organizer-isolated-white-wall 1 -> main_2   2025.01.09 HSJ -->
         <img src="/image/friendly-confident-woman-writing-her-organizer-isolated-white-wall 1.png" alt="Comparison Image">
         <div class="comparison-content">
-            <h2 style="position: relative; top: -60px;">영국영어? 미국영어?</h2>
+            <h2 class="large-text" style="position: relative; top: -60px;">영국영어? 미국영어?</h2>
             <h3 style="position: relative; top: -50px;">Doji는 잠재력을 최대한 발휘할 수 있도록 지원하는 교육 방식입니다.</h3>
             <h3 style="position: relative; top: -30px;">Doji 의 강점</h3>
             <div class="comparison-list">
@@ -200,17 +200,17 @@
         <div class="footer-section">
             <h3>학습안내</h3>
             <ul>
-                <li><a href="#">레벨 테스트</a></li>
-                <li><a th:href="@{/profile}">개인정보 수정</a></li>
-                <li><a th:href="@{/inquiry}">관리자에게 문의</a></li>
+                <li><a href="selectQuestions.html">레벨 테스트</a></li>
+                <li><a href="profile.html">개인정보 수정</a></li>
+
             </ul>
         </div>
         <div class="footer-section">
             <h3>도움말 및 지원</h3>
             <ul>
                 <li><a href="#">도지 FAQ</a></li>
-                <li><a th:href="@{/profile}">개인정보 수정</a></li>
-                <li><a th:href="@{/inquiry}">관리자에게 문의</a></li>
+                <li><a href="profile.html">개인정보 수정</a></li>
+
             </ul>
         </div>
         <div class="footer-section">
