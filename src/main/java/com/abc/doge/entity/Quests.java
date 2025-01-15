@@ -13,7 +13,7 @@ public class Quests {
     private Integer id;
 
     // 퀘스트 내용
-    @Column(length = 255)
+    @Column(length = 255, unique = true)
     private String quest;
 
     // 보상 경험치
