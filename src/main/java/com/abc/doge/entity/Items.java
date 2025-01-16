@@ -14,7 +14,7 @@ public class Items {
     private Integer id;
 
     // 아이템 이름명
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 100, unique = true)
     private String name;
 
     // 아이템 설명
