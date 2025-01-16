@@ -36,10 +36,10 @@ body {
     align-items: center;
 }
 
-.header .menu-item {
-    font-size: 1rem;
-    color: #333;
-    text-decoration: none;
+.sidebar .menu-item {
+    margin: 20px 0;
+    font-size: 1.2rem;
+    color: #1a73e8;
     cursor: pointer;
 }
 
@@ -71,13 +71,15 @@ body {
 
 
 .sidebar {
-    width: 240px;
     background-color: #ffffff;
+    color: #444;
     border-right: 1px solid #ddd;
-    padding: 20px 0;
+    padding: 20px 80px 20px 20px; /* 오른쪽 여백(padding-right)을 40px로 설정 */
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: flex-start;
+    width: 300px; /* 너비는 고정 */
 }
 
 .sidebar .logo {
@@ -88,17 +90,10 @@ body {
 
 
 .sidebar .menu-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 90%;
-    padding: 12px;
-    font-size: 1rem;
-    color: #333;
-    text-decoration: none;
+    margin: 20px 0;
+    font-size: 1.2rem;
+    color: #1a73e8;
     cursor: pointer;
-    border-radius: 8px;
-    transition: background-color 0.2s ease;
 }
 
 .sidebar .menu-item:hover {
@@ -106,21 +101,22 @@ body {
 }
 
 .sidebar .menu-item .material-icons {
-    font-size: 1.3rem;
-    color: #1a73e8;
+
+        margin: 20px 0;
+        font-size: 1.2rem;
+        color: #1a73e8;
+        cursor: pointer;
 }
 
+
 .sidebar .learn-button {
-    margin-top: 20px;
-    padding: 10px 15px;
     background-color: #1a73e8;
     color: white;
-    font-size: 1rem;
     border: none;
+    padding: 10px 20px;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
-    width: 90%;
+    font-size: 1rem;
 }
 
 .sidebar .learn-button:hover {

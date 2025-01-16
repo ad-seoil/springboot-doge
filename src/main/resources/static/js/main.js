@@ -1,4 +1,3 @@
 function goToLearningPage() {
-    // 이동할 URL을 지정합니다.
-    window.location.href = "classpage.html"; // 여기에 이동할 학습 페이지 URL을 넣으세요.
+    window.location.href = "/classpage.html"; // "src/main/resources/static/" 내에 있는 classpage.html 파일
 }

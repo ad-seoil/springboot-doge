@@ -10,15 +10,14 @@ body {
 }
 
 .header {
-    width: 100%;
-
-    background-color: #ffffff;
-    color: blue;
-    padding: 10px 25px; /* 텍스트를 약간 오른쪽으로 이동 */
     display: flex;
+    justify-content: space-between; /* 헤더 내부 요소를 양 끝으로 배치 */
     align-items: center;
-    justify-content: space-between;/**/
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header .menu {
+    position: relative;
+    left: 0px; /* 오른쪽으로 50px 이동 */
 }
 
 .header h1 {
@@ -28,9 +27,8 @@ body {
 
 .header .menu {
     display: flex;
-    gap: 30px;
+    gap: 20px; /* 간격을 더 크게 설정 */
     align-items: center;
-    margin-right: 150px; /* 왼쪽으로 이동 */
 }
 
 .header .menu a {
@@ -42,6 +40,7 @@ body {
 .header .menu a:hover {
     text-decoration: underline;
 }
+
 .header .test-button {
     margin-top: 3px; /* 기존 20px에서 10px로 변경하여 버튼을 더 위로 배치 */
     background-color: #1a73e8;
@@ -52,6 +51,7 @@ body {
     cursor: pointer;
     font-size: 1rem;
 }
+
 
 
 .top-section {
@@ -75,15 +75,15 @@ body {
 }
 
 .sidebar {
-
     background-color: #ffffff;
     color: #444;
     border-right: 1px solid #ddd;
-    padding: 20px;
+    padding: 20px 80px 20px 20px; /* 오른쪽 여백(padding-right)을 40px로 설정 */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    width: 300px; /* 너비는 고정 */
 }
 
 .sidebar .menu-item {
@@ -96,6 +96,17 @@ body {
 .sidebar .menu-item:hover {
     text-decoration: underline;
 }
+
+.sidebar .test-button {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
 
 .content {
     flex: 1;

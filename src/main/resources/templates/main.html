@@ -6,15 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <!-- 외부 스타일 파일 -->
-        <link rel="stylesheet" href="/static/css/setting.css">
-        <link rel="stylesheet" href="/static/css/main.css">
+        <link rel="stylesheet" href="./css/setting.css">
+        <link rel="stylesheet" href="./css/main.css">
+        <!--js 파일 추가  -->
+        <script src="./js/main.js"></script>
 
         <!-- 스프링부트용 링크 추가 2025.01.09 HSJ -->
         <link rel="stylesheet" href="/css/setting.css">
         <link rel="stylesheet" href="/css/header.css">
         <link rel="stylesheet" href="/css/main.css">
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" ></script>
+
     </head>
 <body>
 
@@ -41,6 +43,12 @@
             <h3>Doge와 함께 새로운 언어의 세계를 탐험하고 성공적인 학습 여정을 시작하세요.</h3>
             <button class="learn-button" onclick="goToLearningPage()">학습하기</button>
         </div>
+
+        <script>
+            function goToLearningPage() {
+                window.location.href = "/classpage"; // 올바른 경로로 수정
+            }
+        </script>
         <!-- smiling-happy-indian-student-with-backpack-pointing-his-finger-wall 1 -> main_1   2025.01.09 HSJ -->
         <img src="/image/main_1.png" alt="학생 이미지">
     </div>
