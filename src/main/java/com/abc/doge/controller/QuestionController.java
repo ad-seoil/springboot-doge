@@ -179,11 +179,14 @@ public class QuestionController {
 
         model.addAttribute("question", question);
         model.addAttribute("currentQuestionIndex", currentIndex);
+
+        System.out.println(model.getAttribute("currentQuestionIndex"));
+
         model.addAttribute("totalQuestions", questions.size());
         model.addAttribute("questionType", questionType);
 
         session.setAttribute(SESSION_CURRENT_INDEX, currentIndex);
-
+        System.out.println(model);
         return "question"; // 질문 화면 반환
     }
 
