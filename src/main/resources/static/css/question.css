@@ -53,8 +53,10 @@
     /* 문제와 보기 */
     .question-area {
       display: flex;
+      flex-direction: row;
       margin: 40px 0;
       width: 100%;
+      align-items: center;
     }
 
     /* questionType이 2인 경우 .choices 스타일 */
@@ -93,9 +95,23 @@
       font-weight: bold;
       margin-bottom: 20px;
     }
+    /*문제 컨테이너*/
+    .question-container {
+      display: flex;
+      flex-direction: column; /* 세로 방향으로 정렬 */
+      margin: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+      align-items: center;
+      max-width: 600px;
+    }
 
     .choices-container {
+      display: flex;
+      flex-direction: column;
       width: 60%;
+      max-width: 500px;
       padding-left: 20px;
     }
 
@@ -108,12 +124,12 @@
     .choice-button {
       padding: 15px;
       font-size: 1em;
-      width: 35vw;
+      width: fit-content;
       border: 1px solid #ddd;
       border-radius: 8px;
       background-color: #fff;
       cursor: pointer;
-      text-align: left;
+      text-align: center;
       transition: background-color 0.3s ease, border-color 0.3s ease;
     }
 
