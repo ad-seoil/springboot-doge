@@ -2,18 +2,84 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     display: flex;
+    flex-direction: column;
     height: 100vh;
+    background-color: #d3d3d3;
+    overflow: hidden;
 }
 
-/* 사이드바 스타일 */
+.header {
+    
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0; /* 좌우 패딩 제거로 전체적으로 왼쪽 이동 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.header .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header .logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.header .menu {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.sidebar .menu-item {
+    margin: 20px 0;
+    font-size: 1.2rem;
+    color: #1a73e8;
+    cursor: pointer;
+}
+
+.header .menu-item:hover {
+    color: #1a73e8;
+}
+
+.header .status {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* 간격 감소로 왼쪽으로 이동 */
+    margin-left: 0; /* 더 왼쪽으로 이동 */
+}
+
+.header .status img {
+    width: 30px;
+    height: 30px;
+}
+.header .status span {
+    font-size: 1rem;
+    color: #333;
+}
+
+.content-wrapper {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+
 .sidebar {
-    width: 250px;
     background-color: #ffffff;
+    color: #444;
     border-right: 1px solid #ddd;
-    padding: 20px 0;
+    padding: 20px 80px 20px 20px; /* 오른쪽 여백(padding-right)을 40px로 설정 */
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: flex-start;
+    width: 300px; /* 너비는 고정 */
 }
 
 .sidebar .logo {
@@ -22,52 +88,75 @@ body {
     margin-bottom: 20px;
 }
 
+
 .sidebar .menu-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    padding: 10px 20px;
-    color: #333;
-    text-decoration: none;
-    font-size: 1rem;
+    margin: 20px 0;
+    font-size: 1.2rem;
+    color: #1a73e8;
     cursor: pointer;
-    transition: background-color 0.2s ease;
 }
 
 .sidebar .menu-item:hover {
-    background-color: #e9ecef;
+    background-color: #f1f1f1;
 }
 
 .sidebar .menu-item .material-icons {
-    color: #1a73e8;
+
+        margin: 20px 0;
+        font-size: 1.2rem;
+        color: #1a73e8;
+        cursor: pointer;
 }
 
+
 .sidebar .learn-button {
-    margin-top: 20px;
-    padding: 15px 20px;
     background-color: #1a73e8;
     color: white;
-    font-size: 1.2rem;
     border: none;
+    padding: 10px 20px;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    font-size: 1rem;
 }
 
 .sidebar .learn-button:hover {
     background-color: #155bb5;
 }
 
-/* 메인 콘텐츠 영역 스타일 */
 .main-content {
     flex: 1;
-    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     padding: 20px;
-    position: relative;
+    background-color: #d3d3d3;
+    overflow: auto;
 }
 
-/* 별 버튼과 캐릭터 */
+.blue-container {
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1a73e8;
+    color: white;
+    padding: 20px 40px;
+    border-radius: 25px;
+    font-size: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.star-container {
+    position: relative;
+    width: 80%;
+    height: 70%;
+    margin-top: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .star-button {
     position: absolute;
     display: flex;
@@ -75,50 +164,112 @@ body {
     align-items: center;
     width: 60px;
     height: 60px;
-    background-color: white;
     border-radius: 50%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: transparent; /* 배경색을 투명으로 설정 */
+    box-shadow: none; /* 그림자 제거 */
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, filter 0.2s ease; /* filter에 부드러운 전환 효과 추가 */
 }
 
 .star-button img {
     width: 40px;
     height: 40px;
+    transition: filter 0.2s ease; /* filter 전환 효과 추가 */
 }
 
-.star-button:hover {
-    transform: scale(1.1);
+.star-button:hover img {
+    filter: brightness(0.8); /* 밝기를 약간 어둡게 설정 */
+    transform: scale(1.1); /* 이미지 확대 */
 }
 
-.character {
+.character1 {
     position: absolute;
-    text-align: center;
+    top: 60%; /* 화면 위에서 25% 아래 */
+    left: 5%; /* 화면 왼쪽에서 40% */
+    transform: translate(-50%, -50%);
+}
+
+.character2 {
+    position: absolute;
+    top: 20%; /* 화면 위에서 60% 아래 */
+    left: 60%; /* 화면 왼쪽에서 70% */
+    transform: translate(-50%, -50%);
 }
 
 .character img {
-    width: 100px;
+    width: 165px; /* 크기 증가 */
+    height: auto; /* 비율 유지 */
 }
 
-/* 오른쪽 위 정보 패널 */
-.info-panel {
+
+.star-button:hover::after {
+    content: "시작";
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 300px;
+    top: -50px; /* 버튼 위에 말풍선 표시 */
     background-color: white;
-    padding: 20px;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+.star-clear {
+    position: absolute;
+    top: -70px; /* 말풍선 바로 위 */
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.star-clear img {
+    width: 20px;
+    height: 20px;
+}
+
+.right-panel {
+    position: absolute;
+    right: 10px;
+    top: 5%;
+    width: 350px;
+    height: calc(100vh - 20px); /* 컨테이너가 화면 안에서 스크롤되지 않도록 설정 */
+    overflow-y: auto;
+    padding-bottom: 10px;
+}
+
+.info-container img {
+    width: 40px;
+    height: 40px;
     border-radius: 8px;
+    margin-left: 10px;
+}
+
+.quest-container .progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.quest-container .progress-bar span {
+    display: block;
+    width: 70%;
+    height: 100%;
+    background-color: #4caf50;
+}
+
+.info-container, .task-container, .quest-container, .ad-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
-.info-panel h3 {
-    margin: 0 0 10px 0;
-    font-size: 1.2rem;
-    color: #333;
-}
-
-.info-panel button {
+.info-container button {
     margin-top: 10px;
     padding: 10px;
     background-color: #1a73e8;
@@ -126,8 +277,36 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    width: 100%;
+}
+.info-container img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    margin-left: 10px;
 }
 
-.info-panel button:hover {
+.info-container button:hover {
     background-color: #155bb5;
+}
+
+.ad-container img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.quest-container .progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.quest-container .progress-bar span {
+    display: block;
+    width: 70%;
+    height: 100%;
+    background-color: #4caf50;
 }

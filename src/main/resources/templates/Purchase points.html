@@ -36,17 +36,18 @@
             <div class="menu-item">설정</div>
             <div class="menu-item">로그아웃</div>
         </div>
-        <div class="content">
+         <div class="content">
             <div class="nav-buttons">
                 <button onclick="location.href='#'">재화 기능 스토어</button>
                 <button onclick="location.href='#'">현금 기능 스토어</button>
             </div>
             <div class="user-section">
-                <img src="profile-placeholder.png" alt="User Profile">
+                <img src="..\static\image\Profile.png" alt="User Profile">
                 <div class="user-details">
-                    <p>유저 이름: OOO 님</p>
-                    <p>학습 레벨: 30</p>
-                    <p>오늘의 학습: 완료</p>
+                    <p id="user-name" style="position: relative; top:-25px;">유저 이름: </p>
+                    <p id="user-level" style="position: relative; top:-15px;">학습 레벨: </p>
+
+                    <p id="user-progress">오늘의 학습: </p>
                 </div>
             </div>
             <div class="store-items">
@@ -56,9 +57,9 @@
                     <p>학습 완료시의 재화가 2배가됩니다</p>
                     <p>획득한 재화 OO 로 구매가능 </p>
                    <button onclick="purchaseItem('구독권 30일')">구매하기</button>
-                   <p><span>🛒</span> 구매결제</p>
-                   <p><span>✔️</span> 이전학습에도 적용가능</p>
-                    
+                  <p style="position: relative; top:5px;"><span>🛒</span>구매결제</p>
+                   <p style="position: relative; top:10px;"><span>✔️</span> 이전학습에도 적용가능</p>
+
                 </div>
                 <div class="store-item">
                     <img src="..\static\image\Rectangle 2043 (1).png" alt="Subscription Icon">
@@ -66,8 +67,8 @@
                     <p>학습시의 광고를 제거합니다 .</p>
                     <p>획득한 재화 OO 로 구매가능 </p>
                    <button onclick="purchaseItem('구독권 60일')">구매하기</button>
-                   <p><span>🛒</span> 구매결제</p>
-                   <p><span>✔️</span> 이전학습에도 적용가능</p>
+                   <p style="position: relative; top:5px;"><span>🛒</span>구매결제</p>
+                   <p style="position: relative; top:10px;"><span>✔️</span> 이전학습에도 적용가능</p>
                 </div>
             </div>
         </div>

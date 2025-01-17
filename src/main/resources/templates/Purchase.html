@@ -26,8 +26,8 @@
     </div>
     <div class="main">
         <div class="sidebar">
-          
-            <div class="menu-item">학습하기</div>
+
+            <button class="test-button">학습하기</button>
             <div class="menu-item">퀘스트</div>
             <div class="menu-item">프로필</div>
             <div class="menu-item">학습 기록</div>
@@ -40,29 +40,32 @@
                 <button onclick="location.href='#'">현금 기능 스토어</button>
             </div>
             <div class="user-section">
-                <img src="profile-placeholder.png" alt="User Profile">
-                <div class="user-details">
-                    <p>유저 이름: OOO 님</p>
-                    <p>학습 레벨: 30</p>
-                    <p>오늘의 학습: 완료</p>
+                <img src="..\static\image\Profile.png" alt="User Profile">
+            <div class="user-details">
+                <p id="user-name" style="position: relative; top:-25px;">유저 이름: </p>
+                    <p id="user-level" style="position: relative; top:-15px;">학습 레벨: </p>
+                    
+                    <p id="user-progress">오늘의 학습: </p>
+
                 </div>
             </div>
             <div class="store-items">
                 <div class="store-item">
-                    <img src="Rectangle 2043.png" alt="Subscription Icon">
+                    <img src="..\static\image\Rectangle 2043.png" alt="Subscription Icon">
                     <h3>구독권 30일</h3>
-                    <p>현금결제로 이용이 가능합니다.</p>
+                    <p  style="position: relative; top:15px;">현금결제로 이용이 가능합니다.</p>
                    <button onclick="purchaseItem('구독권 30일')">구매하기</button>
-                   <p><span>🛒</span> 구매결제</p>
-                   <p><span>✔️</span> 이전학습에도 적용가능</p>
+                   <p style="position: relative; top:5px;"><span>🛒</span>구매결제</p>
+                   <p style="position: relative; top:10px;"><span>✔️</span> 이전학습에도 적용가능</p>
+
                 </div>
                 <div class="store-item">
-                    <img src="Rectangle 2043.png" alt="Subscription Icon">
+                    <img src="..\static\image\Rectangle 2043.png" alt="Subscription Icon">
                     <h3>구독권 60일</h3>
-                    <p>현금결제로 이용이 가능합니다.</p>
+                    <p style="position: relative; top:15px;"></p>현금결제로 이용이 가능합니다.</p>
                    <button onclick="purchaseItem('구독권 60일')">구매하기</button>
-                   <p><span>🛒</span> 구매결제</p>
-                   <p><span>✔️</span> 이전학습에도 적용가능</p>
+                   <p style="position: relative; top:5px;"><span>🛒</span>구매결제</p>
+                   <p style="position: relative; top:10px;"><span>✔️</span> 이전학습에도 적용가능</p>
                 </div>
             </div>
         </div>
