@@ -128,8 +128,6 @@ public class QuestionController {
         Integer currentIndex = (index != null) ? index : (Integer) session.getAttribute(SESSION_CURRENT_INDEX);
         String questionType = session.getAttribute("questionType").toString();
 
-
-        System.out.println("questions: " + questions);
         System.out.println("currentIndex: " + currentIndex);
 
         if (currentIndex == null) {
@@ -142,6 +140,7 @@ public class QuestionController {
         }
 
         Questions question = questions.get(currentIndex);
+        System.out.println(question);
 
         Long id = question.getId();
 
@@ -165,6 +164,7 @@ public class QuestionController {
 
         // questionText를 question 객체에서 가져와서 모델에 추가
         String questionText = question.getQuestionText();
+        System.out.println(questionText);
 
         // questionText가 null이면 빈 문자열("")로 설정(IMAGE_SELECT, TTS_SELECT)
         if (questionText == null) {
@@ -175,20 +175,25 @@ public class QuestionController {
         // 보기를 리스트에 담아서 모델에 추가
         List<String> options = List.of(question.getEx1(), question.getEx2(), question.getEx3());
         model.addAttribute("options", options);
+        System.out.println(options);
 
         model.addAttribute("question", question);
         model.addAttribute("currentQuestionIndex", currentIndex);
+
+        System.out.println(model.getAttribute("currentQuestionIndex"));
+
         model.addAttribute("totalQuestions", questions.size());
         model.addAttribute("questionType", questionType);
 
         session.setAttribute(SESSION_CURRENT_INDEX, currentIndex);
-
+        System.out.println(model);
         return "question"; // 질문 화면 반환
     }
 
     // 답안 제출 메서드
     @PostMapping("/submitAnswer")
     public String submitAnswer(@RequestParam("selectedAnswer") int selectedAnswer, HttpSession session) {
+        System.out.println("selectedAnswer: " + selectedAnswer);
         List<Questions> questions = (List<Questions>) session.getAttribute(SESSION_QUESTIONS);
         Integer currentIndex = (Integer) session.getAttribute(SESSION_CURRENT_INDEX);
         Integer correctAnswers = (Integer) session.getAttribute(SESSION_CORRECT_ANSWERS);
@@ -202,23 +207,13 @@ public class QuestionController {
             // 정답 확인
             boolean isCorrect = question.getAnswer() == selectedAnswer;
 
-//             선택한 답안이 정답인지 확인
-//            if (selectedAnswer >= 1 && selectedAnswer <= 3) { // 예를 들어, 1, 2, 3 중 하나
-//                QuestionOptions option = question.getOption(); // 0-indexed -> 단일 선택지 가져오기
-//                 이전에는 QuestionOptions가 리스트 형태였기 때문에 특정 인덱스에 접근하기 위해서는 selectedAnswer-1을 사용
-//                 그러나 QuestionOptions가 단일 객채로 변경되면서 선택한 답안(selectAnswer)을 그대로 가져오면 됨
-//                if (option.getAnswer() == selectedAnswer) {
-//                    isCorrect = true; // 정답일 경우
-//                }
-//            }
-
-            // 학습 결과 저장
-            LearningResults result = new LearningResults();
-            result.setMemberInfo(memberInfoService.findById(1L)); // memberInfo 설정
-            result.setQuestions(question); // questions 설정
-            result.setUserAnswer(selectedAnswer);
-            result.setCorrect(isCorrect); // 정답 여부 저장
-            learningResultService.saveResult(result);
+//            // 학습 결과 저장
+//            LearningResults result = new LearningResults();
+//            result.setMemberInfo(memberInfoService.findById(1L)); // memberInfo 설정
+//            result.setQuestions(question); // questions 설정
+//            result.setUserAnswer(selectedAnswer);
+//            result.setCorrect(isCorrect); // 정답 여부 저장
+//            learningResultService.saveResult(result);
 
 
             if (isCorrect) {
@@ -228,27 +223,34 @@ public class QuestionController {
             session.setAttribute(SESSION_CORRECT_ANSWERS, correctAnswers); // 세션에 맞춘 문제 수 저장
             session.setAttribute(SESSION_CURRENT_INDEX, ++currentIndex);   // 현재 문제 인덱스값 증가
 
-            return "redirect:/nextQuestion";    // nextQuestion 메서드로 리다이렉트
+            if (currentIndex < questions.size()) {
+                return "redirect:/question"; // 다음 문제로 이동
+            } else {
+                // 모든 문제를 풀었을 때 정답률 계산 및 completion 메서드로 리다이렉트
+                double accuracy = (double) correctAnswers / questions.size() * 100;
+                session.setAttribute("accuracy", accuracy); // 정답률 세션에 저장
+                return "redirect:/completion"; // 모든 문제를 푼 경우 완료 페이지로 이동
+            }
         }
 
         return "redirect:/completion"; // 예외상황(추후 다른 페이지로 바꿔야함)
     }
 
-    @GetMapping("/nextQuestion")
-    public String nextQuestion(HttpSession session) {
-        List<Questions> questions = (List<Questions>) session.getAttribute(SESSION_QUESTIONS);
-        Integer currentIndex = (Integer) session.getAttribute(SESSION_CURRENT_INDEX);
-        Integer correctAnswers = (Integer) session.getAttribute(SESSION_CORRECT_ANSWERS);
-
-        if (questions != null && currentIndex < questions.size()) {
-            return "redirect:/question"; // 다음 문제로 이동
-        } else {
-            // 모든 문제를 풀었을 때 정답률 계산 및 completion 메서드로 리다이렉트
-            double accuracy = (double) correctAnswers / questions.size() * 100;
-            session.setAttribute("accuracy", accuracy); // 정답률 세션에 저장
-            return "redirect:/completion"; // 모든 문제를 푼 경우 완료 페이지로 이동
-        }
-    }
+//    @GetMapping("/nextQuestion")
+//    public String nextQuestion(HttpSession session) {
+//        List<Questions> questions = (List<Questions>) session.getAttribute(SESSION_QUESTIONS);
+//        Integer currentIndex = (Integer) session.getAttribute(SESSION_CURRENT_INDEX);
+//        Integer correctAnswers = (Integer) session.getAttribute(SESSION_CORRECT_ANSWERS);
+//
+//        if (questions != null && currentIndex < questions.size()) {
+//            return "redirect:/question"; // 다음 문제로 이동
+//        } else {
+//            // 모든 문제를 풀었을 때 정답률 계산 및 completion 메서드로 리다이렉트
+//            double accuracy = (double) correctAnswers / questions.size() * 100;
+//            session.setAttribute("accuracy", accuracy); // 정답률 세션에 저장
+//            return "redirect:/completion"; // 모든 문제를 푼 경우 완료 페이지로 이동
+//        }
+//    }
 
     @GetMapping("/completion")
     public String completion(Model model, HttpSession session) {

@@ -37,40 +37,28 @@
         </p>
 
         <div class="choices-container">
-            <div th:if="${questionType == IMAGE_SELECT}" class="choices">
-                <form action="/submitAnswer" method="post">
-                    <input type="hidden" name="selectedAnswer" value="1">
-                    <button class="choice-button" th:onclick="'selectAnswer(1)'" id="choice1_type2">
-                        <audio th:src="@{${ex1Audio}}" controls></audio>
-                    </button>
-                </form>
-                <form action="/submitAnswer" method="post">
-                    <input type="hidden" name="selectedAnswer" value="2">
-                    <button class="choice-button" th:onclick="'selectAnswer(2)'" id="choice2_type2">
-                        <audio th:src="@{${ex2Audio}}" controls></audio>
-                    </button>
-                </form>
-                <form action="/submitAnswer" method="post">
-                    <input type="hidden" name="selectedAnswer" value="3">
-                    <button class="choice-button" th:onclick="'selectAnswer(3)'" id="choice3_type2">
-                        <audio th:src="@{${ex3Audio}}" controls></audio>
-                    </button>
-                </form>
+            <div th:if="${questionType == 'IMAGE_SELECT'}" class="choices">
+                <button class="choice-button" id="choice1_type_tts" th:onclick="|selectAnswer('choice1_type_tts', event, 1)|">
+                    <audio th:src="@{${ex1Audio}}"></audio>
+                    <button type="button" class="play-button" onclick="playAudio(this)">재생</button>
+                    <button type="button" class="pause-button" onclick="pauseAudio(this)">일시 정지</button>
+                </button>
+                <button class="choice-button" id="choice2_type_tts" th:onclick="|selectAnswer('choice2_type_tts', event, 2)|">
+                    <audio th:src="@{${ex2Audio}}"></audio>
+                    <button type="button" class="play-button" onclick="playAudio(this)">재생</button>
+                    <button type="button" class="pause-button" onclick="pauseAudio(this)">일시 정지</button>
+                </button>
+                <button class="choice-button" id="choice3_type_tts" th:onclick="|selectAnswer('choice3_type_tts', event, 3)|">
+                    <audio th:src="@{${ex3Audio}}"></audio>
+                    <button type="button" class="play-button" onclick="playAudio(this)">재생</button>
+                    <button type="button" class="pause-button" onclick="pauseAudio(this)">일시 정지</button>
+                </button>
             </div>
 
-            <div th:unless="${questionType == IMAGE_SELECT}" class="choices">
-                <form action="/submitAnswer" method="post">
-                    <input type="hidden" name="selectedAnswer" value="1">
-                    <button class="choice-button" th:onclick="'selectAnswer(1)'" id="choice1_type_other" th:text="${question.ex1}"></button>
-                </form>
-                <form action="/submitAnswer" method="post">
-                    <input type="hidden" name="selectedAnswer" value="2">
-                    <button class="choice-button" th:onclick="'selectAnswer(2)'" id="choice2_type_other" th:text="${question.ex2}"></button>
-                </form>
-                <form action="/submitAnswer" method="post">
-                    <input type="hidden" name="selectedAnswer" value="3">
-                    <button class="choice-button" th:onclick="'selectAnswer(3)'" id="choice3_type_other" th:text="${question.ex3}"></button>
-                </form>
+            <div th:unless="${questionType == 'IMAGE_SELECT'}" class="choices">
+                <button class="choice-button" id="choice1_type_other" th:text="${question.ex1}" th:onclick="|selectAnswer('choice1_type_other', event, 1)|"></button>
+                <button class="choice-button" id="choice2_type_other" th:text="${question.ex2}" th:onclick="|selectAnswer('choice2_type_other', event, 2)|"></button>
+                <button class="choice-button" id="choice3_type_other" th:text="${question.ex3}" th:onclick="|selectAnswer('choice3_type_other', event, 3)|"></button>
             </div>  <!-- choices 끝 -->
         </div>  <!-- choices-container 끝 -->
     </div>  <!-- question-area 끝 -->
