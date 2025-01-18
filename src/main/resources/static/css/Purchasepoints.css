@@ -1,0 +1,99 @@
+body {
+    display: flex;
+}
+
+.main {
+    /* background-color: aquamarine; */
+    width: 88vw;
+    font-size: 2rem;
+    padding: 4rem;
+}
+
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    margin: 0 8vw;
+}
+
+.upload-img {
+    display: flex; /* Flexbox 사용 */
+    align-items: center;
+}
+
+.upload-img img {
+    margin-right: 10vw; /* 오른쪽 여백 */
+    width: 18rem; /* 이미지 너비 조정 */
+    height: 18rem; /* 비율 유지 */
+}
+
+.img-btn {
+    background-color: var(--white);
+    color: #007BFF;
+    border: 0.2rem solid #007BFF;
+    border-radius: 0;
+    margin-left: 10vw;
+    margin-top: 0;
+}
+
+p {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+hr {
+    border: 1px solid var(--dark-grey);
+    width: 80%;
+    margin: 2vh 8vw;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    margin: 2vh 8vw;
+}
+
+form > div {
+    margin-bottom: 1vh;
+}
+
+label {
+    font-size: 1.5rem;
+    /* margin-bottom: 0vh; */
+    font-weight: bold;
+}
+
+input, textarea {
+    background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin-top: 1vh;
+    width: 100%;
+    resize: none;
+    box-shadow: 0 2px 0px rgba(0, 0, 0, 0.15);
+}
+
+.btn-container {
+    display: flex; /* Flexbox 사용 */
+    justify-content: space-between; /* 버튼 사이에 공간 분배 */
+    align-items: center; /* 수직 정렬 */
+    margin: 20px 0; /* 상하 여백 */ 
+}
+
+button {
+    margin-top: 2vh;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 8vw;
+    font-size: 1.8vh;
+}
+
+button:hover {
+    background-color: #0056b3;
+    color: var(--white);
+}

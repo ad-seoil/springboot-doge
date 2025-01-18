@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>문제 풀이 페이지2</title>
+  <!-- 외부 스타일 파일 -->
+  <link rel="stylesheet" href="./css/setting.css">
+  <link rel="stylesheet" href="./css/Questionpage.css">
+
+</head>
+
+<body>
+<!-- JavaScript 파일 연결 -->
+<script src="/js/Questionpage.js" defer></script>
+<!-- 헤더 -->
+<div class="header">
+  <div class="logo">Doge</div>
+  <div class="progress-bar">
+    <div class="fill2"></div>
+  </div>
+  <div class="icons">
+    <span>2/3</span>
+    <span>🔔</span>
+  </div>
+</div>
+
+<!-- 문제 영역 -->
+<div class="question-container">
+  <img src="/image/Screenshot%202024-08-02%20at%2015.30.46%201.png" alt="Vacation Illustration">
+  <div class="question-content">
+    <h1>2.   저는 지금 줄을 서고 있습니다. = I’m in the _   _   _ now</h1>
+
+    <div class="options">
+      <div class="option" onclick="markCorrect(this)">string<span>1</span></div>
+      <div class="option" onclick="markCorrect(this)">thread<span>2</span></div>
+      <div class="option" onclick="markCorrect(this)">queue<span>3</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 푸터 -->
+<div class="footer">
+  <div class="info" id="time-display">남은 시간: 30초</div>
+  <button class="next-button" disabled>다음문제</button>
+</div>
+</body>
+</html>
