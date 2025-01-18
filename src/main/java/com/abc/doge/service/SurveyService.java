@@ -33,6 +33,16 @@ public class SurveyService {
         studySettingStatusRepository.save(studySettingStatus);
     }
 
+    // 한 유저가 똑같은 언어를 배우려고 하는지 확인
+    public boolean existsByUserAndLanguage(Long memberId, Long languageId) {
+        return studySettingStatusRepository.existsByMemberInfo_MemberIdAndLanguage_Id(memberId, languageId);
+    }
+
+    // 유저와 언어의 id를 동시에 조회
+    public StudySettingStatus findByUserIdAndLanguageId(Long memberId, Long languageId) {
+        return studySettingStatusRepository.findByMemberInfo_MemberIdAndLanguage_Id(memberId, languageId);
+    }
+
 
 
 }
