@@ -1,6 +1,7 @@
 package com.abc.doge.controller;
 
 import com.abc.doge.entity.LearningResults;
+import com.abc.doge.entity.MemberInfo;
 import com.abc.doge.entity.Questions;
 import com.abc.doge.enums.QuestionLevel;
 import com.abc.doge.enums.QuestionType;
@@ -217,13 +218,15 @@ public class QuestionController {
             // 정답 확인
             boolean isCorrect = question.getAnswer() == selectedAnswer;
 
-//            // 학습 결과 저장
-//            LearningResults result = new LearningResults();
-//            result.setMemberInfo(memberInfoService.findById(1L)); // memberInfo 설정
-//            result.setQuestions(question); // questions 설정
-//            result.setUserAnswer(selectedAnswer);
-//            result.setCorrect(isCorrect); // 정답 여부 저장
-//            learningResultService.saveResult(result);
+            // 학습 결과 저장
+            MemberInfo loggedInUser = (MemberInfo) session.getAttribute("loggedInUser");
+            Long memberId = loggedInUser.getMemberId();
+            LearningResults result = new LearningResults();
+            result.setMemberInfo(memberInfoService.findById(memberId)); // memberInfo 설정
+            result.setQuestions(question); // questions 설정(question 객체 전달)
+            result.setUserAnswer(selectedAnswer);
+            result.setCorrect(isCorrect); // 정답 여부 저장
+            learningResultService.saveResult(result);
 
 
             if (isCorrect) {
