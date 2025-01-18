@@ -20,38 +20,46 @@
 
     <!-- 문제와 보기 -->
     <div class="question-area" th:with="questionType=${questionType}, question=${question}">
-        <div th:if="${questionType == IMAGE_SELECT}" class="image-container">
-            <img th:src="@{${question.imageFile}}" alt="Image" class="question-image">
-        </div>
-        <div th:if="${questionType == VIDEO_SELECT}" class="video-container">
-            <video th:src="@{${question.videoFile}}" controls class="question-video"></video>
-        </div>
 
-        <div th:if="${questionType == TTS_SELECT}" class="question-audio-container">
-            <audio th:src="@{${questionAudio}}" controls></audio>
-        </div>
+        <div class="question-container"><!-- 문제 컨테이너 -->
+            <div th:if="${questionType == 'IMAGE_SELECT'}" class="image-container">
+                <img th:src="@{${imageUrl}}" alt="Image" class="question-image">
+            </div>
 
-        <p th:unless="${questionType == TTS_SELECT}" class="question-text" id="questionText"
-           th:text="${question.questionText}" th:if="${question.questionText != null}">
-            다음 이미지를 보고, 올바른 답을 선택하세요.
-        </p>
+            <div th:if="${questionType == 'VIDEO_SELECT'}" class="video-container">
+                <video th:src="@{${videoUrl}}" controls class="question-video"></video>
+            </div>
+
+            <div th:if="${questionType == 'TTS_SELECT'}" class="question-audio-container">
+                <audio th:src="@{${questionAudio}}" controls></audio>
+            </div>
+
+            <p th:unless="${questionType == 'TTS_SELECT'}" class="question-text" id="questionText">
+                <th:block th:if="${questionType == 'IMAGE_SELECT'}">
+                    다음 이미지를 보고, 올바른 답을 선택하세요.
+                </th:block>
+                <th:block th:unless="${questionType == 'IMAGE_SELECT'}">
+                    <span th:text="${question.questionText}"></span>
+                </th:block>
+            </p>
+        </div>
 
         <div class="choices-container">
             <div th:if="${questionType == 'IMAGE_SELECT'}" class="choices">
                 <button class="choice-button" id="choice1_type_tts" th:onclick="|selectAnswer('choice1_type_tts', event, 1)|">
-                    <audio th:src="@{${ex1Audio}}"></audio>
-                    <button type="button" class="play-button" onclick="playAudio(this)">재생</button>
-                    <button type="button" class="pause-button" onclick="pauseAudio(this)">일시 정지</button>
+                    <audio th:src="@{${ex1Audio}}" controls></audio>
+<!--                    <button type="button" class="play-button" onclick="playAudio(this)">재생</button>-->
+<!--                    <button type="button" class="pause-button" onclick="pauseAudio(this)">일시 정지</button>-->
                 </button>
                 <button class="choice-button" id="choice2_type_tts" th:onclick="|selectAnswer('choice2_type_tts', event, 2)|">
-                    <audio th:src="@{${ex2Audio}}"></audio>
-                    <button type="button" class="play-button" onclick="playAudio(this)">재생</button>
-                    <button type="button" class="pause-button" onclick="pauseAudio(this)">일시 정지</button>
+                    <audio th:src="@{${ex2Audio}}" controls></audio>
+<!--                    <button type="button" class="play-button" onclick="playAudio(this)">재생</button>-->
+<!--                    <button type="button" class="pause-button" onclick="pauseAudio(this)">일시 정지</button>-->
                 </button>
                 <button class="choice-button" id="choice3_type_tts" th:onclick="|selectAnswer('choice3_type_tts', event, 3)|">
-                    <audio th:src="@{${ex3Audio}}"></audio>
-                    <button type="button" class="play-button" onclick="playAudio(this)">재생</button>
-                    <button type="button" class="pause-button" onclick="pauseAudio(this)">일시 정지</button>
+                    <audio th:src="@{${ex3Audio}}" controls></audio>
+<!--                    <button type="button" class="play-button" onclick="playAudio(this)">재생</button>-->
+<!--                    <button type="button" class="pause-button" onclick="pauseAudio(this)">일시 정지</button>-->
                 </button>
             </div>
 

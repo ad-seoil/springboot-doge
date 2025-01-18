@@ -142,34 +142,44 @@ public class QuestionController {
         Questions question = questions.get(currentIndex);
         System.out.println(question);
 
-        Long id = question.getId();
+//        Long id = question.getId();
+        // questionText를 question 객체에서 가져와서 모델에 추가
+        String questionText = question.getQuestionText();
+        System.out.println(questionText);
+
+        int audioId = 0;
+        if (
+            questionType.equals(QuestionType.IMAGE_SELECT.toString()) ||
+            questionType.equals(QuestionType.TTS_SELECT.toString())
+        ) {
+            String audioQuestionText = question.getQuestionText();
+            audioId = Integer.parseInt(audioQuestionText);
+        }
 
         // questionType에 따라 필요한 정보를 모델에 추가
         switch (questionType) {
             case "IMAGE_SELECT":
-                model.addAttribute("imageUrl", question.getQuestionFile());
-                model.addAttribute("ex1Audio", "/audio/ttsSelectImage/ID_" + id + "_ex1.wav");
-                model.addAttribute("ex2Audio", "/audio/ttsSelectImage/ID_" + id + "_ex2.wav");
-                model.addAttribute("ex3Audio", "/audio/ttsSelectImage/ID_" + id + "_ex3.wav");
+                model.addAttribute("imageUrl", "/image/question_image_select/" + question.getQuestionFile());
+                model.addAttribute("ex1Audio", "/audio/question_image_select/ID_" + audioId + "_ex1.wav");
+                model.addAttribute("ex2Audio", "/audio/question_image_select/ID_" + audioId + "_ex2.wav");
+                model.addAttribute("ex3Audio", "/audio/question_image_select/ID_" + audioId + "_ex3.wav");
                 break;
             case "VIDEO_SELECT":
                 model.addAttribute("videoUrl", question.getQuestionFile());
                 break;
             case "TTS_SELECT":
-                model.addAttribute("questionAudio", "/audio/conversationTts/ID_" + id + ".wav");
+                model.addAttribute("questionAudio", "/audio/conversationTts/ID_" + audioId + ".wav");
                 break;
             default: // TEXT_SELECT
                 break;
         }
 
-        // questionText를 question 객체에서 가져와서 모델에 추가
-        String questionText = question.getQuestionText();
-        System.out.println(questionText);
 
-        // questionText가 null이면 빈 문자열("")로 설정(IMAGE_SELECT, TTS_SELECT)
-        if (questionText == null) {
-            questionText = "";
-        }
+//        // questionText가 null이면 빈 문자열("")로 설정(IMAGE_SELECT, TTS_SELECT)
+//        -> questions 테이블의 question_text 칼럼이 not null이기 때문에, quesitonText가 없는 문제에는 오디오파일의 id를 삽입했습니다. -JYS
+//        if (questionText == null) {
+//            questionText = "";
+//        }
 
         model.addAttribute("questionText", questionText);
         // 보기를 리스트에 담아서 모델에 추가
