@@ -11,6 +11,10 @@ public class StudySettingStatusService {
     @Autowired
     private StudySettingStatusRepository studySettingStatusRepository; // 리포지토리 주입
 
+    public void saveStudySettingStatue(StudySettingStatus studySettingStatus) {
+        studySettingStatusRepository.save(studySettingStatus);
+    }
+
     // 특정 memberId로 학습 설정 상태 조회
     public StudySettingStatus getStudyStatus(Long memberId) {
         return studySettingStatusRepository.findByMemberInfo_MemberId(memberId); // 리포지토리 메서드 호출
