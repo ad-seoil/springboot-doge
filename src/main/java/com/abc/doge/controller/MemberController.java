@@ -60,26 +60,33 @@ public class MemberController {
         return "login";    // login.html
     }
 
+    // 로그인 로직 수정 2025.01.15 HSJ
     @PostMapping("/login")
     public String login(@RequestParam String email,
                         @RequestParam String pw,
                         HttpSession session, // 세션추가 2025.01.09 HSJ
+                        @RequestParam(required = false) String redirect,
                         Model model) {
+
+        // 이메일을 기준으로 사용자를 조회
+        // 해당 이메일에 대한 사용자 정보를 가져오는 서비스 메서드
        MemberInfo memberInfo = memberService.findByEmail(email);
 
        if (memberInfo != null && memberInfo.getPassword().equals(pw)) {
            // 로그인 성공
            // 세션에 사용자 정보 저장 2025.01.09 HSJ
            session.setAttribute("loggedInUser", memberInfo);
-           model.addAttribute("message", "로그인 성공");
-           ResponseEntity.ok(Map.of("message", "로그인 성공", "memberId", memberInfo.getMemberId()));
 
-           // 성공하면 퀘스트 리스트로 보내야하는데 아직 없어서 메인페이지로 보냄 2025.01.09 HSJ
+           // redirect 파라미터가 있는 경우 해당 페이지로 리다이렉트
+           if (redirect != null && !redirect.isEmpty()) {
+               return "redirect:" + redirect;
+           }
+           // 기본 페이지로 리다이렉트
            return "redirect:/doge";
        } else {
            // 로그인 실패
            model.addAttribute("error", "이메일 또는 비밀번호가 잘못되었습니다.");
-           return "login";
+           return "login"; // 로그인 페이지로 돌아감
        }
     }
 
