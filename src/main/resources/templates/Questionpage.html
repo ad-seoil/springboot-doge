@@ -4,55 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>문제 풀이 페이지</title>
-    
-    <script>
-        let clickedOptions = [];
-        let remainingTime = 30;
+    <!-- 외부 스타일 파일 -->
+    <link rel="stylesheet" href="./css/setting.css">
+    <link rel="stylesheet" href="./css/Questionpage.css">
 
-        function markCorrect(option) {
-            clickedOptions.push(option.innerText);
-
-            if (clickedOptions.length === 3) {
-                const correctSequence = ['rest', 'holiday', 'vacant'];
-                if (JSON.stringify(clickedOptions) === JSON.stringify(correctSequence)) {
-                    option.classList.add('correct');
-                    alert('정답입니다!');
-                    addTimeAutomatically(); // Add time automatically upon correct answer
-                    enableNextButton();
-                    clickedOptions = []; // Reset for next question
-                } else {
-                    alert('정답이 아닙니다. 다시 시도하세요.');
-                    clickedOptions = []; // Reset for retry
-                }
-            }
-        }
-
-        function addTimeAutomatically() {
-            remainingTime += 10; // Add 10 seconds automatically
-            document.getElementById('time-display').innerText = `남은 시간: ${remainingTime}초`;
-        }
-
-        function enableNextButton() {
-            const nextButton = document.querySelector('.next-button');
-            nextButton.classList.add('active');
-            nextButton.disabled = false;
-        }
-
-        function updateTime() {
-            const timeDisplay = document.getElementById('time-display');
-            if (remainingTime > 0) {
-                remainingTime--;
-                timeDisplay.innerText = `남은 시간: ${remainingTime}초`;
-            } else {
-                alert('시간 초과!');
-                clearInterval(timerInterval);
-            }
-        }
-
-        const timerInterval = setInterval(updateTime, 1000);
-    </script>
 </head>
+
 <body>
+<!-- JavaScript 파일 연결 -->
+<script src="/js/Questionpage.js" defer></script>
     <!-- 헤더 -->
     <div class="header">
         <div class="logo">Doge</div>
@@ -67,7 +27,7 @@
 
     <!-- 문제 영역 -->
     <div class="question-container">
-        <img src="https://via.placeholder.com/400" alt="Vacation Illustration">
+        <img src="/image/vacant.jpg" alt="Vacation Illustration">
         <div class="question-content">
             <h1>1. 저는 휴가중입니다 = I'm on _ _ _ .</h1>
 
