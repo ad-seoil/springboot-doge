@@ -9,7 +9,8 @@ $(document).ready(function() {
                 languageId: languageId
             },
             success: function(response) {
-                alert('언어가 저장되었습니다!'); // 성공 메시지
+                // 언어가 저장되면 survey_purpose.html로 리다이렉트
+                window.location.href = '/surveyLevel'; // 원하는 URL로 변경
             },
             error: function() {
                 alert('언어 저장에 실패했습니다.'); // 오류 메시지

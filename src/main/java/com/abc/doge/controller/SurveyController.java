@@ -71,6 +71,21 @@ public class SurveyController {
 
     }
 
+    // 학습 목적 페이지 이동
+    @GetMapping("surveyLevel")
+    public String getLevelSurvey(HttpServletRequest request, Model model,
+                                    @SessionAttribute(name = "loggedInUser", required = false) String user) {
+        if (user == null) {
+            // 로그인하지 않은 경우, 로그인 페이지로 리다이렉트
+            return "redirect:/login?redirect=" + request.getRequestURI();
+        }
+
+        // 레벨 목록을 모델에 추가
+        model.addAttribute("levels", Level.values());
+
+        return "survey/survey_level";
+    }
+
 
 
 
