@@ -1,3 +1,24 @@
+// DOMContentLoaded 이벤트를 사용하여 HTML 로드 후 실행
+document.addEventListener('DOMContentLoaded', () => {
+    // Coins 이미지 클릭 시 이동
+    const coinsImage = document.getElementById('coinsImage');
+    if (coinsImage) {
+        coinsImage.addEventListener('click', () => {
+            window.location.href = '/purchase-points'; // "src/main/resources/static/" 내에 있는purchase_points.html 파일로이동
+        });
+    }
+
+    // Gems 이미지 클릭 시 이동
+    const gemsImage = document.getElementById('gemsImage');
+    if (gemsImage) {
+        gemsImage.addEventListener('click', () => {
+            window.location.href = '/purchase-points'; // "src/main/resources/static/" 내에 있는purchase_points.html 파일로이동
+        });
+    }
+});
+
+
+
 const userData = {
     name: "", // 회원가입 시 입력된 이름
     level: "", // 학습레벨

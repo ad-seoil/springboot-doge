@@ -31,7 +31,28 @@ body {
 }
 
 .header .progress-bar .fill {
-    width: 33%; /* Adjust this dynamically for each question */
+    width: 30%; /* Adjust this dynamically for each question */
+    height: 100%;
+    background-color: #76c7c0;
+    transition: width 0.3s ease;
+}
+/* Questionpage2 헤더 진행바 스타일 */
+.fill2 {
+    width: 60%;
+    height: 100%;
+    background-color: #76c7c0;
+    transition: width 0.3s ease;
+}
+/* Questionpage3 헤더 진행바 스타일 */
+.fill3 {
+    width: 80%;
+    height: 100%;
+    background-color: #76c7c0;
+    transition: width 0.3s ease;
+}
+/* Questionpage4 헤더 진행바 스타일 */
+.fill4 {
+    width: 80%;
     height: 100%;
     background-color: #76c7c0;
     transition: width 0.3s ease;
@@ -154,4 +175,16 @@ body {
 
 .footer .next-button.active:hover {
     background-color: #5fa8a0;
+}
+/* 기본 스타일 */
+.question-container {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* 정답 스타일 */
+.correct-style {
+    background-color: #d4edda; /* 초록색 배경 */
+    border-color: #155724; /* 초록색 테두리 */
 }

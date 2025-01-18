@@ -1,54 +1,86 @@
-function navigateToLearningPage() {
-    // 이동할 페이지 URL을 설정
-    window.location.href = "/selectQuestions";  // "src/main/resources/static/" 내에 있는 Questionpage.html 파일
-
-}
-// 초기 유저 데이터
-const userData = {
-    name: "", //유저데이터를 받아와서보일수있게
-    level:"",
+// 초기 유저 데이터 로드 (로컬 스토리지 활용)
+const userData = JSON.parse(localStorage.getItem("userData")) || {
+    name: "",
+    level: "",
     completedQuest: false,
-    freeTrialStartDate: null, // 무료 사용 시작 날짜
+    freeTrialStartDate: null,
 };
 
-// 7일 무료 사용 시작 함수
-function activateFreeTrial() {
-    if (!userData.freeTrialStartDate) {
-        const today = new Date();
-        userData.freeTrialStartDate = today.toISOString(); // ISO 문자열로 저장
-        alert("7일 무료 사용이 시작되었습니다! 광고 없이 이용 가능하며, 획득 재화가 2배로 증가합니다.");
-        updateFreeTrialStatus();
-    } else {
-        const trialEndDate = new Date(userData.freeTrialStartDate);
-        trialEndDate.setDate(trialEndDate.getDate() + 7); // 7일 후 날짜 계산
-
-        const today = new Date();
-        if (today > trialEndDate) {
-            alert("7일 무료 사용 기간이 종료되었습니다.");
+const ClassPage = {
+    showProblemPage: function (url) {
+        if (url) {
+            console.log(`Navigating to: ${url}`); // 디버깅용 로그
+            window.location.href = url; // HTML에서 받은 URL로 이동
         } else {
-            alert("이미 무료 사용 중입니다.");
+            console.error("URL이 제공되지 않았습니다.");
         }
-    }
-}
+    },
 
-// 무료 사용 상태 업데이트 함수
-function updateFreeTrialStatus() {
-    const statusElement = document.getElementById("free-trial-status");
-    if (userData.freeTrialStartDate) {
-        const trialEndDate = new Date(userData.freeTrialStartDate);
-        trialEndDate.setDate(trialEndDate.getDate() + 7); // 7일 후 날짜 계산
+    // 퀘스트 페이지 이동
+    navigateToQuest: function () {
+        window.location.href = "/Quest-Progress";
+    },
 
-        const today = new Date();
-        if (today > trialEndDate) {
-            statusElement.textContent = "7일 무료 사용이 종료되었습니다.";
-            document.getElementById("free-trial-button").disabled = true;
+    // 포인트 구매 페이지 이동
+    navigateToPurchasePage: function () {
+        window.location.href = "/purchase-points";
+    },
+
+    // 프로필 페이지 이동
+    navigateToProfile: function () {
+        window.location.href = "/profile";
+    },
+
+    // 7일 무료 사용 시작 함수
+    activateFreeTrial: function () {
+        if (!userData.freeTrialStartDate) {
+            const today = new Date();
+            userData.freeTrialStartDate = today.toISOString();
+            alert("7일 무료 사용이 시작되었습니다! 광고 없이 이용 가능하며, 획득 재화가 2배로 증가합니다.");
+            this.updateFreeTrialStatus();
+            this.saveUserData();
         } else {
-            statusElement.textContent = `무료 사용 중 (종료일: ${trialEndDate.toLocaleDateString()})`;
+            const trialEndDate = new Date(userData.freeTrialStartDate);
+            trialEndDate.setDate(trialEndDate.getDate() + 7);
+
+            const today = new Date();
+            if (today > trialEndDate) {
+                alert("7일 무료 사용 기간이 종료되었습니다.");
+            } else {
+                alert("이미 무료 사용 중입니다.");
+            }
         }
-    } else {
-        statusElement.textContent = "7일 무료 사용이 활성화되지 않았습니다.";
-    }
-}
+    },
+
+    // 무료 사용 상태 저장 함수
+    saveUserData: function () {
+        localStorage.setItem("userData", JSON.stringify(userData));
+    },
+
+    // 무료 사용 상태 업데이트 함수
+    updateFreeTrialStatus: function () {
+        const statusElement = document.getElementById("free-trial-status");
+        if (userData.freeTrialStartDate) {
+            const trialEndDate = new Date(userData.freeTrialStartDate);
+            trialEndDate.setDate(trialEndDate.getDate() + 7);
+
+            const today = new Date();
+            if (today > trialEndDate) {
+                statusElement.textContent = "7일 무료 사용이 종료되었습니다.";
+                document.getElementById("free-trial-button").disabled = true;
+            } else {
+                statusElement.textContent = `무료 사용 중 (종료일: ${trialEndDate.toLocaleDateString()})`;
+            }
+        } else {
+            statusElement.textContent = "7일 무료 사용이 활성화되지 않았습니다.";
+        }
+    },
+};
+
+// 전역 함수로 설정
+window.ClassPage = ClassPage;
 
 // 페이지 로드 시 무료 사용 상태 업데이트
-document.addEventListener("DOMContentLoaded", updateFreeTrialStatus);
+document.addEventListener("DOMContentLoaded", () => {
+    ClassPage.updateFreeTrialStatus();
+});
