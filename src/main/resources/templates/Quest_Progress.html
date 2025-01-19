@@ -61,5 +61,16 @@
         <!-- 돌아가기 버튼 -->
         <button id="backButton">돌아가기</button>
     </div>
+    <script>
+        document.getElementById('completeQuestButton').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/api/complete-quest', { method: 'POST' });
+                const result = await response.json();
+                alert(result.message); // 퀘스트 완료 메시지 표시
+            } catch (error) {
+                console.error('Error completing quest:', error);
+            }
+        });
+    </script>
 </body>
 </html>

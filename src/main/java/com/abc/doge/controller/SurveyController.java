@@ -36,13 +36,14 @@ public class SurveyController {
     private StudySettingStatusService studySettingStatusService;
 
     // 설문조사 페이지로 이동
-    @GetMapping("/survey")
+    @GetMapping("/survey/start")
     public String getLanguageSurvey(HttpServletRequest request, Model model,
                                     @SessionAttribute(name = "loggedInUser", required = false) String user) {
 //  그러고 보면 설문조사는 해당 언어에 대해서는 하나면 되는데 만약 설문조사가 똑같은 언어로 클릭하지 못하게 예외처리 해야하는 거 아닌가
         if (user == null) {
-            // 로그인하지 않은 경우, 로그인 페이지로 리다이렉트
-            return "redirect:/login?redirect=" + request.getRequestURI();
+            System.out.println("비로그인 상태에서 설문조사 접근");
+        } else {
+            System.out.println("로그인 상태에서 설문조사 접근: " + user);
         }
         // 모든 언어 가져오기
         List<Languages> languages = surveyService.findAll();

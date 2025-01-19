@@ -11,7 +11,7 @@ public class Languages {
     // 언어 id PK
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     // 언어 명
     @Column(nullable = false, length = 100, unique = true)
