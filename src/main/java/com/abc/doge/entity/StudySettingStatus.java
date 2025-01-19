@@ -7,7 +7,10 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "study_setting_status")
+@Table(name = "study_setting_status",
+        // 한 유저는 여러개의 언어를 배울 수 있지만 한 유저가 똑같은 언어의 테이블을 가질 순 없음
+        uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "language_id"}))
+
 public class StudySettingStatus {
     // 유저별 학습 설문조사 세팅 id PK
     @Id
