@@ -43,17 +43,16 @@
 
             <button class="learn-button" onclick="ClassPage.navigateToLearningPage()">학습하기</button>
             <div class="menu-item">
-                <span class="material-icons" onclick="ClassPage.navigateToQuest()">퀘스트</span>
+                <span class="material-icons" onclick="location.href='/Quest-Progress'">퀘스트</span>
             </div>
             <div class="menu-item">
-                <span class="material-icons" onclick="ClassPage.navigateToProfile()">프로필</span>
+                <span class="material-icons" onclick="location.href='/profile'">프로필</span>
             </div>
             <div class="menu-item">
-                <span class="material-icons">학습 기록</span>
+                <span class="material-icons" onclick="ClassPage.showCompletedStars()">학습 기록</span>
             </div>
-            <div class="menu-item">
-                <span class="material-icons">설정</span>
-            </div>
+
+
                 <div class="menu-item" id="logoutMenu">
                     <span class="material-icons">로그아웃</span>
             </div>
@@ -73,16 +72,16 @@
 
             <!-- 별과 캐릭터 영역 -->
             <div class="star-container">
-                <div class="star-button" style="top: 10%; left: 15%;" onclick="ClassPage.showProblemPage('/Questionpage')">
+                <div class="star-button" style="top: 10%; left: 15%;" onclick="ClassPage.trackCompletedStars(); ClassPage.navigateToQuestionPage('/Questionpage')">
                     <img src="/image/Rectangle 2049.png" alt="Star">
                 </div>
-                <div class="star-button" style="top: 30%; left: 35%;" onclick="ClassPage.showProblemPage('/Questionpage2')">
+                <div class="star-button" style="top: 30%; left: 35%;" onclick="ClassPage.trackCompletedStars(); ClassPage.navigateToQuestionPage('/Questionpage2')">
                     <img src="/image/Rectangle 2049.png" alt="Star">
                 </div>
-                <div class="star-button" style="top: 50%; left: 55%;" onclick="ClassPage.showProblemPage('/Questionpage3')">
+                <div class="star-button" style="top: 50%; left: 55%;" onclick="ClassPage.trackCompletedStars(); ClassPage.navigateToQuestionPage('/Questionpage3')">
                     <img src="/image/Rectangle 2049.png" alt="Star">
                 </div>
-                <div class="star-button" style="top: 70%; left: 35%;" onclick="ClassPage.showProblemPage('/Questionpage4')">
+                <div class="star-button" style="top: 70%; left: 35%;" onclick="ClassPage.trackCompletedStars(); ClassPage.navigateToQuestionPage('/Questionpage4')">
                     <img src="/image/Rectangle 2049.png" alt="Star">
                 </div>
 
@@ -94,7 +93,7 @@
                 <div class="character character2">
                     <img src="/image/Rectangle 2057.png" alt="Character 2">
                 </div>
-                
+
             </div>
 <!--            별과 캐릭터 끝-->
         </div>
@@ -102,12 +101,12 @@
             <!-- 오른쪽 패널 -->
             <div class="right-panel">
                 <div class="info-container">
-                    
+
                     <h3>기능 무료 체험</h3>
                     <p>광고 없이 이용 가능</p>
                     <div style="display: flex; align-items: center;">
                         <p>획득 재화 2배</p>
-                        
+
                     </div>
                     <button id="free-trial-button" onclick="ClassPage.activateFreeTrial()">7일 무료 사용하기</button>
                     <p id="free-trial-status">무료 사용 상태를 확인 중...</p>
@@ -117,24 +116,24 @@
 
                 <div class="task-container">
                     <h4><img src="/image/Rectangle 2049.png" alt="Star Icon" style="width: 20px; height: 20px; vertical-align: middle;"> 오늘의 할일</h4>
-                    
+
                     <div class="item">
-                        <p>오늘의 목표 텍스트가<br>아직 완료되지않았어요!</p>
+                        <p id="taskMessage">오늘의 목표 텍스트가<br>아직 완료되지않았어요!</p>
                     </div>
                     <div class="progress-bar">
-                        
+
                     </div>
                 </div>
 
                 <div class="quest-container">
                     <h4><img src="/image/Rectangle 2049.png" alt="Star Icon" style="width: 20px; height: 20px; vertical-align: middle;"> 오늘의 퀘스트</h4>
                     <div class="item">
-                        <p>1-1: 인사하기 진행완료하기</p>
+                        <p>1-1: 여행에서 말하고 답하기</p>
                     </div>
                     <div class="progress-bar">
                         <span></span>
                     </div>
-                    
+
                 </div>
 
                 <div class="ad-container">
@@ -144,6 +143,45 @@
 <!--        오른쪽 패널 끝-->
     </div>
 <!--    메인 컨 끝-->
+    <script>
+        async function checkQuestStatus() {
+            try {
+                const response = await fetch('/api/quest-status');
+                const result = await response.json();
+                if (result.questCompleted) {
+                    document.getElementById('taskMessage').innerHTML = '오늘의 목표를 달성하였습니다!';
+                }
+            } catch (error) {
+                console.error('Error fetching quest status:', error);
+            }
+        }
+
+        checkQuestStatus();
+
+
+            const ClassPage = {
+            navigateToQuestionPage: function (url) {
+            window.location.href = url; // 문제 페이지로 이동
+        },
+
+            trackCompletedStars: function () {
+            const completedStars = parseInt(localStorage.getItem("completedStars") || "0");
+            localStorage.setItem("completedStars", completedStars + 1); // 별 클릭 수 증가
+        },
+
+            showCompletedStars: function () {
+            const completedStars = parseInt(localStorage.getItem("completedStars") || "0");
+            alert(`총 ${completedStars}개의 문제를 해결하였습니다.`);
+        },
+                navigateToQuestionPage: function () {
+                    window.location.href = "/Questionpage";
+                },
+                navigateToPurchasePage: function () {
+                    window.location.href = "/purchase-points"; // 포인트 구매 페이지로 이동
+                },
+        };
+
+    </script>
 
 </body>
 
