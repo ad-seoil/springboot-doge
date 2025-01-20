@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,7 +38,7 @@
           <a th:href="@{/login}">로그인</a>
         </li>
         <li class="main">
-          <a th:href="{/inquiry}">문의</a>
+          <a th:href="@{/inquiry}">문의</a>
         </li>
       </ul> <!-- menu 끝 -->
     </nav>  <!-- 내비게이션 끝 -->
@@ -48,12 +48,10 @@
 <!-- 컨텐츠 영역 -->
 <div id="content">
   <h2 class="title">레벨테스트</h2>
-  <h1 class="subtitle">내 레벨은 어느 정도인 것 같나요?</h1>
+  <h1 class="subtitle">알림을 허용하시나요?</h1>
   <ul class="survey-list">
-    <li>초급(입문) <span>+</span></li>
-    <li>중급 <span>+</span></li>
-    <li>고급 <span>+</span></li>
-    <li>비즈니스 <span>+</span></li>
+    <li>허용해요(프로필에서 변경 가능합니다). <span>+</span></li>
+    <li>허용하지 않아요. <span>+</span></li>
   </ul>
 </div>
 </body>

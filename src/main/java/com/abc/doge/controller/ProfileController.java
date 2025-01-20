@@ -32,40 +32,58 @@ public class ProfileController {
     @Autowired
     private StudySettingStatusService studySettingStatusService;
 
+    // 학습 기록 페이지 매핑
+    @GetMapping("/learning-records")
+    public String showLearningRecordsPage() {
+        return "learning_records"; // "src/main/resources/templates/learning_records.html" 반환
+    }
+
+    // 설정 페이지 매핑
+    @GetMapping("/settings")
+    public String showSettingsPage() {
+        return "settings"; // "src/main/resources/templates/settings.html" 반환
+    }
+
     @GetMapping("/profile")
     public String getProfile(HttpSession session, Model model) {
         MemberInfo loggedInUser = (MemberInfo) session.getAttribute("loggedInUser");
 
-        if (loggedInUser != null) {
-            String email = loggedInUser.getEmail();
-            System.out.println("Logged in user email: " + email); // 로그 추가
-
-            MemberInfo memberInfo = memberService.findByEmail(email);
-            if (memberInfo == null) {
-                System.out.println("MemberInfo is null for email: " + email);
-                return "redirect:/login";
-            }
-
-            // 회원의 설정 정보 조회
-            SettingInfo settingInfo = settingService.findByMemberId(memberInfo.getMemberId());
-            if (settingInfo == null) {
-                System.out.println("SettingInfo is null for memberId: " + memberInfo.getMemberId());
-                // 필요한 경우 적절한 처리를 추가
-            }
-
-            // 회원의 학습 설정 상태 조회
-            StudySettingStatus studyStatus = studySettingStatusService.getStudyStatus(memberInfo.getMemberId());
-
-            // 모델에 추가
-            model.addAttribute("memberInfo", memberInfo);
-            model.addAttribute("settingInfo", settingInfo);
-            model.addAttribute("studyStatus", studyStatus);
-        } else {
+        if (loggedInUser == null) {
+            System.out.println("Session does not contain loggedInUser. Redirecting to login.");
             return "redirect:/login"; // 로그인 페이지로 리다이렉트
         }
 
+        String email = loggedInUser.getEmail();
+        System.out.println("Logged in user email: " + email);
+
+        MemberInfo memberInfo = memberService.findByEmail(email);
+        if (memberInfo == null) {
+            System.out.println("No MemberInfo found for email: " + email);
+            return "redirect:/error"; // 오류 페이지
+        }
+
+        SettingInfo settingInfo = settingService.findByMemberId(memberInfo.getMemberId());
+        if (settingInfo == null) {
+            System.out.println("SettingInfo not found for memberId: " + memberInfo.getMemberId());
+            settingInfo = new SettingInfo(); // 기본 값 추가
+        }
+
+        StudySettingStatus studyStatus = studySettingStatusService.getStudyStatus(memberInfo.getMemberId());
+        if (studyStatus == null) {
+            System.out.println("StudySettingStatus not found for memberId: " + memberInfo.getMemberId());
+            studyStatus = new StudySettingStatus(); // 기본 값 추가
+        }
+
+        // 모델에 추가
+        model.addAttribute("memberInfo", memberInfo);
+        model.addAttribute("settingInfo", settingInfo);
+        model.addAttribute("studyStatus", studyStatus);
+
         return "profile"; // profile.html로 이동
     }
+
+
+
 
     @Autowired
     private ProfileService profileService;

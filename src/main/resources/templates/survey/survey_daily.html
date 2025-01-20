@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,19 +12,18 @@
   <link rel="stylesheet" href="/css/survey.css">
   <!-- jQuery 연결 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" ></script>
-  <script src="/js/survey/survey_daily.js"></script>
+  <script src="/js/survey/survey_alarm.js"></script>
 </head>
 <body>
 <!-- 컨텐츠 영역 -->
 <div id="content">
   <h2 class="title">레벨테스트</h2>
-  <h1 class="subtitle">일일 학습목표는 어느 정도인가요?</h1>
+  <h1 class="subtitle">알림을 허용하시나요?<br>
+    <p>추후 프로필에서 변경 가능합니다</p>
+  </h1>
   <ul class="survey-list">
-    <li th:data-goal="'MIN_3'" th:text="'하루 3분'">하루 3분</li>
-    <li th:data-goal="'MIN_5'" th:text="'하루 5분'">하루 5분</li>
-    <li th:data-goal="'MIN_15'" th:text="'하루 15분'">하루 15분</li>
-    <li th:data-goal="'MIN_30'" th:text="'하루 30분'">하루 30분</li>
-    <li th:data-goal="'HOUR_1'" th:text="'하루 60분'">하루 60분</li>
+    <li data-alarm="true">허용합니다</li>
+    <li data-alarm="false">허용하지 않습니다</li>
   </ul>
 </div>
 </body>

@@ -22,18 +22,6 @@
     <div class="question-area" th:with="questionType=${questionType}, question=${question}">
 
         <div class="question-container"><!-- 문제 컨테이너 -->
-            <p class="question-text" id="questionText">
-                <th:block th:if="${questionType == 'IMAGE_SELECT'}">
-                    다음 이미지를 보고, 가장 알맞은 답을 선택하세요.
-                </th:block>
-                <th:block th:if="${questionType == 'TTS_SELECT'}">
-                    다음 음성을 듣고, 가장 알맞은 답을 고르세요.
-                </th:block>
-                <th:block th:if="${questionType == 'TEXT_SELECT'} or ${questionType == 'VIDEO_SELECT'}">
-                    <span th:text="${question.questionText}"></span>
-                </th:block>
-            </p>
-
             <div th:if="${questionType == 'IMAGE_SELECT'}" class="image-container">
                 <img th:src="@{${imageUrl}}" alt="Image" class="question-image">
             </div>
@@ -46,7 +34,14 @@
                 <audio th:src="@{${questionAudio}}" controls></audio>
             </div>
 
-
+            <p th:unless="${questionType == 'TTS_SELECT'}" class="question-text" id="questionText">
+                <th:block th:if="${questionType == 'IMAGE_SELECT'}">
+                    다음 이미지를 보고, 올바른 답을 선택하세요.
+                </th:block>
+                <th:block th:unless="${questionType == 'IMAGE_SELECT'}">
+                    <span th:text="${question.questionText}"></span>
+                </th:block>
+            </p>
         </div>
 
         <div class="choices-container">
