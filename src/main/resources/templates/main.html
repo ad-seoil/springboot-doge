@@ -42,12 +42,10 @@
             <h2>미래를 위한 최고의 투자,<br>바로 언어 학습입니다.</h2>
             <h3>Doge와 함께 새로운 언어의 세계를 탐험하고 성공적인 학습 여정을 시작하세요.</h3>
 
-            <!-- 설문조사 페이지 연결을 위해 바꿈 2025.01.15 HSJ-->
-            <!-- 로그인 전 2025.01.18 로그인 전과 후 버튼 텍스트가 실력 -> 학습하기로 보일수있게변경 -->
-            <button th:if="${isLoggedIn == false}" th:onclick="|location.href='@{/survey/start}'|">실력 테스트하기</button>
+           <button class="learn-button" onclick="goToLearningPage()">학습하기</button>
 
-            <!-- 로그인 후 -->
-            <button th:if="${isLoggedIn}" th:onclick="|location.href='@{/classpage}'|">학습하기</button>
+            <!-- 설문조사 페이지 연결을 위해 바꿈 2025.01.15 HSJ-->
+            <button th:onclick="|location.href='@{/survey}'|">실력 테스트하기</button>
 
         </div>
 
@@ -117,10 +115,11 @@
         <div class="video-container"> 
             <iframe 
                 width="700" 
-                height="500"
-                src="https://www.youtube.com/embed/o1Z4nQI8e4A"
-                title="Speak English Like a Pro" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                height="500" 
+                src="https://www.w3schools.com/html/mov_bbb.mp4"
+                title="video player"
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen>
             </iframe>
         </div>

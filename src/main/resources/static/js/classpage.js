@@ -7,29 +7,31 @@ const userData = JSON.parse(localStorage.getItem("userData")) || {
 };
 
 const ClassPage = {
-    navigateToQuestionPage: function (url) {
-        window.location.href = url; // 문제 페이지로 이동
+    showProblemPage: function (url) {
+        if (url) {
+            console.log(`Navigating to: ${url}`); // 디버깅용 로그
+            window.location.href = url; // HTML에서 받은 URL로 이동
+        } else {
+            console.error("URL이 제공되지 않았습니다.");
+        }
     },
 
+    // 퀘스트 페이지 이동
+    navigateToQuest: function () {
+        window.location.href = "/Quest-Progress";
+    },
+
+    // 포인트 구매 페이지 이동
     navigateToPurchasePage: function () {
-        console.log("Navigating to purchase page...");
         window.location.href = "/purchase-points";
     },
+
+    // 프로필 페이지 이동
     navigateToProfile: function () {
-        console.log("Navigating to profile page...");
         window.location.href = "/profile";
     },
 
-    trackCompletedStars: function () {
-        const completedStars = parseInt(localStorage.getItem("completedStars") || "0");
-        localStorage.setItem("completedStars", completedStars + 1); // 별 클릭 수 증가
-    },
-
-    showCompletedStars: function () {
-        const completedStars = parseInt(localStorage.getItem("completedStars") || "0");
-        alert(`총 ${completedStars}개의 문제를 해결하였습니다.`);
-    },
-
+    // 7일 무료 사용 시작 함수
     activateFreeTrial: function () {
         if (!userData.freeTrialStartDate) {
             const today = new Date();
@@ -50,10 +52,12 @@ const ClassPage = {
         }
     },
 
+    // 무료 사용 상태 저장 함수
     saveUserData: function () {
         localStorage.setItem("userData", JSON.stringify(userData));
     },
 
+    // 무료 사용 상태 업데이트 함수
     updateFreeTrialStatus: function () {
         const statusElement = document.getElementById("free-trial-status");
         if (userData.freeTrialStartDate) {
@@ -73,13 +77,10 @@ const ClassPage = {
     },
 };
 
-// 퀘스트 완료 버튼 이벤트 추가
+// 전역 함수로 설정
+window.ClassPage = ClassPage;
+
+// 페이지 로드 시 무료 사용 상태 업데이트
 document.addEventListener("DOMContentLoaded", () => {
     ClassPage.updateFreeTrialStatus();
-
-    const completeQuestButton = document.getElementById("completeQuestButton");
-    completeQuestButton.addEventListener("click", () => {
-        const taskMessage = document.getElementById("taskMessage");
-        taskMessage.innerHTML = "오늘의 목표를 달성하였습니다!";
-    });
 });
