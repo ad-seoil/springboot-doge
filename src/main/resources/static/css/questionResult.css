@@ -82,4 +82,5 @@ button {
     background-color: var(--green);
     border-radius: 1rem;
     color: var(--white);
+    cursor: pointer;
 }
