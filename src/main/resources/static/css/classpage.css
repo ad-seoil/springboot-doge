@@ -9,7 +9,7 @@ body {
 }
 
 .header {
-    
+
     background-color: white;
     display: flex;
     align-items: center;
@@ -102,10 +102,10 @@ body {
 
 .sidebar .menu-item .material-icons {
 
-        margin: 20px 0;
-        font-size: 1.2rem;
-        color: #1a73e8;
-        cursor: pointer;
+    margin: 20px 0;
+    font-size: 1.2rem;
+    color: #1a73e8;
+    cursor: pointer;
 }
 
 
