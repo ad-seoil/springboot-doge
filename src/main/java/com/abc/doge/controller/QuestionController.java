@@ -3,11 +3,15 @@ package com.abc.doge.controller;
 import com.abc.doge.entity.LearningResults;
 import com.abc.doge.entity.MemberInfo;
 import com.abc.doge.entity.Questions;
+import com.abc.doge.entity.StudySettingStatus;
+import com.abc.doge.enums.DailyLearningGoal;
+import com.abc.doge.enums.Level;
 import com.abc.doge.enums.QuestionLevel;
 import com.abc.doge.enums.QuestionType;
 import com.abc.doge.service.LearningResultService;
 import com.abc.doge.service.MemberInfoService;
 import com.abc.doge.service.QuestionsService;
+import com.abc.doge.service.StudySettingStatusService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -33,6 +38,9 @@ public class QuestionController {
 
     @Autowired
     private MemberInfoService memberInfoService;
+
+    @Autowired
+    private StudySettingStatusService studySettingStatusService;
 
     @GetMapping("/questionTest1")
     public String selectStage() {
@@ -67,14 +75,53 @@ public class QuestionController {
     @GetMapping("/selectQuestions")
     public String selectQuestions(
             @RequestParam("questionType") QuestionType questionType,
+            HttpSession session,
             Model model
     ) {
-        model.addAttribute("questionType", questionType);
-        System.out.println("Received questionType: " + questionType);
-        return "selectQuestions"; // 질문 선택 페이지로 이동
+        // 현재 로그인한 사용자 정보 가져오기
+        MemberInfo loggedInUser = (MemberInfo) session.getAttribute("loggedInUser");
+
+        // 사용자의 학습 설정 정보 가져오기
+        StudySettingStatus studySettingStatus = studySettingStatusService.getStudyStatus(loggedInUser.getMemberId());
+
+        // questionLevel과 questionCount 설정
+        QuestionLevel questionLevel = convertLevel(studySettingStatus.getLevel()); // enum 타입으로 변환
+        int questionCount = convertDailyLearningGoal(studySettingStatus.getDailyLearningGoal()); // 문자열을 숫자로 변환
+
+        // 세션에 questionLevel과 questionCount 저장
+        session.setAttribute("questionLevel", questionLevel);
+        session.setAttribute("questionCount", questionCount);
+
+        // /startQuestion 경로로 리다이렉트 (questionLevel, questionCount 파라미터 추가)
+        return "redirect:/startQuestion?questionType=" + questionType +
+                "&questionLevel=" + questionLevel +
+                "&questionCount=" + questionCount;
+    }
+
+    // level 값 변환 메서드
+    private QuestionLevel convertLevel(Level level) {
+        return switch (level) {
+            case 초급 -> QuestionLevel.EASY;
+            case 중급 -> QuestionLevel.MEDIUM;
+            case 고급, 비즈니스 -> QuestionLevel.HARD;
+            default -> throw new IllegalArgumentException("Invalid level value: " + level);
+        };
+    }
+
+    // dailyLearningGoal 값 변환 메서드
+    private int convertDailyLearningGoal(DailyLearningGoal dailyLearningGoal) {
+        return switch (dailyLearningGoal) {
+            case MIN_3 -> 3;
+            case MIN_5 -> 5;
+            case MIN_15 -> 15;
+            case MIN_30 -> 30;
+            case HOUR_1 -> 60;
+            default -> throw new IllegalArgumentException("Invalid dailyLearningGoal value: " + dailyLearningGoal);
+        };
     }
 
     // entity수정과 함께 난이도를 가져오는 코드 부분 수정 2025.01.12 HSJ
+    @GetMapping("/startQuestion")
     @PostMapping("/startQuestion")
     public String startQuestion(
             @RequestParam("questionType") QuestionType questionType,
@@ -150,8 +197,8 @@ public class QuestionController {
 
         int audioId = 0;
         if (
-            questionType.equals(QuestionType.IMAGE_SELECT.toString()) ||
-            questionType.equals(QuestionType.TTS_SELECT.toString())
+                questionType.equals(QuestionType.IMAGE_SELECT.toString()) ||
+                        questionType.equals(QuestionType.TTS_SELECT.toString())
         ) {
             String audioQuestionText = question.getQuestionText();
             audioId = Integer.parseInt(audioQuestionText);
@@ -226,6 +273,10 @@ public class QuestionController {
             result.setQuestions(question); // questions 설정(question 객체 전달)
             result.setUserAnswer(selectedAnswer);
             result.setCorrect(isCorrect); // 정답 여부 저장
+            // 현재 시간 설정
+            LocalDateTime now = LocalDateTime.now();
+            result.setAttemptDate(now); // 현재 시간 저장
+
             learningResultService.saveResult(result);
 
 
@@ -242,7 +293,7 @@ public class QuestionController {
                 // 모든 문제를 풀었을 때 정답률 계산 및 completion 메서드로 리다이렉트
                 double accuracy = (double) correctAnswers / questions.size() * 100;
                 session.setAttribute("accuracy", accuracy); // 정답률 세션에 저장
-                return "redirect:/completion"; // 모든 문제를 푼 경우 완료 페이지로 이동
+                return "redirect:/completion2"; // 모든 문제를 푼 경우 완료 페이지로 이동
             }
         }
 
@@ -288,12 +339,21 @@ public class QuestionController {
         model.addAttribute("totalXP", totalQuestions + (correctAnswers * 10));
 
         // 정확도 계산 (0으로 나누는 경우 방지)
-        if (totalQuestions != null && totalQuestions > 0) {
-            int accuracy = (int) ((correctAnswers / (double) totalQuestions) * 100);
-            model.addAttribute("accuracy", accuracy);
-        } else {
-            model.addAttribute("accuracy", 0); // 총 문제 수가 0이면 정확도 0
+//        if (totalQuestions != null && totalQuestions > 0) {
+//            int accuracy = (int) ((correctAnswers / (double) totalQuestions) * 100);
+//            model.addAttribute("accuracy", accuracy);
+//        } else {
+//            model.addAttribute("accuracy", 0); // 총 문제 수가 0이면 정확도 0
+//        }
+        double accuracy = 0;
+        Object accuracyAttribute = session.getAttribute("accuracy");
+        if (accuracyAttribute != null) {
+            accuracy = (double) accuracyAttribute;
         }
+
+        model.addAttribute("totalQuestions", totalQuestions);
+        model.addAttribute(SESSION_CORRECT_ANSWERS, correctAnswers);
+        model.addAttribute("accuracy", accuracy);
 
         return "questionResult"; // 결과 페이지 반환
     }

@@ -111,7 +111,7 @@ function nextQuestion(event) {
         // 다음 문제 페이지로 이동
         // window.location.href = data; // `data` 변수에 저장된 URL로 페이지를 이동
         if (currentQuestionIndex >= totalQuestions) {
-          window.location.href = '/completion';
+          window.location.href = '/completion2';
         } else {
           window.location.reload(); // 또는 document.location.reload();
         }
