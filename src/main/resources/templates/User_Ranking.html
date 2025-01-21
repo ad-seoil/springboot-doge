@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포인트 순위</title>
+    <link rel="stylesheet" href="/css/User Ranking.css">
+
+    <link rel="stylesheet" href="/css/setting.css">
+    <link rel="stylesheet" href="/css/header.css?v=2">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="/js/User Ranking" defer></script>
+</head>
+<body>
+<!-- 사이드바 -->
+<div class="sidebar">
+
+    <button class="learn-button" onclick="location.href='/selectQuestions?questionType=TEXT_SELECT'" aria-label="단어 선택 문제 풀기">학습하기</button>
+
+    <div class="menu-item">
+        <span class="material-icons" onclick="ClassPage.navigateToProfile()">프로필</span>
+    </div>
+    <div class="menu-item">
+        <span class="material-icons" onclick="ClassPage.navigateToPurchasePage()">상점</span>
+    </div>
+    <div class="menu-item">
+        <span class="material-icons">랭킹</span>
+    </div>
+    <div class="menu-item" id="logoutMenu">
+        <span class="material-icons">로그아웃</span>
+    </div>
+</div> <!-- <div class="sidebar"> 닫음 -->
+
+<div class="content">
+    <div class="header">
+        <h1>포인트 순위</h1>
+        <div class="date-search">
+            <input type="date" />
+            <input type="date" />
+        </div>
+    </div>
+    <div class="navigation">
+        <button>ALL</button>
+        <button>COMPANY</button>
+        <button>USERS</button>
+        <button>INQUIRY</button>
+        <button>DEPOSIT</button>
+    </div>
+    <div class="search-bar">
+        <input type="text" placeholder="검색" />
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>순위</th>
+            <th>ID</th>
+            <th>이름</th>
+            <th>이메일</th>
+            <th>학습 언어</th>
+            <th>포인트</th>
+            <th>좋아요</th>
+            <th>좋아요 수</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>12345</td>
+            <td>홍길동</td>
+            <td>hong@gmail.com</td>
+            <td>영국</td>
+            <td>1500</td>
+            <td><button class="like-button" onclick="handleLike(this)">좋아요</button></td>
+            <td class="likes-count">0</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>67890</td>
+            <td>김철수</td>
+            <td>chulsoo@gmail.com</td>
+            <td>미국</td>
+            <td>1400</td>
+            <td><button class="like-button" onclick="handleLike(this)">좋아요</button></td>
+            <td class="likes-count">0</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>11223</td>
+            <td>이영희</td>
+            <td>yeonghee@gmail.com</td>
+            <td>미국</td>
+            <td>1300</td>
+            <td><button class="like-button" onclick="handleLike(this)">좋아요</button></td>
+            <td class="likes-count">0</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

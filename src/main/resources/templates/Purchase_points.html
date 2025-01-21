@@ -4,28 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- 외부 스타일 파일 -->
-    <link rel="stylesheet" href="./css/setting.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="./css/Purchase_points.css">
-
+    <link rel="stylesheet" href="/css/setting.css">
+    <link rel="stylesheet" href="/css/header.css?v=2">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="/js/Purchase_points.js" defer></script>
 </head>
-
 <body>
-<div class="header">
-    <div class="logo">
-        <img src="/image/DOGE_Logo.png" alt="Logo">
-        <span>Doge</span>
-    </div>
-
-    <div class="menu">
-        <a href="/main">메인페이지</a>
-        <a href="/profile">프로필</a>
-        <a href="/classpage">학습페이지</a>
-        <a href="/inquiry">문의</a>
-        <button class="test-button" onclick="location.href='/test-skill'">실력 테스트하기</button>
-
-    </div>
-</div>
+<!-- 상단바 전체 박스 -->
+<div id="naviBox" th:fragment="headerFragment">
+    <!-- 안쪽 navi박스 + 로고 -->
+    <div id="naviBox2">
+        <!-- 로고, 프로젝트명 박스 -->
+        <div id="logoBox">
+            <img src="/image/DOGE_Logo.png" alt="DOGE_Logo">
+            <p>DoGE</p>
+        </div>
+        <!-- 내비게이션 -->
+        <nav id="nav">
+            <ul id="menu">
+                <li class="main">
+                    <a th:href="@{/doge}">메인페이지</a>
+                </li>
+                <li class="main"> <!-- 메인메뉴 -->
+                    <a href="#">언어</a><i class="fa-solid fa-chevron-down icon"></i>
+                    <ul class="sub">  <!-- 서브메뉴(토글) -->
+                        <li class="subList"><a href="#">English</a></li>
+                        <li class="subList"><a href="#">한국어</a></li>
+                        <li class="subList"><a href="#">日本語</a></li>
+                    </ul>
+                </li>
+                <li class="main">
+                    <a th:if="${session.loggedInUser == null}" th:href="@{/login}">로그인</a>
+                    <a th:if="${session.loggedInUser != null}" th:href="@{/logout}">로그아웃</a>
+                </li>
+                <li class="main">
+                    <!-- 프로필 페이지로 전송 2025.01.12 HSJ-->
+                    <a th:href="@{/profile}">프로필</a>
+                </li>
+                <li class="main">
+                    <!-- 문의 페이지로 전송 2025.01.09 HSJ-->
+                    <a th:href="@{/inquiry}">문의</a>
+                </li>
+            </ul> <!-- menu 끝 -->
+        </nav>  <!-- 내비게이션 끝 -->
+    </div>  <!-- NaviBox2 끝 -->
+</div>  <!-- NaviBox 끝 -->
 <div class="top-section">
     <h2>스토어 / 기능 스토어</h2>
 </div>
@@ -33,11 +58,18 @@
     <div class="sidebar">
 
 
-        <button class="test-button" onclick="location.href='/select_stage'">학습하기</button>
-        <div class="menu-item" onclick="location.href='/Quest-Progress'">퀘스트</div>
-        <div class="menu-item" onclick="location.href='/profile'">프로필</div>
-        <div class="menu-item" onclick="location.href='/learning-record'">학습 기록</div>
-        <div class="menu-item" onclick="location.href='/settings'">설정</div>
+        <button class="learn-button" onclick="location.href='/selectQuestions?questionType=TEXT_SELECT'" aria-label="단어 선택 문제 풀기">학습하기</button>
+
+
+        <div class="menu-item">
+            <span class="material-icons" onclick="ClassPage.navigateToProfile()">프로필</span>
+        </div>
+        <div class="menu-item">
+            <span class="material-icons" onclick="ClassPage.navigateToPurchasePage()">상점</span>
+        </div>
+        <div class="menu-item">
+            <span class="material-icons" onclick="ClassPage.navigateToRankingPage()">랭킹</span>
+        </div>
         <div class="menu-item" onclick="location.href='/logout'">로그아웃</div>
     </div>
     <div class="content">

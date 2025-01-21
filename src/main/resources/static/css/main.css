@@ -83,7 +83,7 @@ body {
 .banner {
     background-color: #f8fbff;
     text-align: center;
-    padding: 60px 20px;
+    padding: 80px 40px;
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -91,17 +91,27 @@ body {
     overflow: hidden;
 }
 .banner img {
-    width: 40%;
-    height: auto;
-    object-fit: cover;
+    width: auto; /* 가로 크기를 자동 조정 (비율 유지) */
+    height: 160%; /* 높이를 배너에 맞춤 */
+    object-fit: contain; /* 이미지 전체가 보이도록 설정 */
+    position: absolute; /* 위치 고정 */
+    top: 0; /* 배너 상단부터 시작 */
+    left: 50%; /* 배너 중앙에 맞춤 */
+    transform: translateX(-50%); /* 가로 중앙 정렬 */
+    z-index: 1; /* 텍스트와 버튼 뒤로 배치 */
+    background-color: #f0f0f0; /* 여백 생길 경우 배경색 */
 }
 .banner .text-content {
+    position: relative; /* 이미지 위에 표시되도록 relative 추가 */
+    z-index: 2; /* 이미지 위로 텍스트 표시 */
+    padding: 20px; /* 텍스트 영역 여백 */
+    border-radius: 8px; /* 모서리 둥글게 */
     max-width: 50%;
-    text-align: left;
+    text-align: center; /* 텍스트 중앙 정렬 */
 }
 .banner h2 {
     font-size: 2.5rem;
-    color: #1a73e8;
+    color: #ffffff;
     margin-bottom: 20px;
 }
 .banner p {
