@@ -30,6 +30,10 @@ const ClassPage = {
     navigateToProfile: function () {
         window.location.href = "/profile";
     },
+    //랭킹 페이지 이동
+    navigateToRankingPage: function () {
+        location.href = '/User_Ranking';
+    },
 
     // 7일 무료 사용 시작 함수
     activateFreeTrial: function () {

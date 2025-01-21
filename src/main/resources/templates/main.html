@@ -41,13 +41,13 @@
         <div class="text-content">
             <h2>미래를 위한 최고의 투자,<br>바로 언어 학습입니다.</h2>
             <h3>Doge와 함께 새로운 언어의 세계를 탐험하고 성공적인 학습 여정을 시작하세요.</h3>
-
-           <button class="learn-button" onclick="goToLearningPage()">학습하기</button>
-
-            <!-- 설문조사 페이지 연결을 위해 바꿈 2025.01.15 HSJ-->
-            <button th:onclick="|location.href='@{/survey}'|">실력 테스트하기</button>
-
+            <div class="button-container">
+                <button class="learn-button" onclick="goToLearningPage()">학습하기</button>
+                <button onclick="location.href='/survey'">실력 테스트하기</button>
+            </div>
         </div>
+        <img src="/image/2.jpg" alt="배너 이미지" class="banner-img">
+    </div>
 
         <script>
             function goToLearningPage() {
@@ -55,7 +55,8 @@
             }
         </script>
         <!-- smiling-happy-indian-student-with-backpack-pointing-his-finger-wall 1 -> main_1   2025.01.09 HSJ -->
-        <img src="/image/main_1.png" alt="학생 이미지">
+
+
     </div>
     <div class="image-container">
         <img src="/image/Group 1251.png" alt="New Image">
@@ -197,7 +198,7 @@
             </div>
         </div>
     </div>
-    
+</body>
 
     <footer class="footer">
         <div class="footer-section logo">Doge</div>

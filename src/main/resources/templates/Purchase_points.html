@@ -4,81 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- 외부 스타일 파일 -->
-    <link rel="stylesheet" href="./css/setting.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="./css/Purchase_points.css">
-
+    <link rel="stylesheet" href="/css/setting.css">
+    <link rel="stylesheet" href="/css/header.css?v=2">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="/js/Purchase_points.js" defer></script>
 </head>
-
 <body>
-    <div class="header">
-        <h1>
-            <img src="../static/image/logo.png" alt="Doge" class="logo">
-        </h1>
-        <div class="menu">
-            <a href="#">메인페이지</a>
-            <a href="#">프로필</a>
-            <a href="#">학습페이지</a>
-            <a href="#">문의</a>
-            <button class="test-button">실력 테스트하기</button>
+<!-- 상단바 전체 박스 -->
+<div id="naviBox" th:fragment="headerFragment">
+    <!-- 안쪽 navi박스 + 로고 -->
+    <div id="naviBox2">
+        <!-- 로고, 프로젝트명 박스 -->
+        <div id="logoBox">
+            <img src="/image/DOGE_Logo.png" alt="DOGE_Logo">
+            <p>DoGE</p>
+        </div>
+        <!-- 내비게이션 -->
+        <nav id="nav">
+            <ul id="menu">
+                <li class="main">
+                    <a th:href="@{/doge}">메인페이지</a>
+                </li>
+                <li class="main"> <!-- 메인메뉴 -->
+                    <a href="#">언어</a><i class="fa-solid fa-chevron-down icon"></i>
+                    <ul class="sub">  <!-- 서브메뉴(토글) -->
+                        <li class="subList"><a href="#">English</a></li>
+                        <li class="subList"><a href="#">한국어</a></li>
+                        <li class="subList"><a href="#">日本語</a></li>
+                    </ul>
+                </li>
+                <li class="main">
+                    <a th:if="${session.loggedInUser == null}" th:href="@{/login}">로그인</a>
+                    <a th:if="${session.loggedInUser != null}" th:href="@{/logout}">로그아웃</a>
+                </li>
+                <li class="main">
+                    <!-- 프로필 페이지로 전송 2025.01.12 HSJ-->
+                    <a th:href="@{/profile}">프로필</a>
+                </li>
+                <li class="main">
+                    <!-- 문의 페이지로 전송 2025.01.09 HSJ-->
+                    <a th:href="@{/inquiry}">문의</a>
+                </li>
+            </ul> <!-- menu 끝 -->
+        </nav>  <!-- 내비게이션 끝 -->
+    </div>  <!-- NaviBox2 끝 -->
+</div>  <!-- NaviBox 끝 -->
+<div class="top-section">
+    <h2>스토어 / 기능 스토어</h2>
+</div>
+<div class="main">
+    <div class="sidebar">
 
+
+        <button class="learn-button" onclick="location.href='/selectQuestions?questionType=TEXT_SELECT'" aria-label="단어 선택 문제 풀기">학습하기</button>
+
+
+        <div class="menu-item">
+            <span class="material-icons" onclick="ClassPage.navigateToProfile()">프로필</span>
         </div>
-    </div>
-    <div class="top-section">
-        <h2>스토어 / 기능 스토어</h2>
-    </div>
-    <div class="main">
-        <div class="sidebar">
-          
-            <button class="test-button">학습하기</button>
-            <div class="menu-item">퀘스트</div>
-            <div class="menu-item">프로필</div>
-            <div class="menu-item">학습 기록</div>
-            <div class="menu-item">설정</div>
-            <div class="menu-item">로그아웃</div>
+        <div class="menu-item">
+            <span class="material-icons" onclick="ClassPage.navigateToPurchasePage()">상점</span>
         </div>
-         <div class="content">
-            <div class="nav-buttons">
-                <button onclick="location.href='#'">재화 기능 스토어</button>
-                <button onclick="location.href='#'">현금 기능 스토어</button>
+        <div class="menu-item">
+            <span class="material-icons" onclick="ClassPage.navigateToRankingPage()">랭킹</span>
+        </div>
+        <div class="menu-item" onclick="location.href='/logout'">로그아웃</div>
+    </div>
+    <div class="content">
+        <div class="nav-buttons">
+            <button onclick="location.href='/purchase-points'">재화 기능 스토어</button>
+            <button onclick="location.href='/Purchase'">현금 기능 스토어</button>
+        </div>
+        <div class="user-section">
+            <img src="/image/Profile.png" alt="User Profile">
+            <div class="user-details">
+                <p id="user-name">학습자 이름: OOO 님</p>
+                <p id="user-progress">오늘의 학습: 완료</p>
+                <p id="user-level">학습 레벨: 30</p>
+                <p>학습 경험치: 100</p>
+                <p>획득 재화: 100</p>
             </div>
-            <div class="user-section">
-                <img src="../static/image/Profile.png" alt="User Profile">
-                <div class="user-details">
-                    <p id="user-name" style="position: relative; top:-25px;">유저 이름: </p>
-                    <p id="user-level" style="position: relative; top:-15px;">학습 레벨: </p>
 
-                    <p id="user-progress">오늘의 학습: </p>
+            <div class="toggles-inline">
+                <div class="toggle">
+                    <label for="remove-ads">광고제거</label>
+                    <input type="checkbox" id="remove-ads">
+                </div>
+                <div class="toggle">
+                    <label for="double-rewards">재화2배 보너스</label>
+                    <input type="checkbox" id="double-rewards">
                 </div>
             </div>
-            <div class="store-items">
-                <div class="store-item">
-                    <img src="../static/image/Rectangle 2043 (1).png" alt="Subscription Icon">
-                    <h3>재화2배 보너스</h3>
-                    <p>학습 완료시의 재화가 2배가됩니다</p>
-                    <p>획득한 재화 OO 로 구매가능 </p>
-                   <button onclick="purchaseItem('구독권 30일')">구매하기</button>
-                  <p style="position: relative; top:5px;"><span>🛒</span>구매결제</p>
-                   <p style="position: relative; top:10px;"><span>✔️</span> 이전학습에도 적용가능</p>
+        </div>
 
-                </div>
-                <div class="store-item">
-                    <img src="../static/image/Rectangle 2043 (1).png" alt="Subscription Icon">
-                    <h3>광고제거</h3>
-                    <p>학습시의 광고를 제거합니다 .</p>
-                    <p>획득한 재화 OO 로 구매가능 </p>
-                   <button onclick="purchaseItem('구독권 60일')">구매하기</button>
-                   <p style="position: relative; top:5px;"><span>🛒</span>구매결제</p>
-                   <p style="position: relative; top:10px;"><span>✔️</span> 이전학습에도 적용가능</p>
-                </div>
+        <div class="store-items">
+            <div class="store-item">
+                <img src="/image/Rectangle 2043 (1).png" alt="Subscription Icon">
+                <h3>재화2배 보너스</h3>
+                <p>학습 완료시의 재화가 2배가됩니다</p>
+                <p>획득한 재화 OO 로 구매가능 </p>
+                <button onclick="activateDoubleRewardsForDays(30)">구매하기</button>
+                <p style="position: relative; top:5px;"><span>🛒</span>구매결제</p>
+                <p style="position: relative; top:10px;"><span>✔️</span> 이전학습에도 적용가능</p>
+
+            </div>
+            <div class="store-item">
+                <img src="/image/Rectangle 2043 (1).png" alt="Subscription Icon">
+                <h3>광고제거</h3>
+                <p>학습시의 광고를 제거합니다 .</p>
+                <p>획득한 재화 OO 로 구매가능 </p>
+                <button onclick="activateRemoveAdsForDays(30)">구매하기</button>
+                <p style="position: relative; top:5px;"><span>🛒</span>구매결제</p>
+                <p style="position: relative; top:10px;"><span>✔️</span> 이전학습에도 적용가능</p>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        function purchaseItem(item) {
-            alert(`${item}이(가) 재화로 구매되었습니다.`);
-        }
-    </script>
+<script>
+    function purchaseItem(item) {
+        alert(`${item}이(가) 재화로 구매되었습니다.`);
+    }
+    function activateDoubleRewardsForDays(days) {
+        const doubleRewardsToggle = document.getElementById('double-rewards');
+        doubleRewardsToggle.checked = true;
+        alert(`재화2배 보너스가 활성화되었습니다. ${days}일 동안 적용됩니다.`);
+    }
+
+    function activateRemoveAdsForDays(days) {
+        const removeAdsToggle = document.getElementById('remove-ads');
+        removeAdsToggle.checked = true;
+        alert(`광고제거가 활성화되었습니다. ${days}일 동안 적용됩니다.`);
+    }
+</script>
 </body>
 </html>

@@ -29,8 +29,8 @@ body {
 
 .img-btn {
     background-color: var(--white);
-    color: #007BFF;
-    border: 0.2rem solid #007BFF;
+    color:  #0f62fe;
+    border: 0.2rem solid  #0f62fe;
     border-radius: 0;
     margin-left: 10vw;
     margin-top: 0;
@@ -84,7 +84,7 @@ input, textarea {
 button {
     margin-top: 2vh;
     padding: 10px;
-    background-color: #007BFF;
+    background-color:  #0f62fe;
     color: white;
     border: none;
     border-radius: 4px;
@@ -94,6 +94,6 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color:  #0f62fe;
     color: var(--white);
 }

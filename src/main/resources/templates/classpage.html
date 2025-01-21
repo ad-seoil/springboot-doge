@@ -4,147 +4,209 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>학습 페이지</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- 외부 스타일 파일 -->
+    <link rel="stylesheet" href="/css/setting.css">
+    <link rel="stylesheet" href="/css/header.css">
+
     <link rel="stylesheet" href="./css/classpage.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
+    <link rel="stylesheet" href="./css/header.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="/js/classpage.js" defer></script>
 </head>
-<!-- JavaScript 파일 연결 -->
-<script src="/js/classpage.js" defer></script> <!-- 주요 로직 -->
-<script src="/js/logout.js" defer></script>
-<script src="/js/Quest_Progress.js" defer></script>
 <body>
-    <!-- 헤더 -->
-    <div class="header">
-        <div class="logo">
-            <img src="/image/DOGE_Logo.png" alt="Logo">
-            <span>Doge</span>
+<!-- 상단바 전체 박스 -->
+<div id="naviBox">
+    <div id="naviBox2">
+        <div id="logoBox">
+            <img src="/image/DOGE_Logo.png" alt="DOGE_Logo">
+            <p>DoGE</p>
         </div>
+        <nav id="nav">
+            <ul id="menu">
+                <li class="main"><a href="/main">메인페이지</a></li>
+                <li class="main">
+                    <a href="#">언어</a><i class="fa-solid fa-chevron-down icon"></i>
+                    <ul class="sub">
+                        <li class="subList"><a href="#">English</a></li>
+                        <li class="subList"><a href="#">한국어</a></li>
+                        <li class="subList"><a href="#">日本語</a></li>
+                    </ul>
+                </li>
+                <li class="main">
+                    <a id="loginLink" href="/login" style="display: none;">로그인</a>
+                    <a id="logoutLink" href="/logout" style="display: none;">로그아웃</a>
+                </li>
+                <li class="main"><a href="/profile">프로필</a></li>
+                <li class="main"><a href="/inquiry">문의</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<!-- NaviBox 끝 -->
 
-        <div class="status">
-            <!-- Coins 이미지 -->
-            <img id="coinsImage" src="/image/Rectangle 2043 (1).png" alt="Coins" onclick="ClassPage.navigateToPurchasePage()">
-            <span>100</span>
+<!-- 콘텐츠 래퍼 -->
+<div class="content-wrapper">
+    <!-- 사이드바 -->
+    <div class="sidebar">
 
-            <!-- Gems 이미지 -->
-            <img id="gemsImage" src="/image/Rectangle 2043.png" alt="Gems" onclick="ClassPage.navigateToPurchasePage()">
-            <span>1,000</span>
+        <button class="learn-button" onclick="location.href='/selectQuestions?questionType=TEXT_SELECT'" aria-label="단어 선택 문제 풀기">학습하기</button>
+
+        <div class="menu-item">
+            <span class="material-icons" onclick="ClassPage.navigateToProfile()">프로필</span>
+        </div>
+        <div class="menu-item">
+            <span class="material-icons" onclick="ClassPage.navigateToPurchasePage()">상점</span>
+        </div>
+        <div class="menu-item">
+            <span class="material-icons" onclick="ClassPage.navigateToRankingPage()">랭킹</span>
+        </div>
+        <div class="menu-item" id="logoutMenu">
+            <span class="material-icons">로그아웃</span>
         </div>
     </div>
 
 
-<!--    헤더 닫음 -->
+    <!--        사이드바 끝-->
 
-    <!-- 콘텐츠 래퍼 -->
-    <div class="content-wrapper">
-        <!-- 사이드바 -->
-        <div class="sidebar">
 
-            <button class="learn-button" onclick="ClassPage.navigateToLearningPage()">학습하기</button>
-            <div class="menu-item">
-                <span class="material-icons" onclick="ClassPage.navigateToQuest()">퀘스트</span>
+    <!-- 메인 콘텐츠 -->
+    <div class="main-content">
+        <!-- 중앙 파란 컨테이너 -->
+        <div class="blue-container">
+            <p>오늘의 목표&nbsp; 1-1</p>
+            <h3>여행에서 말하고 답하기</h3>
+        </div>
+
+        <!-- 별과 캐릭터 영역 -->
+        <div class="star-container">
+            <!-- 첫 번째 사선 (왼쪽 -> 오른쪽) -->
+            <div class="star-button" style="top: 10%; left: 20%;" onclick="location.href='/selectQuestions?questionType=TEXT_SELECT'">
+                <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
-            <div class="menu-item">
-                <span class="material-icons" onclick="ClassPage.navigateToProfile()">프로필</span>
+            <div class="star-button" style="top: 18%; left: 30%;" onclick="location.href='/selectQuestions?questionType=NEW_TYPE_1'">
+                <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
-            <div class="menu-item">
-                <span class="material-icons">학습 기록</span>
+            <div class="star-button" style="top: 26%; left: 40%;" onclick="location.href='/selectQuestions?questionType=IMAGE_SELECT'">
+                <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
-            <div class="menu-item">
-                <span class="material-icons">설정</span>
+            <div class="star-button" style="top: 34%; left: 50%;" onclick="location.href='/selectQuestions?questionType=NEW_TYPE_2'">
+                <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
-                <div class="menu-item" id="logoutMenu">
-                    <span class="material-icons">로그아웃</span>
+
+            <!-- 두 번째 사선 (오른쪽 -> 왼쪽) -->
+            <div class="star-button" style="top: 42%; left: 50%;" onclick="location.href='/selectQuestions?questionType=VIDEO_SELECT'">
+                <img src="/image/Rectangle 2049.png" alt="Star">
+            </div>
+            <div class="star-button" style="top: 50%; left: 40%;" onclick="location.href='/selectQuestions?questionType=NEW_TYPE_3'">
+                <img src="/image/Rectangle 2049.png" alt="Star">
+            </div>
+            <div class="star-button" style="top: 58%; left: 30%;" onclick="location.href='/selectQuestions?questionType=TTS_SELECT'">
+                <img src="/image/Rectangle 2049.png" alt="Star">
+            </div>
+            <div class="star-button" style="top: 66%; left: 20%;" onclick="location.href='/selectQuestions?questionType=NEW_TYPE_4'">
+                <img src="/image/Rectangle 2049.png" alt="Star">
+            </div>
+
+            <!-- 세 번째 사선 (왼쪽 -> 오른쪽) -->
+            <div class="star-button" style="top: 74%; left: 20%;" onclick="location.href='/selectQuestions?questionType=AUDIO_SELECT'">
+                <img src="/image/Rectangle 2049.png" alt="Star">
+            </div>
+            <div class="star-button" style="top: 82%; left: 30%;" onclick="location.href='/selectQuestions?questionType=NEW_TYPE_5'">
+                <img src="/image/Rectangle 2049.png" alt="Star">
+            </div>
+            <div class="star-button" style="top: 90%; left: 40%;" onclick="location.href='/selectQuestions?questionType=FILL_IN_THE_BLANK'">
+                <img src="/image/Rectangle 2049.png" alt="Star">
+            </div>
+            <div class="star-button" style="top: 98%; left: 50%;" onclick="location.href='/selectQuestions?questionType=NEW_TYPE_6'">
+                <img src="/image/Rectangle 2049.png" alt="Star">
+            </div>
+
+            <!-- 네 번째 사선 (오른쪽 -> 왼쪽) -->
+            <div class="star-button" style="top: 106%; left: 50%;" onclick="location.href='/selectQuestions?questionType=WORD_MATCH'">
+                <img src="/image/Rectangle 2049.png" alt="Star">
+            </div>
+            <div class="star-button" style="top: 114%; left: 40%;" onclick="location.href='/selectQuestions?questionType=NEW_TYPE_7'">
+                <img src="/image/Rectangle 2049.png" alt="Star">
+            </div>
+            <div class="star-button" style="top: 122%; left: 30%;" onclick="location.href='/selectQuestions?questionType=QUIZ'">
+                <img src="/image/Rectangle 2049.png" alt="Star">
+            </div>
+            <div class="star-button" style="top: 130%; left: 20%;" onclick="location.href='/selectQuestions?questionType=NEW_TYPE_8'">
+                <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
         </div>
 
-
-        <!--        사이드바 끝-->
-
-
-        <!-- 메인 콘텐츠 -->
-        <div class="main-content">
-            <!-- 중앙 파란 컨테이너 -->
-            <div class="blue-container">
-                <p>오늘의 목표&nbsp; 1-1</p>
-                <h3>여행에서 말하고 답하기</h3>
-            </div>
-
-            <!-- 별과 캐릭터 영역 -->
-            <div class="star-container">
-                <div class="star-button" style="top: 10%; left: 15%;" onclick="location.href='/selectQuestions?questionType=TEXT_SELECT'">
-                    <img src="/image/Rectangle 2049.png" alt="Star">
-                </div>
-                <div class="star-button" style="top: 30%; left: 35%;" onclick="location.href='/selectQuestions?questionType=IMAGE_SELECT'">
-                    <img src="/image/Rectangle 2049.png" alt="Star">
-                </div>
-                <div class="star-button" style="top: 50%; left: 55%;" onclick="location.href='/selectQuestions?questionType=VIDEO_SELECT'">
-                    <img src="/image/Rectangle 2049.png" alt="Star">
-                </div>
-                <div class="star-button" style="top: 70%; left: 35%;" onclick="location.href='/selectQuestions?questionType=TTS_SELECT'">
-                    <img src="/image/Rectangle 2049.png" alt="Star">
-                </div>
 
 
 
             <div class="character character1">
-                    <img src="/image/Rectangle 2056.png" alt="Character 1">
-                </div>
-                <div class="character character2">
-                    <img src="/image/Rectangle 2057.png" alt="Character 2">
-                </div>
-                
+                <img src="/image/Rectangle 2056.png" alt="Character 1">
             </div>
-<!--            별과 캐릭터 끝-->
+            <div class="character character2">
+                <img src="/image/Rectangle 2057.png" alt="Character 2">
+            </div>
+
         </div>
-<!--메인 콘 끝-->
-            <!-- 오른쪽 패널 -->
-            <div class="right-panel">
-                <div class="info-container">
-                    
-                    <h3>기능 무료 체험</h3>
-                    <p>광고 없이 이용 가능</p>
-                    <div style="display: flex; align-items: center;">
-                        <p>획득 재화 2배</p>
-                        
-                    </div>
-                    <button id="free-trial-button" onclick="ClassPage.activateFreeTrial()">7일 무료 사용하기</button>
-                    <p id="free-trial-status">무료 사용 상태를 확인 중...</p>
-
-
-                </div>
-
-                <div class="task-container">
-                    <h4><img src="/image/Rectangle 2049.png" alt="Star Icon" style="width: 20px; height: 20px; vertical-align: middle;"> 오늘의 할일</h4>
-                    
-                    <div class="item">
-                        <p>오늘의 목표 텍스트가<br>아직 완료되지않았어요!</p>
-                    </div>
-                    <div class="progress-bar">
-                        
-                    </div>
-                </div>
-
-                <div class="quest-container">
-                    <h4><img src="/image/Rectangle 2049.png" alt="Star Icon" style="width: 20px; height: 20px; vertical-align: middle;"> 오늘의 퀘스트</h4>
-                    <div class="item">
-                        <p>1-1: 인사하기 진행완료하기</p>
-                    </div>
-                    <div class="progress-bar">
-                        <span></span>
-                    </div>
-                    
-                </div>
-
-                <div class="ad-container">
-                    <img src="/image/Rectangle 2064.png" alt="광고 이미지">
-                </div>
-            </div>
-<!--        오른쪽 패널 끝-->
+        <!--            별과 캐릭터 끝-->
     </div>
+    <!--메인 콘 끝-->
+    <!-- 오른쪽 패널 -->
+    <div class="right-panel">
+        <div class="info-container">
+
+            <h3>기능 무료 체험</h3>
+            <p>광고 없이 이용 가능</p>
+            <div style="display: flex; align-items: center;">
+                <p>획득 재화 2배</p>
+
+            </div>
+            <button id="free-trial-button" onclick="ClassPage.activateFreeTrial()">7일 무료 사용하기</button>
+            <p id="free-trial-status">무료 사용 상태를 확인 중...</p>
+
+
+        </div>
+
+        <div class="task-container">
+            <h4><img src="/image/Rectangle 2049.png" alt="Star Icon" style="width: 20px; height: 20px; vertical-align: middle;"> 오늘의 할일</h4>
+
+            <div class="item">
+                <p>오늘의 목표 텍스트가<br>아직 완료되지않았어요!</p>
+            </div>
+        </div>
+
+        <div class="quest-container">
+            <h4><img src="/image/Rectangle 2049.png" alt="Star Icon" style="width: 20px; height: 20px; vertical-align: middle;"> 오늘의 퀘스트</h4>
+            <div class="item">
+                <p>1-1: 인사하기 진행완료하기</p>
+            </div>
+            <div class="progress-bar">
+                <span></span>
+            </div>
+
+        </div>
+
+        <div class="ad-container">
+            <img src="/image/Rectangle 2064.png" alt="광고 이미지">
+        </div>
+    </div>
+    <!--        오른쪽 패널 끝-->
+</div>
 <!--    메인 컨 끝-->
 
+<script>
+    // 서버에서 로그인 상태를 반환하는 API 호출
+    fetch('/api/auth/status')
+        .then(response => response.json())
+        .then(data => {
+            if (data.loggedIn) {
+                document.getElementById('logoutLink').style.display = 'block';
+            } else {
+                document.getElementById('loginLink').style.display = 'block';
+            }
+        })
+        .catch(err => console.error('로그인 상태 확인 중 오류:', err));
+</script>
 </body>
 
 </html>
