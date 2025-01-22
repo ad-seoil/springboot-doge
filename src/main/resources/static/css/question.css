@@ -91,6 +91,11 @@
       border-radius: 10px;
     }
 
+    .question-video {
+      width: 100%;
+      border-radius: 10px;
+    }
+
     .question-text {
       font-size: 1.5em;
       font-weight: bold;
