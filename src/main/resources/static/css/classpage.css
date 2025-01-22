@@ -130,7 +130,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: white;
+    background-color: #09249bb3;
     position: relative;
 }
 
@@ -198,7 +198,7 @@ body {
     top: 80%; /* 아래로 이동 (기존 60%에서 70%로 변경) */
     left: 15%; /* 기존 위치 유지 */
     transform: translate(-50%, -50%);
-    z-index: 10; /* 다른 요소보다 위에 표시 */
+    z-index: 0; /* 다른 요소보다 아래에 표시 */
 }
 
 .character2 {
@@ -206,7 +206,7 @@ body {
     top: 10%; /* 기존 위치 유지 */
     left: 50%; /* 오른쪽으로 이동 (기존 40%에서 50%로 변경) */
     transform: translate(-50%, -50%);
-    z-index: 10; /* 다른 요소보다 위에 표시 */
+    z-index: 0; /* 다른 요소보다 아래에 표시 */
 }
 
 .character img {
@@ -216,7 +216,7 @@ body {
 
 
 .star-button:hover::after {
-    content: "시작";
+    content: var(--tooltip-content, "시작");
     position: absolute;
     top: -50px; /* 버튼 위에 말풍선 표시 */
     background-color: white;
@@ -224,7 +224,7 @@ body {
     padding: 5px 10px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-size: 0.9rem;
+    font-size: 1.5rem;
     white-space: nowrap;
 }
 .star-clear {

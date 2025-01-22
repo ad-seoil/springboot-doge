@@ -110,7 +110,8 @@
       border: 1px solid #ccc;
       text-align: center;
       align-items: center;
-      max-width: 600px;
+      width: 100%;
+      max-width: 700px;
     }
 
     .choices-container {
@@ -131,12 +132,15 @@
     .choice-button {
       padding: 15px;
       font-size: 1em;
+
       width: 40vw;
+
       border: 1px solid #ddd;
       border-radius: 8px;
       background-color: #fff;
       cursor: pointer;
       text-align: center;
+      justify-content: center;
       transition: background-color 0.3s ease, border-color 0.3s ease;
     }
 
@@ -145,7 +149,7 @@
     }
 
     .choice-button:focus {
-        background-color: #f2f4f8;
+        background-color: #bbb;
     }
 
     .correct {
@@ -156,6 +160,18 @@
     .incorrect {
         background-color: rgba(255, 0, 0, 0.5); /* 빨간색 */
         transition: background-color 0.3s ease;
+    }
+
+    .next-button {
+        background-color: #0078ff;
+        color: #fff;
+        width: 15vh;
+        height: 7vh;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
     }
 
     /* 하단 영역 */

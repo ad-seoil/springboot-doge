@@ -10,11 +10,13 @@
     <link rel="stylesheet" href="/css/y_header.css">
     <link rel="stylesheet" href="/css/classpage.css">
 
+
     <link rel="stylesheet" href="/static/css/setting.css">
     <link rel="stylesheet" href="/static/css/classpage.css">
     <link rel="stylesheet" href="/static/css/y_header.css">
 
     <script src="https://kit.fontawesome.com/1b78245624.js" crossorigin="anonymous"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="/js/classpage.js" defer></script>
 </head>
@@ -37,58 +39,122 @@
         <!-- 별과 캐릭터 영역 -->
         <div class="star-container">
             <!-- 첫 번째 사선 (왼쪽 -> 오른쪽) -->
-            <div class="star-button" style="top: 10%; left: 20%;" onclick="location.href='/selectQuestions?questionType=TEXT_SELECT'">
+            <div class="star-button" style="top: 10%; left: 20%;" 
+                data-question-type="TEXT_SELECT" 
+                onmouseover="showTooltip(this)" 
+                onmouseout="hideTooltip(this)"
+                onclick="location.href='/selectQuestions?questionType=TEXT_SELECT'">
                 <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
-            <div class="star-button" style="top: 18%; left: 30%;" onclick="location.href='/selectQuestions?questionType=NEW_TYPE_1'">
+            <div class="star-button" style="top: 18%; left: 30%;" 
+                data-question-type="IMAGE_SELECT" 
+                onmouseover="showTooltip(this)" 
+                onmouseout="hideTooltip(this)"
+                onclick="location.href='/selectQuestions?questionType=IMAGE_SELECT'">
                 <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
-            <div class="star-button" style="top: 26%; left: 40%;" onclick="location.href='/selectQuestions?questionType=IMAGE_SELECT'">
+            <div class="star-button" style="top: 26%; left: 40%;" 
+                data-question-type="VIDEO_SELECT" 
+                onmouseover="showTooltip(this)" 
+                onmouseout="hideTooltip(this)"
+                onclick="location.href='/selectQuestions?questionType=VIDEO_SELECT'">
                 <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
-            <div class="star-button" style="top: 34%; left: 50%;" onclick="location.href='/selectQuestions?questionType=NEW_TYPE_2'">
+            <div class="star-button" style="top: 34%; left: 50%;" 
+                data-question-type="TTS_SELECT" 
+                onmouseover="showTooltip(this)" 
+                onmouseout="hideTooltip(this)"
+                onclick="location.href='/selectQuestions?questionType=TTS_SELECT'">
                 <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
 
             <!-- 두 번째 사선 (오른쪽 -> 왼쪽) -->
-            <div class="star-button" style="top: 42%; left: 50%;" onclick="location.href='/selectQuestions?questionType=VIDEO_SELECT'">
+            <div class="star-button" style="top: 42%; left: 50%;" 
+                data-question-type="TEXT_SELECT"   
+                onmouseover="showTooltip(this)" 
+                onmouseout="hideTooltip(this)"
+                onclick="location.href='/selectQuestions?questionType=TEXT_SELECT'">
                 <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
-            <div class="star-button" style="top: 50%; left: 40%;" onclick="location.href='/selectQuestions?questionType=NEW_TYPE_3'">
+            <div class="star-button" style="top: 50%; left: 40%;" 
+                data-question-type="IMAGE_SELECT" 
+                onmouseover="showTooltip(this)" 
+                onmouseout="hideTooltip(this)"
+                onclick="location.href='/selectQuestions?questionType=IMAGE_SELECT'">
                 <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
-            <div class="star-button" style="top: 58%; left: 30%;" onclick="location.href='/selectQuestions?questionType=TTS_SELECT'">
+            <div class="star-button" style="top: 58%; left: 30%;" 
+                data-question-type="VIDEO_SELECT" 
+                onmouseover="showTooltip(this)" 
+                onmouseout="hideTooltip(this)"
+                onclick="location.href='/selectQuestions?questionType=VIDEO_SELECT'">
                 <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
-            <div class="star-button" style="top: 66%; left: 20%;" onclick="location.href='/selectQuestions?questionType=NEW_TYPE_4'">
+            <div class="star-button" style="top: 66%; left: 20%;" 
+                data-question-type="TTS_SELECT" 
+                onmouseover="showTooltip(this)" 
+                onmouseout="hideTooltip(this)"
+                onclick="location.href='/selectQuestions?questionType=TTS_SELECT'">
                 <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
 
             <!-- 세 번째 사선 (왼쪽 -> 오른쪽) -->
-            <div class="star-button" style="top: 74%; left: 20%;" onclick="location.href='/selectQuestions?questionType=AUDIO_SELECT'">
+            <div class="star-button" style="top: 74%; left: 20%;" 
+                data-question-type="TEXT_SELECT"   
+                onmouseover="showTooltip(this)" 
+                onmouseout="hideTooltip(this)"
+                onclick="location.href='/selectQuestions?questionType=TEXT_SELECT'">
                 <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
-            <div class="star-button" style="top: 82%; left: 30%;" onclick="location.href='/selectQuestions?questionType=NEW_TYPE_5'">
+            <div class="star-button" style="top: 82%; left: 30%;"  
+                data-question-type="IMAGE_SELECT" 
+                onmouseover="showTooltip(this)" 
+                onmouseout="hideTooltip(this)"
+                onclick="location.href='/selectQuestions?questionType=IMAGE_SELECT'">
                 <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
-            <div class="star-button" style="top: 90%; left: 40%;" onclick="location.href='/selectQuestions?questionType=FILL_IN_THE_BLANK'">
+            <div class="star-button" style="top: 90%; left: 40%;" 
+                data-question-type="VIDEO_SELECT" 
+                onmouseover="showTooltip(this)" 
+                onmouseout="hideTooltip(this)"
+                onclick="location.href='/selectQuestions?questionType=VIDEO_SELECT'">
                 <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
-            <div class="star-button" style="top: 98%; left: 50%;" onclick="location.href='/selectQuestions?questionType=NEW_TYPE_6'">
+            <div class="star-button" style="top: 98%; left: 50%;" 
+                data-question-type="TTS_SELECT" 
+                onmouseover="showTooltip(this)" 
+                onmouseout="hideTooltip(this)"
+                onclick="location.href='/selectQuestions?questionType=TTS_SELECT'">
                 <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
 
             <!-- 네 번째 사선 (오른쪽 -> 왼쪽) -->
-            <div class="star-button" style="top: 106%; left: 50%;" onclick="location.href='/selectQuestions?questionType=WORD_MATCH'">
+            <div class="star-button" style="top: 106%; left: 50%;" 
+                data-question-type="TEXT_SELECT"   
+                onmouseover="showTooltip(this)" 
+                onmouseout="hideTooltip(this)"
+                onclick="location.href='/selectQuestions?questionType=TEXT_SELECT'">
                 <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
-            <div class="star-button" style="top: 114%; left: 40%;" onclick="location.href='/selectQuestions?questionType=NEW_TYPE_7'">
+            <div class="star-button" style="top: 114%; left: 40%;" 
+                data-question-type="IMAGE_SELECT" 
+                onmouseover="showTooltip(this)" 
+                onmouseout="hideTooltip(this)"
+                onclick="location.href='/selectQuestions?questionType=IMAGE_SELECT'">
                 <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
-            <div class="star-button" style="top: 122%; left: 30%;" onclick="location.href='/selectQuestions?questionType=QUIZ'">
+            <div class="star-button" style="top: 122%; left: 30%;" 
+                data-question-type="VIDEO_SELECT" 
+                onmouseover="showTooltip(this)" 
+                onmouseout="hideTooltip(this)"
+                onclick="location.href='/selectQuestions?questionType=VIDEO_SELECT'">
                 <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
-            <div class="star-button" style="top: 130%; left: 20%;" onclick="location.href='/selectQuestions?questionType=NEW_TYPE_8'">
+            <div class="star-button" style="top: 130%; left: 20%;" 
+                data-question-type="TTS_SELECT" 
+                onmouseover="showTooltip(this)" 
+                onmouseout="hideTooltip(this)"
+                onclick="location.href='/selectQuestions?questionType=TTS_SELECT'">
                 <img src="/image/Rectangle 2049.png" alt="Star">
             </div>
         </div>

@@ -81,7 +81,7 @@
     <!-- 하단 영역 -->
     <div class="footer">
         <div id="timer_app"></div>
-        <button type="submit" class="next-button" onclick="nextQuestion(event)">다음 문제</button>
+        <button type="submit" class="next-button" onclick="nextQuestion(event)">다음</button>
     </div>
 
     <!-- totalQuestions 값 설정 -->
@@ -91,7 +91,7 @@
     <!-- 정답 인덱스 -->
     <input type="hidden" id="correctAnswerIndex" th:value="${question.answer}">
 </div>
-<script th:src="@{/js/timer.js}"></script>
+<!--<script th:src="@{/js/timer.js}"></script>-->
 <script th:src="@{/js/question.js}"></script>
 </body>
 </html>
