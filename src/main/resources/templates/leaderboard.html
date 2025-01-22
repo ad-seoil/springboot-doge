@@ -4,64 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>포인트 순위</title>
-    <link rel="stylesheet" href="/css/User Ranking.css">
+    <link rel="stylesheet" href="/css/leaderboard.css"> <!-- /static/css/leaderboard.css -->
 
     <link rel="stylesheet" href="/css/setting.css">
     <link rel="stylesheet" href="/css/header.css?v=2">
+    <link rel="stylesheet" href="/css/y_header.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="/js/User_Ranking.js" defer></script>
+    <script src="/js/leaderboard.js" defer></script>
 </head>
 <body>
-<!-- 상단바 전체 박스 -->
-<div id="naviBox">
-    <div id="naviBox2">
-        <div id="logoBox">
-            <img src="/image/DOGE_Logo.png" alt="DOGE_Logo">
-            <p>DoGE</p>
-        </div>
-        <nav id="nav">
-            <ul id="menu">
-                <li class="main"><a href="/main">메인페이지</a></li>
-                <li class="main">
-                    <a href="#">언어</a><i class="fa-solid fa-chevron-down icon"></i>
-                    <ul class="sub">
-                        <li class="subList"><a href="#">English</a></li>
-                        <li class="subList"><a href="#">한국어</a></li>
-                        <li class="subList"><a href="#">日本語</a></li>
-                    </ul>
-                </li>
-                <li class="main">
-                    <a id="loginLink" href="/login" style="display: none;">로그인</a>
-                    <a id="logoutLink" href="/logout" style="display: none;">로그아웃</a>
-                </li>
-                <li class="main"><a href="/profile">프로필</a></li>
-                <li class="main"><a href="/inquiry">문의</a></li>
-            </ul>
-        </nav>
-    </div>
-</div>
-<!-- 사이드바 -->
-<div class="sidebar">
+<!-- 헤더 불러오기 -->
+<div th:replace="~{fragments/y_header :: yHeaderFragment}"></div>
 
-    <button class="learn-button" onclick="location.href='/selectQuestions?questionType=TEXT_SELECT'" aria-label="단어 선택 문제 풀기">학습하기</button>
 
-    <div class="menu-item">
-        <span class="material-icons" onclick="ClassPage.navigateToProfile()">프로필</span>
-    </div>
-    <div class="menu-item">
-        <span class="material-icons" onclick="ClassPage.navigateToPurchasePage()">상점</span>
-    </div>
-    <div class="menu-item">
-        <span class="material-icons">랭킹</span>
-    </div>
-    <div class="menu-item" id="logoutMenu">
-        <span class="material-icons">로그아웃</span>
-    </div>
-</div> <!-- <div class="sidebar"> 닫음 -->
-
+<!-- 메인 콘텐츠 -->
+<div class="header">
 <div class="content">
-    <div class="header">
+
         <h1>포인트 순위</h1>
         <div class="date-search">
             <input type="date" />
@@ -125,5 +85,44 @@
         </tbody>
     </table>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // 검색 이벤트 핸들러
+        document.querySelector(".search-bar input").addEventListener("keyup", search);
+
+        // 좋아요 버튼 핸들러
+        const likeButtons = document.querySelectorAll(".like-button");
+        likeButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const row = button.closest("tr");
+                const likesCell = row.querySelector(".likes-count");
+                const currentLikes = parseInt(likesCell.innerText);
+                likesCell.innerText = currentLikes + 1;
+            });
+        });
+    });
+
+    // 검색 기능
+    function search(event) {
+        const input = event.target.value.toLowerCase(); // 입력값 가져오기
+        const rows = document.querySelectorAll("table tbody tr"); // 모든 행 가져오기
+
+        rows.forEach(row => {
+            const cells = row.querySelectorAll("td");
+            let found = false;
+
+            // 특정 열 검색: 순위(0), ID(1), 이름(2), 학습 언어(4)
+            [0, 1, 2, 4].forEach(index => {
+                if (cells[index] && cells[index].innerText.toLowerCase().includes(input)) {
+                    found = true;
+                }
+            });
+
+            // 검색 조건에 따라 행 표시/숨기기
+            row.style.display = found ? "" : "none";
+        });
+    }
+</script>
+
 </body>
 </html>
