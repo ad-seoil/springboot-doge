@@ -113,12 +113,15 @@ body {
     display: flex;
     flex-direction: column;
     background: white;
-    padding: 20px;
-    margin: 20px;
+    padding: 10px;
+    margin: 20px 20px 20px 320px; /* 왼쪽 여백을 사이드바 너비만큼 추가 */
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     color: #333;
     overflow-y: auto;
+
+    /* 수정된 부분 */
+    height: calc(85vh - 50px);
 
 }
 

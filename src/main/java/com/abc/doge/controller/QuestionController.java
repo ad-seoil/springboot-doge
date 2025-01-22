@@ -213,7 +213,7 @@ public class QuestionController {
                 model.addAttribute("ex3Audio", "/audio/question_image_select/ID_" + audioId + "_ex3.wav");
                 break;
             case "VIDEO_SELECT":
-                model.addAttribute("videoUrl", question.getQuestionFile());
+                model.addAttribute("videoUrl", "/video/" + question.getQuestionFile());
                 break;
             case "TTS_SELECT":
                 model.addAttribute("questionAudio", "/audio/conversationTts/ID_" + audioId + ".wav");
