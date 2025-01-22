@@ -32,14 +32,16 @@
                 <li class="main">
                     <a th:href="@{/doge}">메인페이지</a>
                 </li>
-                <li class="main"> <!-- 메인메뉴 -->
+
+                <!-- <li class="main"> 
                     <a href="#">언어</a><i class="fa-solid fa-chevron-down icon"></i>
-                    <ul class="sub">  <!-- 서브메뉴(토글) -->
+                    <ul class="sub">  
                         <li class="subList"><a href="#">English</a></li>
                         <li class="subList"><a href="#">한국어</a></li>
                         <li class="subList"><a href="#">日本語</a></li>
                     </ul>
-                </li>
+                </li> -->
+
                 <li class="main">
                     <a th:if="${session.loggedInUser == null}" th:href="@{/login}">로그인</a>
                     <a th:if="${session.loggedInUser != null}" th:href="@{/logout}">로그아웃</a>

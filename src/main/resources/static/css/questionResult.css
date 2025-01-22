@@ -21,14 +21,14 @@
     font-size: 8vh;
     font-weight: bolder;
     text-align: center;
-    color: var(--orange-yellow);
+    color: orange;
 }
 
 .text2 {
     font-size: 1vw;
     text-align: center;
     margin: 2vh;
-    color: var(--text-grey);
+    color: var(--black);
 }
 
 .reward {
@@ -46,7 +46,7 @@
 }
 
 .xp {
-    background-color: var(--orange);
+    background-color: orange;
 }
 
 .title {
@@ -66,15 +66,15 @@
 }
 
 .xp .content {
-    color: var(--orange);
+    color: orange;
 }
 
 .accuracy {
-    background-color: var(--light-green);
+    background-color: green;
 }
 
 .accuracy .content {
-    color: var(--light-green);
+    color: green;
 }
 
 button {
@@ -84,4 +84,6 @@ button {
     border-radius: 1rem;
     color: var(--white);
     cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: 400;
 }
