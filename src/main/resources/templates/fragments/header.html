@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,8 +19,12 @@
     <div id="naviBox2">
         <!-- 로고, 프로젝트명 박스 -->
         <div id="logoBox">
-            <img src="/image/DOGE_Logo.png" alt="DOGE_Logo">
-            <p>DoGE</p>
+            <!-- <img src="/image/DOGE_Logo.png" alt="DOGE_Logo"> -->
+            <!-- <img src="/static/image/DOGE_Logo.png" alt="DOGE_Logo"> -->
+            <a th:href="@{/doge}">
+                <p>Langvo</p>
+            </a>
+            
         </div>
         <!-- 내비게이션 -->
         <nav id="nav">

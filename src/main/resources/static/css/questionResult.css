@@ -9,11 +9,12 @@
 }
 
 .complete-img {
-    width: 36vw;
-    height: 44vh;
-    background-image: url(/static/image/missionComplete.webp);
-    background-size: cover;
-    background-position: center center;
+    /* width: 36vw;
+    height: 44vh; */
+}
+
+.complete-img img {
+    width: 32vw;
 }
 
 .text1 {

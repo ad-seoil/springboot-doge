@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,12 +17,12 @@
         <section>
             <div class="logo">
                 <a th:href="@{/doge}">
-                    <img src="/image/DOGE_Logo.png" alt="DOGE_Logo">
-                    <!-- <p>DoGE</p> -->
+<!--                    <img src="/image/DOGE_Logo.png" alt="DOGE_Logo">-->
+                     <p>Langvo</p>
                 </a>
             </div>
             <div class="learn">
-                <a href="#">
+                <a th:href="@{/classpage}">
                     <i class="fa-solid fa-house"></i>
                     <p>학습하기</p>
                 </a>
@@ -35,13 +35,13 @@
                 </a>
             </div>
             <div class="quest">
-                <a href="#">
+                <a th:href="@{/Quest-Progress}">
                     <i class="fa-solid fa-lightbulb"></i>
                     <p>퀘스트</p>
                 </a>
             </div>
             <div class="shop">
-                <a href="#">
+                <a th:href="@{/Purchase}">
                     <i class="fa-solid fa-sack-dollar"></i>
                     <p>상점</p>
                 </a>

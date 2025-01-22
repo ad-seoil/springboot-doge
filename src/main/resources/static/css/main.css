@@ -107,12 +107,14 @@ body {
     padding: 20px; /* 텍스트 영역 여백 */
     border-radius: 8px; /* 모서리 둥글게 */
     max-width: 50%;
-    text-align: center; /* 텍스트 중앙 정렬 */
+    text-align: left;
+    margin-left: 4vw;
 }
 .banner h2 {
     font-size: 2.5rem;
     color: #ffffff;
     margin-bottom: 20px;
+    padding-left: 4vw;
 }
 .banner p {
     font-size: 1.2rem;
@@ -128,6 +130,7 @@ body {
     font-size: 1rem;
     cursor: pointer;
     margin-top: 30px; /* 버튼과 텍스트 간격 추가 */
+    margin-left: 4vw;
     display: block; /* 버튼을 블록 요소로 만들어 상하 간격을 확실히 보장 */
 }
 /*.banner-bar {*/

@@ -23,6 +23,13 @@ nav > section > div > a{
     color: var(--text-grey);
 }
 
+.logo p {
+    font-weight: bolder;
+    font-size: 6vh;
+    color: var(--blue);
+    margin: 4vh 0;
+}
+
 i {
     margin-right: 2rem;
     /* font-size: 2vh; */
