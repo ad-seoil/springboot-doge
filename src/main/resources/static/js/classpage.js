@@ -88,3 +88,27 @@ window.ClassPage = ClassPage;
 document.addEventListener("DOMContentLoaded", () => {
     ClassPage.updateFreeTrialStatus();
 });
+
+function showTooltip(button) {
+    const questionType = button.dataset.questionType;
+    let tooltipText = "";
+    switch (questionType) {
+      case "TEXT_SELECT":
+        tooltipText = "텍스트 선택";
+        break;
+      case "IMAGE_SELECT":
+        tooltipText = "이미지 선택";
+        break;
+      case "VIDEO_SELECT":
+        tooltipText = "비디오 선택";
+        break;
+      case "TTS_SELECT":
+        tooltipText = "TTS 선택";
+        break;
+    }
+    button.style.setProperty('--tooltip-content', JSON.stringify(tooltipText));
+  }
+  
+  function hideTooltip(button) {
+    button.style.removeProperty('--tooltip-content');
+  }
