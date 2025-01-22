@@ -73,15 +73,22 @@ body {
 
 .sidebar {
 
-    background-color: #ffffff;
-    color: #444;
-    border-right: 1px solid #ddd;
-    padding: 20px 80px 20px 20px; /* 오른쪽 여백(padding-right)을 40px로 설정 */
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 300px; /* 너비는 고정 */
+        background-color: #ffffff; /* 배경색 */
+        color: #444; /* 텍스트 색상 */
+        border-right: 1px solid #ddd; /* 오른쪽 선 추가 */
+        padding: 20px; /* 내부 여백 */
+        box-sizing: border-box; /* 여백 포함 */
+        display: flex; /* 플렉스 컨테이너 */
+        flex-direction: column; /* 수직 정렬 */
+        justify-content: flex-start; /* 시작 지점부터 정렬 */
+        width: 300px; /* 고정된 너비 */
+        height: calc(100vh - 60px); /* 헤더를 제외한 화면 높이 */
+        position: fixed; /* 화면에 고정 */
+        left: 0; /* 화면 왼쪽에 위치 */
+        top: 60px; /* 헤더 아래로 배치 */
+        z-index: 999; /* 다른 요소 위로 표시 */
+        overflow-y: auto; /* 내용이 넘칠 경우 스크롤 추가 */
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
 }
 
 .sidebar .logo {
@@ -126,13 +133,11 @@ body {
 }
 
 .main-content {
-    flex: 1;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
-    position: relative;
+    margin-left: 500px; /* 사이드바의 너비만큼 여백 추가 */
+    padding: 20px; /* 내부 여백 */
+    background-color: #f8f9fa; /* 배경색 (필요시 설정) */
+    flex: 1; /* 남은 영역을 차지 */
+    overflow-y: auto; /* 콘텐츠가 많을 경우 스크롤 가능 */
 }
 
 
@@ -185,18 +190,26 @@ body {
 
 .character1 {
     position: absolute;
-    top: 80%; /* 아래로 이동 (기존 60%에서 70%로 변경) */
-    left: 15%; /* 기존 위치 유지 */
+    top: 85%; /* 더 아래로 이동 */
+    left: 30%; /* 가로 위치 조정 */
     transform: translate(-50%, -50%);
-    z-index: 10; /* 다른 요소보다 위에 표시 */
+
 }
 
 .character2 {
     position: absolute;
-    top: 10%; /* 기존 위치 유지 */
-    left: 50%; /* 오른쪽으로 이동 (기존 40%에서 50%로 변경) */
+    top:30%; /* 약간 위로 이동 */
+    left:70%; /* 중앙보다 오른쪽으로 이동 */
     transform: translate(-50%, -50%);
-    z-index: 10; /* 다른 요소보다 위에 표시 */
+
+}
+
+.character3 {
+    position: absolute;
+    top:125%; /* 약간 위로 이동 */
+    left:70%; /* 중앙보다 오른쪽으로 이동 */
+    transform: translate(-50%, -50%);
+
 }
 
 .character img {
@@ -239,16 +252,21 @@ body {
 }
 
 .right-panel {
-        position: fixed;
-        right: 10px;
-        top: 40px; /* 헤더 아래로 이동 */
-        width: 350px;
-        height: calc(100vh - 80px); /* 화면 높이에 맞춤 */
-
-        padding: 20px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        overflow: hidden; /* 스크롤 방지 */
+    background-color: #ffffff; /* 배경색 */
+    color: #444; /* 텍스트 색상 */
+    border-left: 1px solid #ddd; /* 왼쪽에 선 추가 */
+    padding: 20px; /* 내부 여백 */
+    box-sizing: border-box; /* 여백 포함 */
+    display: flex; /* 플렉스 컨테이너 */
+    flex-direction: column; /* 수직 정렬 */
+    justify-content: flex-start; /* 시작 지점부터 정렬 */
+    width: 300px; /* 너비 고정 */
+    height: 100vh; /* 화면 높이에 맞춤 */
+    position: fixed; /* 화면에 고정 */
+    right: 0; /* 화면 오른쪽에 위치 */
+    top: 60px; /* 화면 상단에 위치 */
+    z-index: 999; /* 다른 요소 위로 표시 */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
 }
 
 .info-container img {
