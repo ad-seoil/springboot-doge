@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,68 +7,25 @@
 
     <!-- 외부 스타일 파일 -->
     <link rel="stylesheet" href="/css/setting.css">
-    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/y_header.css">
+    <link rel="stylesheet" href="/css/classpage.css">
 
-    <link rel="stylesheet" href="./css/classpage.css">
-    <link rel="stylesheet" href="./css/header.css">
-    
+
+    <link rel="stylesheet" href="/static/css/setting.css">
+    <link rel="stylesheet" href="/static/css/classpage.css">
+    <link rel="stylesheet" href="/static/css/y_header.css">
+
+    <script src="https://kit.fontawesome.com/1b78245624.js" crossorigin="anonymous"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="/js/classpage.js" defer></script>
 </head>
 <body>
-<!-- 상단바 전체 박스 -->
-<div id="naviBox">
-    <div id="naviBox2">
-        <div id="logoBox">
-            <img src="/image/DOGE_Logo.png" alt="DOGE_Logo">
-            <p>DoGE</p>
-        </div>
-        <nav id="nav">
-            <ul id="menu">
-                <li class="main"><a href="/main">메인페이지</a></li>
-                <li class="main">
-                    <a href="#">언어</a><i class="fa-solid fa-chevron-down icon"></i>
-                    <ul class="sub">
-                        <li class="subList"><a href="#">English</a></li>
-                        <li class="subList"><a href="#">한국어</a></li>
-                        <li class="subList"><a href="#">日本語</a></li>
-                    </ul>
-                </li>
-                <li class="main">
-                    <a id="loginLink" href="/login" style="display: none;">로그인</a>
-                    <a id="logoutLink" href="/logout" style="display: none;">로그아웃</a>
-                </li>
-                <li class="main"><a href="/profile">프로필</a></li>
-                <li class="main"><a href="/inquiry">문의</a></li>
-            </ul>
-        </nav>
-    </div>
-</div>
-<!-- NaviBox 끝 -->
 
 <!-- 콘텐츠 래퍼 -->
 <div class="content-wrapper">
-    <!-- 사이드바 -->
-    <div class="sidebar">
-
-        <button class="learn-button" onclick="location.href='/selectQuestions?questionType=TEXT_SELECT'" aria-label="단어 선택 문제 풀기">학습하기</button>
-
-        <div class="menu-item">
-            <span class="material-icons" onclick="ClassPage.navigateToProfile()">프로필</span>
-        </div>
-        <div class="menu-item">
-            <span class="material-icons" onclick="ClassPage.navigateToPurchasePage()">상점</span>
-        </div>
-        <div class="menu-item">
-            <span class="material-icons" onclick="ClassPage.navigateToRankingPage()">랭킹</span>
-        </div>
-        <div class="menu-item" id="logoutMenu">
-            <span class="material-icons">로그아웃</span>
-        </div>
-    </div>
-
-
-    <!--        사이드바 끝-->
+    <!-- 헤더 불러오기 -->
+    <div th:replace="~{fragments/y_header :: yHeaderFragment}"></div>
 
 
     <!-- 메인 콘텐츠 -->
@@ -211,6 +168,9 @@
             <div class="character character2">
                 <img src="/image/Rectangle 2057.png" alt="Character 2">
             </div>
+            <div class="character character3">
+                <img src="/image/12.png" alt="Character 3">
+        </div>
 
         </div>
         <!--            별과 캐릭터 끝-->
@@ -246,7 +206,7 @@
                 <p>1-1: 인사하기 진행완료하기</p>
             </div>
             <div class="progress-bar">
-                <span></span>
+                <!-- <span></span> -->
             </div>
 
         </div>

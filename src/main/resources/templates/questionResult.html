@@ -16,6 +16,8 @@
     <section class="result">
         <div class="complete-img">
             <!-- 이쪽에 해당하는 이미지 가져와서 넣도록 -->
+            <img src="/image/missionComplete.webp"></img>
+            <!-- <img src="/static/image/missionComplete.webp"></img> -->
         </div>
     
         <div class="result-text">
@@ -39,7 +41,7 @@
             <div class="accuracy">
                 <p class="title">ACCURACY</p>
                 <!-- 맞은 퍼센트를 백분율로 계산한 값을 가져오도록 바꿀 것 -->
-                <p class="content"><span th:text ="${accuracy}"></span>%</p>
+                <p class="content"><span th:text ="${#numbers.formatDecimal(accuracy, 2, 1)}"></span>%</p>
             </div>
         </div>
     

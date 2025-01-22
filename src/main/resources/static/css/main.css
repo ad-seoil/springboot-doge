@@ -4,21 +4,21 @@ body {
     padding: 0;
     background-color: #ffffff;
 } /*글씨 사이즈 */
- .small-text {
-            font-size: 12px;
-        }
+.small-text {
+    font-size: 12px;
+}
 
-        .medium-text {
-            font-size: 16px;
-        }
+.medium-text {
+    font-size: 16px;
+}
 
-        .large-text {
-            font-size: 15px;
-        }
+.large-text {
+    font-size: 15px;
+}
 
-        .extra-large-text {
-            font-size: 32px;
-        }
+.extra-large-text {
+    font-size: 32px;
+}
 
 .header {
     background-color: #ffffff;
@@ -91,43 +91,75 @@ body {
     overflow: hidden;
 }
 .banner img {
-    width: auto; /* 가로 크기를 자동 조정 (비율 유지) */
+    width: 100%;
     height: 160%; /* 높이를 배너에 맞춤 */
-    object-fit: contain; /* 이미지 전체가 보이도록 설정 */
+    object-fit: cover;
     position: absolute; /* 위치 고정 */
     top: 0; /* 배너 상단부터 시작 */
     left: 50%; /* 배너 중앙에 맞춤 */
     transform: translateX(-50%); /* 가로 중앙 정렬 */
     z-index: 1; /* 텍스트와 버튼 뒤로 배치 */
-    background-color: #f0f0f0; /* 여백 생길 경우 배경색 */
 }
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2); /* 검은색 반투명 */
+    z-index: 2; /* 텍스트보다 위에 표시 */
+}
+
 .banner .text-content {
     position: relative; /* 이미지 위에 표시되도록 relative 추가 */
     z-index: 2; /* 이미지 위로 텍스트 표시 */
     padding: 20px; /* 텍스트 영역 여백 */
     border-radius: 8px; /* 모서리 둥글게 */
     max-width: 50%;
-    text-align: center; /* 텍스트 중앙 정렬 */
+    text-align: left;
+    margin-left: 4vw;
 }
 .banner h2 {
     font-size: 2.5rem;
     color: #ffffff;
-    margin-bottom: 20px;
+    margin-bottom: 1vh;
+    padding-left: 4vw;
 }
+
+.banner h3 {
+    /* font-size: 2.5rem; */
+    color: #f8f8f8;
+    margin-bottom: 20px;
+    padding-left: 4vw;
+    font-weight: 300;
+}
+
 .banner p {
     font-size: 1.2rem;
     color: #555;
     margin-bottom: 40px;
 }
+
+.button-container {
+    display: flex;
+}
+
+.learn-button {
+    width: 8vw;
+}
+
 .banner button {
     padding: 15px 30px;
-    background-color: #1a73e8;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
+    background-color:rgba(255, 255, 255, 0.3);
+    color: var(--white);
+    border: 1px solid var(--white);
+    /* border-radius: 8px; */
+    font-size: 1.4rem;
+    font-weight: 700;
     cursor: pointer;
     margin-top: 30px; /* 버튼과 텍스트 간격 추가 */
+    margin-left: 4vw;
     display: block; /* 버튼을 블록 요소로 만들어 상하 간격을 확실히 보장 */
 }
 /*.banner-bar {*/
@@ -141,11 +173,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px auto;
+    margin-bottom: 20px auto;
     width: 100%; /* 배너와 동일한 너비 */
     height: 150px; /* 높이 축소 */
     background-color: #f0f0f0; /* 임시 배경색 */
-    border-radius: 8px; /* 모서리 둥글게 */
     overflow: hidden;
 }
 .image-container img {
@@ -196,10 +227,11 @@ body {
     color: #1a73e8;
     margin-bottom: 20px;
 }
-.lesson-section p {
-    font-size: 1rem;
-    color: #666;
+.lesson-section h3 {
+    font-size: 1.6rem;
+    color: var(--black);
     margin-bottom: 40px;
+    font-weight: 500;
 }
 .comparison-section {
     display: flex;
@@ -224,19 +256,18 @@ body {
     margin-top: -20px;
     padding: 60px 20px;
     text-align: center;
-    
 }
 
 .comparison-content h2 {
-    font-size: 2rem;
+    font-size: 3rem;
     color: #1a73e8;
-    margin-bottom: 20px;
+    
 }
 
-.comparison-content p {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 20px;
+.comparison-content h3 {
+    font-size: 1.6rem;
+    color: var(--black);
+    font-weight: 500;
 }
 
 .comparison-list {
@@ -328,7 +359,7 @@ body {
 }
 .three-box h3 {
     font-size: 1.2rem;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     color: #444;
 }
 .three-box p {
@@ -356,9 +387,9 @@ body {
     margin-bottom: 20px;
 }
 
-.review-section p {
-    font-size: 1.2rem;
-    color: #555;
+.review-section h3 {
+    font-size: 1.6rem;
+    color: var(--black);
     margin-bottom: 40px;
 }
 
@@ -378,10 +409,11 @@ body {
     padding: 20px;
     background-color: #f8fbff;
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #333;
     line-height: 1.6;
     position: relative;
+    font-size: 1.3rem;
 }
 
 .quote-box::before {

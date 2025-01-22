@@ -127,7 +127,6 @@ body {
 
 .main-content {
     flex: 1;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -148,7 +147,18 @@ body {
     font-size: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
     text-align: center; /* 텍스트 중앙 정렬 */
-    z-index: 2; /* 별보다 위에 보이도록 설정 */
+    z-index: 999; /* 별보다 위에 보이도록 설정 */
+}
+
+.blue-container p {
+    font-size: 2.4rem;
+    font-weight: bold;
+    margin-bottom: 0.8rem;
+}
+
+.blue-container h3 {
+    font-size: 1.6rem;
+    font-weight: 500;
 }
 
 
@@ -239,16 +249,24 @@ body {
 }
 
 .right-panel {
-        position: fixed;
-        right: 10px;
-        top: 40px; /* 헤더 아래로 이동 */
-        width: 350px;
-        height: calc(100vh - 80px); /* 화면 높이에 맞춤 */
+    position: fixed;
+    right: 10px;
+    top: 40px; /* 헤더 아래로 이동 */
+    width: 350px;
+    height: calc(100vh - 80px); /* 화면 높이에 맞춤 */
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden; /* 스크롤 방지 */
+}
 
-        padding: 20px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        overflow: hidden; /* 스크롤 방지 */
+.right-panel h3 {
+    font-size: 2rem;
+}
+
+.right-panel p {
+    font-size: 1.4rem;
+    margin:  0.4rem 0;
 }
 
 .info-container img {

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-  <footer class="footer">
+  <footer class="footer" th:fragment="footerFragment">
     <div class="footer-section logo">Doge</div>
     <div class="footer-section">
       <h3>도지 소개</h3>
@@ -19,7 +19,7 @@
     <div class="footer-section">
       <h3>학습안내</h3>
       <ul>
-        <li><a href="#">레벨 테스트</a></li>
+        <li><a th:href="@{/survey}">레벨 테스트</a></li>
         <li><a th:href="@{/profile}">개인정보 수정</a></li>
         <li><a th:href="@{/inquiry}">관리자에게 문의</a></li>
       </ul>
@@ -33,7 +33,9 @@
       </ul>
     </div>
     <div class="footer-section">
+      <a th:href="@{/inquiry}">
       <button class="footer-button">학습 관련 문의</button>
+      </a>
     </div>
     <div class="footer-bottom">
       <p>Doge © 2024. All rights reserved.</p>
