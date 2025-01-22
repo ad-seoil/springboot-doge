@@ -18,7 +18,7 @@ body {
     overflow-y: auto;
 }
 .header {
-    display: flex;
+
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -76,6 +76,7 @@ body {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
+    font-size: 18px; /* 테이블 텍스트 크기 증가 */
 }
 .table th {
     background-color: #f0f0f0;
