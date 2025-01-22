@@ -10,9 +10,37 @@
     <link rel="stylesheet" href="/css/header.css?v=2">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="/js/User Ranking" defer></script>
+    <script src="/js/User_Ranking.js" defer></script>
 </head>
 <body>
+<!-- 상단바 전체 박스 -->
+<div id="naviBox">
+    <div id="naviBox2">
+        <div id="logoBox">
+            <img src="/image/DOGE_Logo.png" alt="DOGE_Logo">
+            <p>DoGE</p>
+        </div>
+        <nav id="nav">
+            <ul id="menu">
+                <li class="main"><a href="/main">메인페이지</a></li>
+                <li class="main">
+                    <a href="#">언어</a><i class="fa-solid fa-chevron-down icon"></i>
+                    <ul class="sub">
+                        <li class="subList"><a href="#">English</a></li>
+                        <li class="subList"><a href="#">한국어</a></li>
+                        <li class="subList"><a href="#">日本語</a></li>
+                    </ul>
+                </li>
+                <li class="main">
+                    <a id="loginLink" href="/login" style="display: none;">로그인</a>
+                    <a id="logoutLink" href="/logout" style="display: none;">로그아웃</a>
+                </li>
+                <li class="main"><a href="/profile">프로필</a></li>
+                <li class="main"><a href="/inquiry">문의</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
 <!-- 사이드바 -->
 <div class="sidebar">
 

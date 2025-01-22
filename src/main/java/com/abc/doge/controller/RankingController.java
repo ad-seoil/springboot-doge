@@ -20,8 +20,8 @@ public class RankingController {
         // 모델에 데이터를 추가
         model.addAttribute("rankings", rankings);
 
-        // ranking.html 템플릿 반환
-        return "ranking";
+        // User_Ranking.html 템플릿 반환
+        return "User_Ranking";
     }
 
     // 내부 클래스: 실제로는 별도의 파일로 관리합니다
