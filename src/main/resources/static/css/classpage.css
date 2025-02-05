@@ -299,6 +299,11 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
+
+.task-container h4 {
+    font-size: 1.6rem;
+}
+
 /* 3. 기능 무료 체험 컨테이너 조정 */
 .info-container {
     margin-bottom: 10px;

@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>상점</title>
     <link rel="stylesheet" href="/css/setting.css">
-    <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/y_header.css">
     <link rel="stylesheet" href="/css/Purchase_points.css">
 
@@ -16,8 +15,8 @@
 </head>
 <body>
 
-    <!-- 헤더 불러오기 -->
-    <div th:replace="~{fragments/y_header :: yHeaderFragment}"></div>
+<!-- 헤더 불러오기 -->
+<div th:replace="~{fragments/y_header :: yHeaderFragment}"></div>
 
 <!-- 콘텐츠 래퍼 -->
 <div class="content-wrapper">
@@ -27,72 +26,72 @@
     <div class="main">
 
         <div class="content">
-            <div class="nav-buttons">
-            <button onclick="location.href='/purchase-points'">재화 기능 스토어</button>
-            <button onclick="location.href='/Purchase'">현금 기능 스토어</button>
-        </div>
-        <div class="user-section">
-            <img src="/image/Profile.png" alt="User Profile">
-            <div class="user-details">
-                <p id="user-name">학습자 이름: OOO 님</p>
-                <p id="user-progress">오늘의 학습: 완료</p>
-                <p id="user-level">학습 레벨: 30</p>
-                <p>학습 경험치: 100</p>
-                <p>획득 재화: 100</p>
+            <div class="tabs">
+                <button class="tab-button" onclick="location.href='/purchase-points'">재화 기능 스토어</button>
+                <button class="tab-button" onclick="location.href='/Purchase'">현금 기능 스토어</button>
             </div>
-
-            <div class="toggles-inline">
-                <div class="toggle">
-                    <label for="remove-ads">광고제거</label>
-                    <input type="checkbox" id="remove-ads">
+            <div class="user-section">
+                <img src="/image/Profile.png" alt="User Profile">
+                <div class="user-details">
+                    <p id="user-name">학습자 이름: OOO 님</p>
+                    <p id="user-progress">오늘의 학습: 완료</p>
+                    <p id="user-level">학습 레벨: 30</p>
+                    <p>학습 경험치: 100</p>
+                    <p>획득 재화: 100</p>
                 </div>
-                <div class="toggle">
-                    <label for="double-rewards">재화2배 보너스</label>
-                    <input type="checkbox" id="double-rewards">
+
+                <div class="toggles-inline">
+                    <div class="toggle">
+                        <label for="remove-ads">광고제거</label>
+                        <input type="checkbox" id="remove-ads">
+                    </div>
+                    <div class="toggle">
+                        <label for="double-rewards">재화2배 보너스</label>
+                        <input type="checkbox" id="double-rewards">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="store-items">
-            <div class="store-item">
-                <img src="/image/Rectangle 2043 (1).png" alt="Subscription Icon">
-                <h3>재화2배 보너스</h3>
-                <p>학습 완료시의 재화가 2배가됩니다</p>
-                <p>획득한 재화 OO 로 구매가능 </p>
-                <button onclick="activateDoubleRewardsForDays(30)">구매하기</button>
-                <p style="position: relative; top:5px;"><span>🛒</span>구매결제</p>
-                <p style="position: relative; top:10px;"><span>✔️</span> 이전학습에도 적용가능</p>
+            <div class="store-items">
+                <div class="store-item">
+                    <img src="/image/Rectangle 2043 (1).png" alt="Subscription Icon">
+                    <h3>재화2배 보너스</h3>
+                    <p>학습 완료시의 재화가 2배가됩니다</p>
+                    <p>획득한 재화 OO 로 구매가능 </p>
+                    <button onclick="activateDoubleRewardsForDays(30)">구매하기</button>
+                    <p style="position: relative; top:5px;"><span>🛒</span>구매결제</p>
+                    <p style="position: relative; top:10px;"><span>✔️</span> 이전학습에도 적용가능</p>
 
-            </div>
-            <div class="store-item">
-                <img src="/image/Rectangle 2043 (1).png" alt="Subscription Icon">
-                <h3>광고제거</h3>
-                <p>학습시의 광고를 제거합니다 .</p>
-                <p>획득한 재화 OO 로 구매가능 </p>
-                <button onclick="activateRemoveAdsForDays(30)">구매하기</button>
-                <p style="position: relative; top:5px;"><span>🛒</span>구매결제</p>
-                <p style="position: relative; top:10px;"><span>✔️</span> 이전학습에도 적용가능</p>
+                </div>
+                <div class="store-item">
+                    <img src="/image/Rectangle 2043 (1).png" alt="Subscription Icon">
+                    <h3>광고제거</h3>
+                    <p>학습시의 광고를 제거합니다 .</p>
+                    <p>획득한 재화 OO 로 구매가능 </p>
+                    <button onclick="activateRemoveAdsForDays(30)">구매하기</button>
+                    <p style="position: relative; top:5px;"><span>🛒</span>구매결제</p>
+                    <p style="position: relative; top:10px;"><span>✔️</span> 이전학습에도 적용가능</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    function purchaseItem(item) {
-        alert(`${item}이(가) 재화로 구매되었습니다.`);
-    }
-    function activateDoubleRewardsForDays(days) {
-        const doubleRewardsToggle = document.getElementById('double-rewards');
-        doubleRewardsToggle.checked = true;
-        alert(`재화2배 보너스가 활성화되었습니다. ${days}일 동안 적용됩니다.`);
-    }
+    <script>
+        function purchaseItem(item) {
+            alert(`${item}이(가) 재화로 구매되었습니다.`);
+        }
+        function activateDoubleRewardsForDays(days) {
+            const doubleRewardsToggle = document.getElementById('double-rewards');
+            doubleRewardsToggle.checked = true;
+            alert(`재화2배 보너스가 활성화되었습니다. ${days}일 동안 적용됩니다.`);
+        }
 
-    function activateRemoveAdsForDays(days) {
-        const removeAdsToggle = document.getElementById('remove-ads');
-        removeAdsToggle.checked = true;
-        alert(`광고제거가 활성화되었습니다. ${days}일 동안 적용됩니다.`);
-    }
-</script>
+        function activateRemoveAdsForDays(days) {
+            const removeAdsToggle = document.getElementById('remove-ads');
+            removeAdsToggle.checked = true;
+            alert(`광고제거가 활성화되었습니다. ${days}일 동안 적용됩니다.`);
+        }
+    </script>
 </div>
 </body>
 </html>
