@@ -34,6 +34,10 @@ const ClassPage = {
     navigateToRankingPage: function () {
         location.href = '/User_Ranking';
     },
+    // 챗봇 페이지 이동
+    navigateToChatPage: function () {
+        location.href = '/chat-with-James'
+    },
 
     // 7일 무료 사용 시작 함수
     activateFreeTrial: function () {
