@@ -2,10 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/setting.css">
+  <link rel="stylesheet" href="/css/y_header.css">
   <link rel="stylesheet" href="/css/chat_style.css">
+
+  <link rel="stylesheet" href="/static/css/setting.css">
+  <link rel="stylesheet" href="/static/css/chat_style.css">
   <title>Talk with James!</title>
 </head>
 <body>
+<div>
+  <div th:replace="~{fragments/y_header :: yHeaderFragment}"></div>
+</div>
 <div class="chat-container">
   <div class="chat-messages" id="chatMessages"></div>
   <div class="chat-input">

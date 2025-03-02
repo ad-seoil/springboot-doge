@@ -179,6 +179,7 @@ body {
     width: 50px;
     height: 50px;
     cursor: pointer;
+    --tooltip-content:"시작";
 }
 
 
@@ -216,7 +217,7 @@ body {
 
 
 .star-button:hover::after {
-    content: var(--tooltip-content, "시작");
+    content: var(--tooltip-content);
     position: absolute;
     top: -50px; /* 버튼 위에 말풍선 표시 */
     background-color: white;
@@ -246,6 +247,10 @@ body {
 .quest-container,
 .ad-container {
     margin-top: 20px; /* 각 컨테이너 아래 여백 추가 */
+}
+
+#ai-chat:hover{
+    cursor: pointer;
 }
 
 .right-panel {
